@@ -32,22 +32,17 @@ const palette = [
     "#991AFF",
     "#E666FF",
     "#4DB3FF",
-    "#1AB399",
-    "#E666B3",
-    "#33991A",
-    "#CC9999",
-    "#B3B31A",
-    "#00E680"
+    "#4D33aF"
 ];
 
 const ColorSelector = ({ select }: { select: (c: string) => void }) => {
     return (
         <div>
-            <Popover className="relative">
+            <Popover className="">
                 <Popover.Button className="rounded-full bg-primary p-1 text-4xl text-secondary">
                     <GiPalette />
                 </Popover.Button>
-                <Popover.Panel className=" absolute rounded-md border border-secondary">
+                <Popover.Panel className="fixed inset-2 z-50 flex items-center justify-center rounded-md border border-secondary bg-black/80">
                     {({ close }) => (
                         <div className="grid w-72 grid-cols-6 gap-1  rounded-md border-4 border-primary bg-primary">
                             {palette.map(color => (

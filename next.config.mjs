@@ -21,6 +21,6 @@ export default defineNextConfig({
         defaultLocale: "en"
     },
     images: {
-        domains: ["lh3.googleusercontent.com", "quizapp-meshno.s3.eu-central-1.amazonaws.com"]
+        domains: ["lh3.googleusercontent.com", "quizapp-meshno.s3.eu-central-1.amazonaws.com", "cdn.discordapp.com"]
     }
 });

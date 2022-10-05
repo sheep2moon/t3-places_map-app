@@ -1,19 +1,28 @@
 import { z } from "zod";
-import { createProtectedRouter, createRouter } from './context';
+import { createProtectedRouter } from './context';
 
 
 export const manageRouter = createProtectedRouter()
+.query("getCategories",{
+    resolve: async ({ctx}) => {
+        if(ctx.session.user.restaurantId){
+            return await ctx.prisma.category.findMany({where:{restaurantId: ctx.session.user.restaurantId}})
+        }
+    }
+})
 .mutation("createCategory",{
     input: z.object({
         name: z.string(),
-        color: z.string()
+        color: z.string(),
     }),
     resolve: async ({input,ctx}) => {
-        await ctx.prisma.category.create({
-        data: {
-            name: input.name,
-            color: input.color,
-            restaurantId: "22" //TODO
-        }})
+        if(ctx.session.user.restaurantId){
+            await ctx.prisma.category.create({
+            data: {
+                name: input.name,
+                color: input.color,
+                restaurantId: ctx.session.user.restaurantId
+            }})
+        }
     }
 })

@@ -10,10 +10,6 @@ import { authOptions } from "../api/auth/[...nextauth]";
 const Restaurant = () => {
     const restaurant = trpc.useQuery(["restaurant.getRestaurant"]);
 
-    useEffect(() => {
-        console.log(restaurant);
-    }, [restaurant]);
-
     if (restaurant.isLoading) return <LoadingSpinner />;
 
     return (
@@ -29,8 +25,8 @@ export default Restaurant;
 export async function getServerSideProps(context: any) {
     const session = await unstable_getServerSession(context.req, context.res, authOptions);
 
-    console.log("session", session);
-
+    // console.log("session", session?.user);
+    // const restaurantId = typeof session?.user?.restaurantId === "string" ? session?.user?.restaurantId : "";
     if (!session) {
         return {
             redirect: {

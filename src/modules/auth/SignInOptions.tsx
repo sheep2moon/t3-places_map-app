@@ -10,7 +10,7 @@ const SignInOptions = () => {
             <h1 className="pb-4 text-xl">Zaloguj się przez:</h1>
 
             <div className="flex flex-col gap-2">
-                <Button className="bg-[#5865F2] hover:bg-indigo-600" variant="secondary" onClick={() => signIn("discord")}>
+                <Button className="!hover:bg-indigo-600 !bg-[#5865F2]" variant="secondary" onClick={() => signIn("discord")}>
                     <div className="flex items-center gap-2 text-light">
                         <span>Discord</span>
                         <FaDiscord className="text-amber- text-2xl" />

@@ -9,7 +9,7 @@ export const restaurantRouter = createProtectedRouter()
     async resolve({ctx}){
         return ctx.prisma.restaurant.findFirst({
             where: {
-                ownerId: ctx.session.user.id
+                id: ctx.session.user.restaurantId
             }})
     }
 })
@@ -17,11 +17,19 @@ export const restaurantRouter = createProtectedRouter()
     name: z.string()
 }),
 async resolve({input,ctx}){
-    await ctx.prisma.restaurant.create({
+    const res = await ctx.prisma.restaurant.create({
         data:{
             name: input.name,
             ownerId: ctx.session.user.id
         }})
+    await ctx.prisma.user.update({
+        where:{
+            id: ctx.session.user.id
+        },
+        data: {
+            restaurantId: res.id
+        }
+    })
 }})
 
 

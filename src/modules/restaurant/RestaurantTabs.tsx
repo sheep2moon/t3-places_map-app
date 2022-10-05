@@ -5,18 +5,19 @@ import React from "react";
 
 const RestaurantTabs = () => {
     return (
-        <div>
-            <TabLink href="/restaurant/categories" />
+        <div className="flex">
+            <TabLink href="/restaurant/categories" title="Kategorie" />
+            <TabLink href="/restaurant/products" title="Produkty" />
         </div>
     );
 };
 
 export default RestaurantTabs;
 
-const TabLink = ({ href }: { href: string }) => {
+const TabLink = ({ href, title }: { href: string; title: string }) => {
     return (
         <Link href={href} passHref>
-            <a className="rounded-md border border-secondary px-4 py-2 text-center">Kategorie</a>
+            <a className=" border border-secondary px-4 py-2 text-center text-2xl last:border-l-0">{title}</a>
         </Link>
     );
 };

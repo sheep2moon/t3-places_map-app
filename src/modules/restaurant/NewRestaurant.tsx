@@ -5,16 +5,16 @@ import InputText from "../common/InputText";
 
 const NewRestaurant = ({ refetch }: { refetch: () => void }) => {
     const [name, setName] = useState("");
-    const createRestaurant = trpc.useMutation(["restaurant.createRestaurant"]);
+    const { mutateAsync: createRestaurant, isLoading } = trpc.useMutation(["restaurant.createRestaurant"]);
     const handleCreate = async () => {
-        await createRestaurant.mutateAsync({ name });
+        await createRestaurant({ name });
         refetch();
     };
     return (
         <div>
             <h2 className="mb-4 text-center text-xl">Stwórz restauracje</h2>
             <InputText value={name} handleChange={e => setName(e.target.value)} name="name" label="Nazwa" />
-            <Button className="mt-2" onClick={handleCreate} disabled={createRestaurant.isLoading}>
+            <Button className="mt-2" onClick={handleCreate} disabled={isLoading}>
                 Przejdź dalej
             </Button>
         </div>

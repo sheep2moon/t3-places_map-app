@@ -1,12 +1,20 @@
 import { unstable_getServerSession } from "next-auth";
 import React, { useState } from "react";
+import LoadingSpinner from "../../modules/common/LoadingSpinner";
+import CategoryList from "../../modules/restaurant/categories/CategoryList";
 import NewCategory from "../../modules/restaurant/categories/NewCategory";
+import { trpc } from "../../utils/trpc";
 import { authOptions } from "../api/auth/[...nextauth]";
 
 const Categories = () => {
+    const categoriesQuery = trpc.useQuery(["manage.getCategories"]);
+
+    if (categoriesQuery.isLoading) return <LoadingSpinner />;
+
     return (
         <div>
-            <NewCategory />
+            <NewCategory refetch={categoriesQuery.refetch} />
+            {categoriesQuery.data && <CategoryList items={categoriesQuery.data} />}
         </div>
     );
 };
