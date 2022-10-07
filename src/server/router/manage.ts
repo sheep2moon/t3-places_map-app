@@ -26,3 +26,36 @@ export const manageRouter = createProtectedRouter()
         }
     }
 })
+.mutation("updateCategory",{
+    input: z.object({
+        name: z.string(),
+        color: z.string(),
+        id: z.string()
+    }),
+    resolve: async ({input,ctx}) => {
+        if(ctx.session.user.restaurantId){
+            await ctx.prisma.category.update({
+                where: {
+                    id: input.id
+                },
+                data: {
+                    name: input.name,
+                    color: input.color,
+                    restaurantId: ctx.session.user.restaurantId
+            }})
+        }
+    }
+})
+.mutation("deleteCategory",{
+    input: z.object({
+        id: z.string()
+    }),
+    resolve: async ({input,ctx}) => {
+        if(ctx.session.user.restaurantId){
+            await ctx.prisma.category.delete({
+                where: {
+                    id: input.id
+                }})
+        }
+    }
+})

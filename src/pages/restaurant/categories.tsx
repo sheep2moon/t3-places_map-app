@@ -18,21 +18,33 @@ export type FormValuesState = {
     isEdit: boolean;
 };
 
+const defaultFormValues = { name: "", color: "#A8A4CE", id: "", isEdit: false };
+
 const Categories = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [formValues, setFormValues] = useState<FormValuesState>({ name: "", color: "", id: "", isEdit: false });
+    const [formValues, setFormValues] = useState<FormValuesState>(defaultFormValues);
 
     const { mutateAsync: createCategory } = trpc.useMutation(["manage.createCategory"]);
+    const { mutateAsync: updateCategory } = trpc.useMutation(["manage.updateCategory"]);
     const categoriesQuery = trpc.useQuery(["manage.getCategories"]);
 
     if (categoriesQuery.isLoading) return <LoadingSpinner />;
 
-    const handleConfirmForm = () => {
+    const handleConfirmForm = async () => {
         if (formValues.isEdit) {
-            //update with id
+            await updateCategory({
+                name: formValues.name,
+                color: formValues.color,
+                id: formValues.id
+            });
         } else {
-            createCategory({ name: formValues.name, color: formValues.color });
+            await createCategory({
+                name: formValues.name,
+                color: formValues.color
+            });
         }
+        setFormValues(defaultFormValues);
+        setIsModalOpen(false);
         categoriesQuery.refetch();
     };
 
@@ -47,7 +59,8 @@ const Categories = () => {
     const categoryListProps = {
         setFormValues,
         setIsModalOpen,
-        formValues
+        formValues,
+        refetchCategories: categoriesQuery.refetch
     };
 
     return (

@@ -24,7 +24,9 @@ const FormCategory = ({ isModalOpen, setIsModalOpen, formValues, setFormValues, 
         setFormValues(newState);
     };
     // const openModal = () => setIsModalOpen(true);
-    const closeModal = () => setIsModalOpen(false);
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
 
     return (
         <>
