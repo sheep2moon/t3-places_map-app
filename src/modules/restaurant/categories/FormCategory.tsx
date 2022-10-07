@@ -1,36 +1,36 @@
 import { Dialog, Transition } from "@headlessui/react";
-import React, { Fragment, useState } from "react";
-import { trpc } from "../../../utils/trpc";
+import React, { Fragment } from "react";
+import { FormValuesState } from "../../../pages/restaurant/categories";
 import Button from "../../common/Button";
 import ColorSelector from "../../common/color-selector";
-import InputFile from "../../common/InputFile";
+
 import InputText from "../../common/InputText";
 
 type NewCategoryProps = {
-    refetch: () => void;
+    isModalOpen: boolean;
+    setIsModalOpen: (v: boolean) => void;
+    formValues: FormValuesState;
+    setFormValues: (v: FormValuesState) => void;
+    handleConfirmForm: () => void;
 };
 
-const NewCategory = ({ refetch }: NewCategoryProps) => {
-    const { mutateAsync: createCategory } = trpc.useMutation(["manage.createCategory"]);
-    const [isOpen, setIsOpen] = useState(false);
-    const [name, setName] = useState("");
-    const [categoryColor, setCategoryColor] = useState("#9f9f9f");
-    const [file, setFile] = useState(null);
-
-    const handleCreateCategory = async () => {
-        await createCategory({ color: categoryColor, name });
-        refetch();
-        setIsOpen(false);
+const FormCategory = ({ isModalOpen, setIsModalOpen, formValues, setFormValues, handleConfirmForm }: NewCategoryProps) => {
+    const selectColor = (c: string) => {
+        const newState = { ...formValues, color: c };
+        setFormValues(newState);
     };
-
-    const openModal = () => setIsOpen(true);
-    const closeModal = () => setIsOpen(false);
+    const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const newState = { ...formValues, name: e.target.value };
+        setFormValues(newState);
+    };
+    // const openModal = () => setIsModalOpen(true);
+    const closeModal = () => setIsModalOpen(false);
 
     return (
         <>
-            <Button onClick={() => setIsOpen(true)}>Dodaj kategorie</Button>
+            <Button onClick={() => setIsModalOpen(true)}>Dodaj kategorie</Button>
 
-            <Transition appear show={isOpen} as={Fragment}>
+            <Transition appear show={isModalOpen} as={Fragment}>
                 <Dialog as="div" className="relative z-10" onClose={closeModal}>
                     <Transition.Child as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0" enterTo="opacity-100" leave="ease-in duration-200" leaveFrom="opacity-100" leaveTo="opacity-0">
                         <div className="fixed inset-0 bg-black bg-opacity-25" />
@@ -49,14 +49,14 @@ const NewCategory = ({ refetch }: NewCategoryProps) => {
                             >
                                 <Dialog.Panel className="h-full w-full max-w-md transform overflow-hidden rounded-2xl bg-primary p-6 pb-20 text-left align-middle shadow-xl transition-all">
                                     <Dialog.Title as="h3" className="text-xl font-medium leading-6 text-secondary">
-                                        Nowa kategoria
+                                        {formValues.isEdit ? "Edytujesz kategorie" : "Nowa kategoria"}
                                     </Dialog.Title>
 
                                     <div className="text-light">
                                         <label htmlFor="name">Wprowadź nazwę oraz wybierz kolor</label>
-                                        <div className="z-50 flex items-center gap-2 rounded-md p-2" style={{ backgroundColor: categoryColor }}>
-                                            <ColorSelector select={setCategoryColor} />
-                                            <InputText value={name} handleChange={e => setName(e.target.value)} name="name" />
+                                        <div className="z-50 flex items-center gap-2 rounded-md p-2" style={{ backgroundColor: formValues.color }}>
+                                            <ColorSelector select={selectColor} />
+                                            <InputText value={formValues.name} handleChange={handleNameChange} name="name" />
                                         </div>
                                     </div>
 
@@ -64,7 +64,7 @@ const NewCategory = ({ refetch }: NewCategoryProps) => {
                                         <Button variant="secondary" onClick={closeModal}>
                                             Anuluj
                                         </Button>
-                                        <Button onClick={() => handleCreateCategory()}>Dodaj</Button>
+                                        <Button onClick={() => handleConfirmForm()}>{formValues.isEdit ? "Aktualizuj" : "Dodaj"}</Button>
                                     </div>
                                 </Dialog.Panel>
                             </Transition.Child>
@@ -76,4 +76,4 @@ const NewCategory = ({ refetch }: NewCategoryProps) => {
     );
 };
 
-export default NewCategory;
+export default FormCategory;
