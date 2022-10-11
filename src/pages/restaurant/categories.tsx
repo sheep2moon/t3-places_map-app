@@ -1,6 +1,7 @@
 import { unstable_getServerSession } from "next-auth";
 import React, { useState } from "react";
 import LoadingSpinner from "../../modules/common/LoadingSpinner";
+import RestaurantLayout from "../../modules/layout/restaurant";
 import CategoryList from "../../modules/restaurant/categories/CategoryList";
 import FormCategory from "../../modules/restaurant/categories/FormCategory";
 import { trpc } from "../../utils/trpc";
@@ -64,10 +65,10 @@ const Categories = () => {
     };
 
     return (
-        <div>
+        <RestaurantLayout>
             <FormCategory {...categoryFormProps} />
             {categoriesQuery.data && <CategoryList {...categoryListProps} items={categoriesQuery.data} />}
-        </div>
+        </RestaurantLayout>
     );
 };
 

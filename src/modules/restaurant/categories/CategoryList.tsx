@@ -28,9 +28,9 @@ const CategoryList = ({ formValues, items, setIsModalOpen, setFormValues, refetc
     };
 
     return (
-        <div className=" w-72 text-light">
-            <h3>Lista kategorii</h3>
-            <ul className="flex flex-col">
+        <div className=" mt-4 w-72 text-light">
+            {/* <h3 className="mb-4 pl-1 font-bold text-secondary">Lista kategorii</h3> */}
+            <ul className="flex flex-col gap-1">
                 {items.map(category => (
                     <ListItem key={category.id} category={category} handleEdit={handleEdit} handleDelete={handleDelete} />
                 ))}
@@ -49,8 +49,8 @@ type ListItemProps = {
 
 const ListItem = ({ category: { color, name, id }, handleEdit, handleDelete }: ListItemProps) => {
     return (
-        <li className="flex items-center border border-light pr-2">
-            <div className="self-stretch p-2" style={{ backgroundColor: color ? color : "transparent" }}></div>
+        <li className="flex items-center pr-2 shadow-sm shadow-secondary/10">
+            <div className="self-stretch pl-1" style={{ backgroundColor: color ? color : "transparent" }}></div>
             <span className="w-full  p-2 text-xl">{name}</span>
             <div className="flex grow justify-between py-2">
                 <RoundedButton onClick={() => handleEdit(name, color, id)}>

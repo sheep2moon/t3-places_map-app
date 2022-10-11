@@ -1,22 +1,14 @@
 import { unstable_getServerSession } from "next-auth";
-import Link from "next/link";
-import React, { useEffect } from "react";
-import LoadingSpinner from "../../modules/common/LoadingSpinner";
-import NewRestaurant from "../../modules/restaurant/NewRestaurant";
-import RestaurantTabs from "../../modules/restaurant/RestaurantTabs";
-import { trpc } from "../../utils/trpc";
+import React from "react";
+
+import RestaurantLayout from "../../modules/layout/restaurant";
 import { authOptions } from "../api/auth/[...nextauth]";
 
 const Restaurant = () => {
-    const restaurant = trpc.useQuery(["restaurant.getRestaurant"]);
-
-    if (restaurant.isLoading) return <LoadingSpinner />;
-
     return (
-        <div className="flex flex-col text-light">
-            {!restaurant.data && <NewRestaurant refetch={restaurant.refetch} />}
-            {restaurant.data && <RestaurantTabs />}
-        </div>
+        <RestaurantLayout>
+            <div>index page</div>
+        </RestaurantLayout>
     );
 };
 

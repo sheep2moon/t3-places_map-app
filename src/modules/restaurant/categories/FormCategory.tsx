@@ -1,10 +1,10 @@
-import { Dialog, Transition } from "@headlessui/react";
-import React, { Fragment } from "react";
+import React from "react";
 import { FormValuesState } from "../../../pages/restaurant/categories";
 import Button from "../../common/Button";
 import ColorSelector from "../../common/color-selector";
-
+import { IoAdd } from "react-icons/io5";
 import InputText from "../../common/InputText";
+import Modal from "../../common/Modal";
 
 type NewCategoryProps = {
     isModalOpen: boolean;
@@ -30,50 +30,29 @@ const FormCategory = ({ isModalOpen, setIsModalOpen, formValues, setFormValues, 
 
     return (
         <>
-            <Button onClick={() => setIsModalOpen(true)}>Dodaj kategorie</Button>
+            <Button className="flex items-center gap-1" onClick={() => setIsModalOpen(true)}>
+                <IoAdd className="text-xl" />
+                Dodaj kategorie
+            </Button>
 
-            <Transition appear show={isModalOpen} as={Fragment}>
-                <Dialog as="div" className="relative z-10" onClose={closeModal}>
-                    <Transition.Child as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0" enterTo="opacity-100" leave="ease-in duration-200" leaveFrom="opacity-100" leaveTo="opacity-0">
-                        <div className="fixed inset-0 bg-black bg-opacity-25" />
-                    </Transition.Child>
+            <Modal close={closeModal} isModalOpen={isModalOpen}>
+                <h3 className="mb-4 text-xl font-medium leading-6 text-secondary">{formValues.isEdit ? "Edytujesz kategorie" : "Nowa kategoria"}</h3>
 
-                    <div className="fixed inset-0 overflow-y-auto">
-                        <div className=" flex min-h-full items-center justify-center p-1 text-center small:p-4">
-                            <Transition.Child
-                                as={Fragment}
-                                enter="ease-out duration-300"
-                                enterFrom="opacity-0 scale-95"
-                                enterTo="opacity-100 scale-100"
-                                leave="ease-in duration-200"
-                                leaveFrom="opacity-100 scale-100"
-                                leaveTo="opacity-0 scale-95"
-                            >
-                                <Dialog.Panel className="h-full w-full max-w-md transform overflow-hidden rounded-2xl bg-primary p-6 pb-20 text-left align-middle shadow-xl transition-all">
-                                    <Dialog.Title as="h3" className="text-xl font-medium leading-6 text-secondary">
-                                        {formValues.isEdit ? "Edytujesz kategorie" : "Nowa kategoria"}
-                                    </Dialog.Title>
-
-                                    <div className="text-light">
-                                        <label htmlFor="name">Wprowadź nazwę oraz wybierz kolor</label>
-                                        <div className="z-50 flex items-center gap-2 rounded-md p-2" style={{ backgroundColor: formValues.color }}>
-                                            <ColorSelector select={selectColor} />
-                                            <InputText value={formValues.name} handleChange={handleNameChange} name="name" />
-                                        </div>
-                                    </div>
-
-                                    <div className="mt-4 flex">
-                                        <Button variant="secondary" onClick={closeModal}>
-                                            Anuluj
-                                        </Button>
-                                        <Button onClick={() => handleConfirmForm()}>{formValues.isEdit ? "Aktualizuj" : "Dodaj"}</Button>
-                                    </div>
-                                </Dialog.Panel>
-                            </Transition.Child>
-                        </div>
+                <div className="text-light">
+                    <label htmlFor="name">Wprowadź nazwę oraz wybierz kolor</label>
+                    <div className="z-50 flex items-center gap-2 rounded-md p-2" style={{ backgroundColor: formValues.color }}>
+                        <ColorSelector select={selectColor} />
+                        <InputText value={formValues.name} handleChange={handleNameChange} name="name" />
                     </div>
-                </Dialog>
-            </Transition>
+                </div>
+
+                <div className="mt-4 flex">
+                    <Button variant="alternative" onClick={closeModal}>
+                        Anuluj
+                    </Button>
+                    <Button onClick={() => handleConfirmForm()}>{formValues.isEdit ? "Aktualizuj" : "Dodaj"}</Button>
+                </div>
+            </Modal>
         </>
     );
 };

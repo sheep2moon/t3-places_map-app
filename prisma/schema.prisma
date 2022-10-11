@@ -86,14 +86,12 @@ model Category {
 }
 
 model Product {
-    id          String   @id @default(cuid())
-    name        String
-    description String
-    price       Int
-    imageId     String
-    categoryId  String
-    Category    Category @relation(fields: [categoryId], references: [id])
-    orders      Order[]
+    id         String   @id @default(cuid())
+    name       String
+    price      Int
+    categoryId String
+    Category   Category @relation(fields: [categoryId], references: [id])
+    orders     Order[]
 }
 
 model Order {
