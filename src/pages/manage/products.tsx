@@ -4,9 +4,7 @@ import Button from "../../modules/common/Button";
 import InputNumber from "../../modules/common/InputNumber";
 import InputText from "../../modules/common/InputText";
 import Modal from "../../modules/common/Modal";
-import RestaurantLayout from "../../modules/layout/restaurant";
-import ProductsList from "../../modules/restaurant/products/ProductsList";
-import SelectCategory from "../../modules/restaurant/products/SelectCategory";
+import RestaurantLayout from "../../modules/layout/dashboard";
 import { trpc } from "../../utils/trpc";
 import { authOptions } from "../api/auth/[...nextauth]";
 

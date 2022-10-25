@@ -1,7 +1,7 @@
 import { unstable_getServerSession } from "next-auth";
 import React, { useState } from "react";
 import LoadingSpinner from "../../modules/common/LoadingSpinner";
-import RestaurantLayout from "../../modules/layout/restaurant";
+import RestaurantLayout from "../../modules/layout/dashboard";
 import CategoryList from "../../modules/restaurant/categories/CategoryList";
 import FormCategory from "../../modules/restaurant/categories/FormCategory";
 import { trpc } from "../../utils/trpc";

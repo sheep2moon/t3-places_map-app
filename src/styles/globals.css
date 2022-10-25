@@ -11,3 +11,31 @@ body{
 main{
     min-height: calc(100vh - 4rem);
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap');
+
+:root {
+  font-family: 'Kanit', sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+  margin-top: auto;
+  cursor: crosshair;
+}
+
+*{
+  margin: 0;
+  box-sizing: border-box;
+}
+.leaflet-div-icon{
+  background: none;
+  border: none;
+}
+
