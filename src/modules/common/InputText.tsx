@@ -11,9 +11,9 @@ type InputProps = {
 
 const InputText = ({ label, type = "text", name, value, handleChange, placeholder = "" }: InputProps) => {
     return (
-        <div className="text-primary">
+        <div className="">
             {label && (
-                <label htmlFor={name} className="block text-sm font-medium text-light">
+                <label htmlFor={name} className="text-regular fo block">
                     {label}
                 </label>
             )}

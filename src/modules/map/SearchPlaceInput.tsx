@@ -1,34 +1,28 @@
 import { Combobox, Transition } from "@headlessui/react";
 import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import { HiOutlineSelector, HiX } from "react-icons/hi";
-import { Place } from "../../pages/manage";
 
 type SearchPlaceInputProps = {
-    setPlace: (p: Place) => void;
+    setPosition: (p: Position) => void;
 };
 
-const SearchPlaceInput = ({ setPlace }: SearchPlaceInputProps) => {
-    const [query, setQuery] = useState("");
+const SearchPlaceInput = ({ setPosition }: SearchPlaceInputProps) => {
     const [suggestions, setSuggestions] = useState<Array<Place>>([]);
     const querySearch: { current: NodeJS.Timeout | null } = useRef(null);
 
     const searchPlaceByQuery = async (query: string) => {
-        console.log(query);
         const queryUrl = `https://nominatim.openstreetmap.org/search?q=${query}&countrycodes=pl&format=json&addressdetails=1`;
         console.log(queryUrl);
         const res = await fetch(queryUrl);
         const result = await res.json();
         if (result && result.length >= 1) {
             const newSuggestions: Place[] = result.map((place: any) => ({ placeId: place.place_id, displayName: place.display_name, position: { lat: place.lat, lng: place.lon } }));
-            console.log(newSuggestions);
             setSuggestions(newSuggestions);
         }
-        console.log(result);
     };
 
     const handleSearchPlace = (e: ChangeEvent<HTMLInputElement>) => {
         clearTimeout(querySearch.current as NodeJS.Timeout);
-        // setQuery(e.target.value);
         if (e.target.value.length > 3) {
             const searchValue = e.target.value.includes(" ") ? e.target.value.replaceAll(" ", "+") : e.target.value;
             querySearch.current = setTimeout(() => {
@@ -41,7 +35,7 @@ const SearchPlaceInput = ({ setPlace }: SearchPlaceInputProps) => {
 
     return (
         <div className="z-[9999] w-screen max-w-lg">
-            <Combobox nullable onChange={setPlace}>
+            <Combobox nullable onChange={(p: Place) => setPosition({ lat: p.position.lat, lng: p.position.lng })}>
                 <div className="relative">
                     <div className="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
                         <Combobox.Input

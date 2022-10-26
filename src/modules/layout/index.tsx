@@ -23,7 +23,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             <Script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossOrigin=""></Script>
             <Nav status={session.status} name={session.data?.user?.name} image={session.data?.user?.image} />
 
-            <main className="container mx-auto flex h-full flex-col items-center justify-center p-1 pt-16">{children}</main>
+            <main className="container mx-auto flex h-full flex-col items-center justify-center p-1 pt-16 text-zinc-900 dark:text-light">{children}</main>
 
             <Footer />
 
