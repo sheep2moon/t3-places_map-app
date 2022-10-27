@@ -3,6 +3,11 @@ type Position = {
     lng: number;
 };
 
+type PlacePositionState = {
+    placePosition?: Position;
+    setPlacePosition: (p: Position) => void;
+};
+
 type Place = {
     placeId: number;
     displayName: string;

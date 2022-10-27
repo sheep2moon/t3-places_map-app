@@ -17,7 +17,7 @@ type navLink = {
 };
 
 const navLinks: navLink[] = [
-    { title: "Kalendarz", href: "/dashboard/general-settings" },
+    { title: "Dodaj miejsce", href: "/add-place" },
     { title: "Podgląd profilu", href: "/dashboard/general-settings" },
     { title: "Podstawowe informacje", href: "/dashboard/general-settings" }
 ];

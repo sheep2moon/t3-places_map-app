@@ -1,8 +1,7 @@
-import { signIn, signOut, useSession } from "next-auth/react";
-import React, { useEffect, useRef, useState } from "react";
+import { signOut, useSession } from "next-auth/react";
+import React from "react";
 import SignInOptions from "../../modules/auth/SignInOptions";
 import Button from "../../modules/common/Button";
-import InputText from "../../modules/common/InputText";
 
 const Signin = () => {
     const { data: session, status } = useSession();

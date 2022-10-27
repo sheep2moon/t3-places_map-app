@@ -12,7 +12,6 @@ const SearchPlaceInput = ({ setPosition }: SearchPlaceInputProps) => {
 
     const searchPlaceByQuery = async (query: string) => {
         const queryUrl = `https://nominatim.openstreetmap.org/search?q=${query}&countrycodes=pl&format=json&addressdetails=1`;
-        console.log(queryUrl);
         const res = await fetch(queryUrl);
         const result = await res.json();
         if (result && result.length >= 1) {
