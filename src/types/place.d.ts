@@ -8,8 +8,8 @@ type PlacePositionState = {
     setPlacePosition: (p: Position) => void;
 };
 
-type Place = {
-    placeId: number;
-    displayName: string;
-    position: Position;
-};
+// type Place = {
+//     placeId: number;
+//     displayName: string;
+//     position: Position;
+// };

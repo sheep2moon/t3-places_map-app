@@ -52,6 +52,7 @@ model User {
     restaurantId  String?
     accounts      Account[]
     sessions      Session[]
+    Comment       Comment[]
 }
 
 model VerificationToken {
@@ -68,35 +69,61 @@ model Image {
     destinationId String
 }
 
-model Restaurant {
-    id         String     @id @default(cuid())
-    ownerId    String
-    name       String
-    orders     Order[]
-    categories Category[]
+model PlaceType {
+    id    String  @id @default(cuid())
+    title String
+    icon  String
+    Place Place[]
 }
 
-model Category {
-    id           String     @id @default(cuid())
-    name         String
-    color        String
-    products     Product[]
-    restaurantId String
-    Restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
+model Comment {
+    id        String   @id @default(cuid())
+    createdBy String
+    user      User     @relation(fields: [createdBy], references: [id])
+    content   String   @db.Text
+    createdAt DateTime @default(now())
 }
 
-model Product {
-    id         String   @id @default(cuid())
-    name       String
-    price      Int
-    categoryId String
-    Category   Category @relation(fields: [categoryId], references: [id])
-    orders     Order[]
+model Place {
+    id          String @id @default(cuid())
+    displayName String
+    lat         Float
+    lng         Float
+    description String @db.Text
+
+    placeTypeId String
+    type        PlaceType @relation(fields: [placeTypeId], references: [id])
 }
 
-model Order {
-    id           String     @id @default(cuid())
-    products     Product[]
-    restaurantId String
-    Restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
-}
+// model Restaurant {
+//     id         String     @id @default(cuid())
+//     ownerId    String
+//     name       String
+//     orders     Order[]
+//     categories Category[]
+// }
+
+// model Category {
+//     id           String     @id @default(cuid())
+//     name         String
+//     color        String
+//     products     Product[]
+//     restaurantId String
+//     Restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
+// }
+
+// model Product {
+//     id         String   @id @default(cuid())
+//     name       String
+//     price      Int
+//     categoryId String
+//     Category   Category @relation(fields: [categoryId], references: [id])
+//     orders     Order[]
+// }
+
+// model Order {
+//     id           String     @id @default(cuid())
+//     products     Product[]
+//     restaurantId String
+//     Restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
+// }

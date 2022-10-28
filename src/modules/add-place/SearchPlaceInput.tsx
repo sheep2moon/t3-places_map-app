@@ -6,8 +6,14 @@ type SearchPlaceInputProps = {
     setPosition: (p: Position) => void;
 };
 
+type SuggestionPlace = {
+    placeId: number;
+    displayName: string;
+    position: Position;
+};
+
 const SearchPlaceInput = ({ setPosition }: SearchPlaceInputProps) => {
-    const [suggestions, setSuggestions] = useState<Array<Place>>([]);
+    const [suggestions, setSuggestions] = useState<Array<SuggestionPlace>>([]);
     const querySearch: { current: NodeJS.Timeout | null } = useRef(null);
 
     const searchPlaceByQuery = async (query: string) => {
@@ -15,7 +21,7 @@ const SearchPlaceInput = ({ setPosition }: SearchPlaceInputProps) => {
         const res = await fetch(queryUrl);
         const result = await res.json();
         if (result && result.length >= 1) {
-            const newSuggestions: Place[] = result.map((place: any) => ({ placeId: place.place_id, displayName: place.display_name, position: { lat: place.lat, lng: place.lon } }));
+            const newSuggestions: SuggestionPlace[] = result.map((place: any) => ({ placeId: place.place_id, displayName: place.display_name, position: { lat: place.lat, lng: place.lon } }));
             setSuggestions(newSuggestions);
         }
     };
@@ -34,11 +40,11 @@ const SearchPlaceInput = ({ setPosition }: SearchPlaceInputProps) => {
 
     return (
         <div className="z-[9999] w-screen max-w-lg">
-            <Combobox nullable onChange={(p: Place) => setPosition({ lat: p.position.lat, lng: p.position.lng })}>
+            <Combobox nullable onChange={(p: SuggestionPlace) => setPosition({ lat: p.position.lat, lng: p.position.lng })}>
                 <div className="relative">
                     <div className="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
                         <Combobox.Input
-                            displayValue={(suggestion: Place) => (suggestion ? suggestion.displayName : "")}
+                            displayValue={(suggestion: SuggestionPlace) => (suggestion ? suggestion.displayName : "")}
                             onChange={handleSearchPlace}
                             className="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
                         />

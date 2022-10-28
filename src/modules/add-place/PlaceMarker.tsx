@@ -10,8 +10,7 @@ const PlaceMarker = ({ placePosition, setPlacePosition }: PlacePositionState) =>
             if (marker) {
                 console.log(marker);
                 // const { lat, lng } = marker.getLatLng();
-                // const newPosition = [lat, lng];
-                // handleMove(markerIndex, newPosition);
+                // setPlacePosition({ lat, lng });
             }
         },
         click: () => {

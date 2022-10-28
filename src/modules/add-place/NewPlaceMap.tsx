@@ -1,6 +1,5 @@
-import dynamic from "next/dynamic";
-import React, { useEffect, useRef, useState } from "react";
-import { MapContainer, Marker, TileLayer, useMapEvent } from "react-leaflet";
+import React, { useState } from "react";
+import { MapContainer, TileLayer } from "react-leaflet";
 import PlaceMarker from "./PlaceMarker";
 
 const PlaceMap = () => {
