@@ -18,8 +18,7 @@ type navLink = {
 
 const navLinks: navLink[] = [
     { title: "Dodaj miejsce", href: "/add-place" },
-    { title: "Podgląd profilu", href: "/dashboard/general-settings" },
-    { title: "Podstawowe informacje", href: "/dashboard/general-settings" }
+    { title: "Home", href: "/" }
 ];
 
 const Nav = ({ name, image, status }: NavProps) => {

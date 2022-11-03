@@ -2,16 +2,16 @@ import React from "react";
 
 type TextAreaProps = {
     placeholder?: string;
-    label?: string;
     value: string;
-    setValue: (v: string) => void;
+    name: string;
+    className?: string;
+    handleChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 };
 
-const TextArea = ({ label = "", placeholder, value, setValue }: TextAreaProps) => {
+const TextArea = ({ placeholder, className = "", name, value, handleChange }: TextAreaProps) => {
     return (
-        <div className="flex flex-col w-full gap-1">
-            <label>{label}</label>
-            <textarea className="bg-primary border rounded-sm h-32 px-2" placeholder={placeholder} value={value} onChange={e => setValue(e.target.value)} />
+        <div className="flex w-full flex-col gap-1">
+            <textarea id={name} name={name} className={className + " h-32 rounded-sm border bg-light p-1 text-primary"} placeholder={placeholder} value={value} onChange={handleChange} />
         </div>
     );
 };

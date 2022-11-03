@@ -52,7 +52,7 @@ model User {
     restaurantId  String?
     accounts      Account[]
     sessions      Session[]
-    Comment       Comment[]
+    reviews       Review[]
 }
 
 model VerificationToken {
@@ -64,9 +64,12 @@ model VerificationToken {
 }
 
 model Image {
-    id            String @id @default(cuid())
-    url           String
-    destinationId String
+    id       String  @id @default(cuid())
+    url      String?
+    Review   Review? @relation(fields: [reviewId], references: [id])
+    reviewId String?
+    Place    Place?  @relation(fields: [placeId], references: [id])
+    placeId  String?
 }
 
 model PlaceType {
@@ -76,21 +79,26 @@ model PlaceType {
     Place Place[]
 }
 
-model Comment {
+model Review {
     id        String   @id @default(cuid())
     createdBy String
     user      User     @relation(fields: [createdBy], references: [id])
-    content   String   @db.Text
+    comment   String   @db.Text
+    rate      Int
+    images    Image[]
     createdAt DateTime @default(now())
+    Place     Place?   @relation(fields: [placeId], references: [id])
+    placeId   String?
 }
 
 model Place {
-    id          String @id @default(cuid())
+    id          String    @id @default(cuid())
     displayName String
     lat         Float
     lng         Float
-    description String @db.Text
-
+    description String    @db.Text
+    reviews     Review[]
+    imagesId    Image[]
     placeTypeId String
     type        PlaceType @relation(fields: [placeTypeId], references: [id])
 }
