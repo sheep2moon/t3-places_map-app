@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 import React, { useState } from "react";
 import ImageInput from "../../modules/add-place/ImagesInput";
 import NewPlaceForm from "../../modules/add-place/NewPlaceForm";
+import SelectPlaceType from "../../modules/add-place/SelectPlaceType";
 import Button from "../../modules/common/Button";
 import InputText from "../../modules/common/InputText";
 import { useNewPlaceStore } from "../../zustand/newPlaceStore";
@@ -15,11 +16,12 @@ const LocalizationSettings = () => {
             {step === 1 && (
                 <div className="mx-auto flex flex-col">
                     <PlaceMap />
+                    <NewPlaceForm />
+                    <SelectPlaceType />
                 </div>
             )}
             {step === 2 && (
                 <div className="mx-auto w-full max-w-lg">
-                    <NewPlaceForm />
                     <div className="mt-4">
                         <span className="mb-2 block">Dodaj zdjęcia</span>
                         <div>

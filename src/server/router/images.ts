@@ -20,7 +20,7 @@ export const imagesRouter = createProtectedRouter().mutation("createPresignedUrl
             s3.createPresignedPost(
                 {
                     Fields: {
-                        key: `categories/${image.id}`
+                        key: `placeTypes/${image.id}`
                     },
                     Conditions: [
                         ["starts-with", "$Content-Type", "image/"],
