@@ -4,6 +4,7 @@ import React from "react";
 import { trpc } from "../../utils/trpc";
 import { useNewPlaceStore } from "../../zustand/newPlaceStore";
 import LoadingSpinner from "../common/LoadingSpinner";
+import PlaceType from "../place/PlaceType";
 
 const SelectPlaceType = () => {
     const { data, isLoading } = trpc.useQuery(["places.getPlaceTypes"]);
@@ -12,13 +13,10 @@ const SelectPlaceType = () => {
     return (
         <div className="mt-4">
             <span className="mb-2 block">Typ miejsca</span>
-            <div className="flex">
-                {data?.map(place => (
-                    <div key={place.id} className={clsx("flex h-20 w-20 flex-col items-center rounded-md p-1 transition-all", { "border border-white bg-slate-400/20": place.id === placeTypeId })} onClick={() => setPlaceTypeId(place.id)}>
-                        <div className="relative h-12 w-12">
-                            <Image src={place.icon} alt="place thumbnail" layout="fill" />
-                        </div>
-                        <span className="text-sm">{place.title}</span>
+            <div className="flex gap-1">
+                {data?.map(placeType => (
+                    <div key={placeType.id} className={clsx("transition-all", { "border border-slate-200 bg-slate-400/20": placeTypeId === placeType.id })} onClick={() => setPlaceTypeId(placeType.id)}>
+                        <PlaceType placeType={placeType} />
                     </div>
                 ))}
             </div>

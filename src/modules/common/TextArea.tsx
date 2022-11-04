@@ -6,12 +6,12 @@ type TextAreaProps = {
     name: string;
     className?: string;
     handleChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-};
+} & React.TextareaHTMLAttributes<HTMLTextAreaElement>;
 
-const TextArea = ({ placeholder, className = "", name, value, handleChange }: TextAreaProps) => {
+const TextArea = ({ placeholder, className = "", name, value, handleChange, ...props }: TextAreaProps) => {
     return (
         <div className="flex w-full flex-col gap-1">
-            <textarea id={name} name={name} className={className + " h-32 rounded-sm border bg-light p-1 text-primary"} placeholder={placeholder} value={value} onChange={handleChange} />
+            <textarea {...props} id={name} name={name} className={className + " h-32 rounded-md border bg-light p-1 text-primary"} placeholder={placeholder} value={value} onChange={handleChange} />
         </div>
     );
 };

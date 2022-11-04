@@ -1,37 +1,24 @@
 import dynamic from "next/dynamic";
 import React, { useState } from "react";
+import ConfirmButton from "../../modules/add-place/ConfirmButton";
 import ImageInput from "../../modules/add-place/ImagesInput";
 import NewPlaceForm from "../../modules/add-place/NewPlaceForm";
 import SelectPlaceType from "../../modules/add-place/SelectPlaceType";
 import Button from "../../modules/common/Button";
 import InputText from "../../modules/common/InputText";
+import { trpc } from "../../utils/trpc";
 import { useNewPlaceStore } from "../../zustand/newPlaceStore";
 
 const LocalizationSettings = () => {
     const PlaceMap = dynamic(() => import("../../modules/add-place/NewPlaceMap"));
-    const [step, setStep] = useState(1);
 
     return (
         <div className="flex-start flex w-full flex-col">
-            {step === 1 && (
-                <div className="mx-auto flex flex-col">
-                    <PlaceMap />
-                    <NewPlaceForm />
-                    <SelectPlaceType />
-                </div>
-            )}
-            {step === 2 && (
-                <div className="mx-auto w-full max-w-lg">
-                    <div className="mt-4">
-                        <span className="mb-2 block">Dodaj zdjęcia</span>
-                        <div>
-                            <ImageInput />
-                        </div>
-                    </div>
-                </div>
-            )}
-            <div className="mx-auto mt-2 flex max-w-sm">
-                <Button onClick={() => setStep(2)}>Dalej</Button>
+            <div className="mx-auto flex flex-col">
+                <PlaceMap />
+                <NewPlaceForm />
+                <SelectPlaceType />
+                <ConfirmButton />
             </div>
         </div>
     );

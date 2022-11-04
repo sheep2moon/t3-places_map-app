@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import React, { useEffect } from "react";
 import { useNewPlaceStore } from "../../zustand/newPlaceStore";
 import InputText from "../common/InputText";
@@ -5,10 +6,6 @@ import TextArea from "../common/TextArea";
 
 const NewPlaceForm = () => {
     const { displayName, description, setName, setDescription } = useNewPlaceStore(state => state);
-
-    useEffect(() => {
-        console.log({ displayName });
-    }, [displayName]);
 
     return (
         <div>

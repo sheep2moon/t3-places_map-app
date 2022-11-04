@@ -1,26 +1,31 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, forwardRef, useImperativeHandle, useRef } from "react";
 
 type InputProps = {
-    name: string;
-    value: string;
-    className?: string;
     handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    type?: string;
-    placeholder?: string;
-};
+} & React.InputHTMLAttributes<HTMLInputElement>;
 
-const InputText = ({ type = "text", className = "", name, value, handleChange, placeholder = "" }: InputProps) => {
+const InputText = React.forwardRef<HTMLInputElement, InputProps>(({ type = "text", className = "", name, value, handleChange, placeholder = "", ...props }, ref) => {
+    // const innerRef = useRef<HTMLInputElement>(null);
+
+    // useImperativeHandle<HTMLInputElement | null, HTMLInputElement | null>(ref, () => innerRef.current);
+
     return (
         <input
+            // onFocus={() => innerRef.current?.focus()}
+            // onBlur={() => innerRef.current?.blur()}
+            {...props}
+            ref={ref}
             type={type}
             name={name}
             id={name}
             value={value}
             onChange={handleChange}
-            className={className + " block w-full rounded-md border-gray-300 py-2 pl-2 pr-12 text-lg text-black focus:border-indigo-500 focus:ring-indigo-500"}
+            className={className + " block w-full rounded-md border-gray-300 py-2 pl-2 pr-12 text-lg text-black focus:border-indigo-500 focus:ring-indigo-500 disabled:bg-light"}
             placeholder={placeholder}
         />
     );
-};
+});
+
+InputText.displayName = "InputText";
 
 export default InputText;
