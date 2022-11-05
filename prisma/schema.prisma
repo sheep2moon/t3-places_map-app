@@ -53,6 +53,7 @@ model User {
     accounts      Account[]
     sessions      Session[]
     reviews       Review[]
+    places        Place[]
 }
 
 model VerificationToken {
@@ -94,6 +95,7 @@ model Review {
 model Place {
     id          String    @id @default(cuid())
     displayName String
+    addedBy     User      @relation(fields: [addedById], references: [id])
     lat         Float
     lng         Float
     description String    @db.Text
@@ -101,6 +103,7 @@ model Place {
     imagesId    Image[]
     placeTypeId String
     type        PlaceType @relation(fields: [placeTypeId], references: [id])
+    addedById   String
 }
 
 // model Restaurant {

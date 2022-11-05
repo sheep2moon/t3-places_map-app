@@ -48,7 +48,7 @@ const EditName = ({ displayName }: { displayName: string }) => {
                 autoFocus={isEditing}
                 onChange={handleChange}
                 value={currentName}
-                className=" block w-full rounded-b-md border-gray-300 py-2 pl-2 pr-12 text-lg text-black focus:border-indigo-500 focus:ring-indigo-500 disabled:bg-light"
+                className="disabled:bg-slate-300/15 block w-full rounded-b-md border-gray-300 bg-slate-300/20  py-2 pl-2 pr-12 text-lg text-light focus:border-indigo-500 focus:ring-indigo-500"
             />
         </div>
     );

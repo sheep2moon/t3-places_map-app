@@ -13,7 +13,21 @@ export const protectedPlacesRouter = createProtectedRouter()
         async resolve({ input, ctx }) {
             const res = await ctx.prisma.place.create({
                 data: {
-                    ...input
+                    ...input,
+                    addedById: ctx.session.user.id
+                }
+            });
+            return res;
+        }
+    })
+    .query("getUserPlaces", {
+        async resolve({ ctx }) {
+            const res = await ctx.prisma.place.findMany({
+                where: {
+                    addedById: ctx.session.user.id
+                },
+                include: {
+                    type: true
                 }
             });
             return res;

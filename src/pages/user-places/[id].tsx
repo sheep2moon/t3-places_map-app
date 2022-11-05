@@ -4,7 +4,7 @@ import Button from "../../modules/common/Button";
 import LoadingSpinner from "../../modules/common/LoadingSpinner";
 import Modal from "../../modules/common/Modal";
 import TextArea from "../../modules/common/TextArea";
-import PlaceType from "../../modules/place/PlaceType";
+import PlaceType from "../../modules/place/PlaceTypeIcon";
 import DeletePlace from "../../modules/user-place/DeletePlace";
 import EditDescription from "../../modules/user-place/EditDescription";
 import EditName from "../../modules/user-place/EditName";

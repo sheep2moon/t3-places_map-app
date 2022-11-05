@@ -39,7 +39,7 @@ const EditDescription = ({ description }: { description: string }) => {
     return (
         <div>
             <LabelBar {...labelBarProps} />
-            <textarea ref={descriptonInputRef} className=" h-32 w-full rounded-b-md bg-light px-2 py-1 text-primary" disabled={!isEditing} onChange={handleChange} value={currentDescription} name="description" />
+            <textarea ref={descriptonInputRef} className=" disabled:bg-slate-300/15 h-32 w-full rounded-b-md bg-light bg-slate-300/20 px-2 py-1 " disabled={!isEditing} onChange={handleChange} value={currentDescription} name="description" />
         </div>
     );
 };
