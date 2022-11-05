@@ -33,6 +33,19 @@ export const protectedPlacesRouter = createProtectedRouter()
             return res;
         }
     })
+    .query("getPlaceImages", {
+        input: z.object({
+            placeId: z.string()
+        }),
+        async resolve({ input, ctx }) {
+            const res = await ctx.prisma.image.findMany({
+                where: {
+                    placeId: input.placeId
+                }
+            });
+            return res;
+        }
+    })
     .query("getUserPlace", {
         input: z.object({
             id: z.string()
@@ -55,5 +68,32 @@ export const protectedPlacesRouter = createProtectedRouter()
         }),
         async resolve({ input, ctx }) {
             await ctx.prisma.place.delete({ where: { id: input.id } });
+        }
+    })
+    .mutation("updateName", {
+        input: z.object({
+            placeId: z.string(),
+            displayName: z.string()
+        }),
+        async resolve({ input, ctx }) {
+            await ctx.prisma.place.update({ where: { id: input.placeId }, data: { displayName: input.displayName } });
+        }
+    })
+    .mutation("updateDescription", {
+        input: z.object({
+            placeId: z.string(),
+            description: z.string()
+        }),
+        async resolve({ input, ctx }) {
+            await ctx.prisma.place.update({ where: { id: input.placeId }, data: { description: input.description } });
+        }
+    })
+    .mutation("updatePlaceType", {
+        input: z.object({
+            placeId: z.string(),
+            placeTypeId: z.string()
+        }),
+        async resolve({ input, ctx }) {
+            await ctx.prisma.place.update({ where: { id: input.placeId }, data: { placeTypeId: input.placeTypeId } });
         }
     });

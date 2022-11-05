@@ -5,16 +5,23 @@ import LoadingSpinner from "../common/LoadingSpinner";
 import PlaceTypeIcon from "../place/PlaceTypeIcon";
 import LabelBar, { LabelBarProps } from "./LabelBar";
 
-const EditPlaceType = ({ placeTypeId }: { placeTypeId: string }) => {
+type EditPlaceTypeProps = {
+    placeTypeId: string;
+    placeId: string;
+};
+
+const EditPlaceType = ({ placeTypeId, placeId }: EditPlaceTypeProps) => {
     const placeTypes = trpc.useQuery(["places.getPlaceTypes"]);
     const [currentPlaceType, setCurrentPlaceType] = useState(placeTypeId);
     const [isEditing, setIsEditing] = useState(false);
+    const { mutateAsync: updatePlaceType } = trpc.useMutation(["protectedPlace.updatePlaceType"]);
 
     const handleEdit = () => {
         setIsEditing(true);
     };
 
     const handleConfirm = () => {
+        updatePlaceType({ placeId, placeTypeId: currentPlaceType });
         setIsEditing(false);
     };
     const handleCancel = () => {

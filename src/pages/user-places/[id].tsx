@@ -26,9 +26,9 @@ const UserPlace = () => {
     return (
         <div className="w-full max-w-lg">
             <EditImages />
-            {userPlace.data?.displayName && <EditName displayName={userPlace.data?.displayName} />}
-            {userPlace.data?.description && <EditDescription description={userPlace.data?.description} />}
-            {userPlace.data?.type && <EditPlaceType placeTypeId={userPlace.data.type.id} />}
+            {userPlace.data?.displayName && <EditName placeId={id} displayName={userPlace.data?.displayName} />}
+            {userPlace.data?.description && <EditDescription placeId={id} description={userPlace.data?.description} />}
+            {userPlace.data?.type && <EditPlaceType placeId={id} placeTypeId={userPlace.data.type.id} />}
             <DeletePlace id={id} />
         </div>
     );

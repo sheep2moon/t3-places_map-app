@@ -4,10 +4,10 @@ import EditButton from "../common/EditButton";
 
 export type LabelBarProps = {
     label: string;
-    isEditing: boolean;
-    handleCancel: () => void;
-    handleEdit: () => void;
-    handleConfirm: () => void;
+    isEditing?: boolean;
+    handleCancel?: () => void;
+    handleEdit?: () => void;
+    handleConfirm?: () => void;
 };
 
 const LabelBar = ({ label, isEditing, handleCancel, handleEdit, handleConfirm }: LabelBarProps) => {
@@ -26,7 +26,7 @@ const LabelBar = ({ label, isEditing, handleCancel, handleEdit, handleConfirm }:
                     </Button>
                 </div>
             ) : (
-                <EditButton onClick={handleEdit}>Edytuj</EditButton>
+                typeof isEditing !== "undefined" && <EditButton onClick={handleEdit}>Edytuj</EditButton>
             )}
         </div>
     );

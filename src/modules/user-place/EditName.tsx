@@ -1,15 +1,22 @@
 import React, { ChangeEvent, useImperativeHandle, useRef, useState } from "react";
+import { trpc } from "../../utils/trpc";
 import Button from "../common/Button";
 import EditButton from "../common/EditButton";
 import InputText from "../common/InputText";
 import RoundedButton from "../common/RoundedButton";
 import LabelBar, { LabelBarProps } from "./LabelBar";
 
-const EditName = ({ displayName }: { displayName: string }) => {
+type EditNameProps = {
+    displayName: string;
+    placeId: string;
+};
+
+const EditName = ({ displayName, placeId }: EditNameProps) => {
     const [currentName, setCurrentName] = useState(displayName);
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setCurrentName(e.target.value);
     };
+    const { mutateAsync: updateName } = trpc.useMutation(["protectedPlace.updateName"]);
     const nameInputRef = useRef<HTMLInputElement>(null);
 
     const [isEditing, setIsEditing] = useState(false);
@@ -22,7 +29,7 @@ const EditName = ({ displayName }: { displayName: string }) => {
     };
 
     const handleConfirm = () => {
-        //save
+        updateName({ placeId, displayName: currentName });
         setIsEditing(false);
     };
     const handleCancel = () => {

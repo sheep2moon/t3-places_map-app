@@ -15,8 +15,10 @@ export const uploadFile = async ({ file, url, fields }: uploadFileArgs) => {
         formData.append(name, data[name]);
     }
 
-    await fetch(url, {
+    const res = await fetch(url, {
         method: "POST",
         body: formData
     });
+    return res;
+    console.log(res);
 };

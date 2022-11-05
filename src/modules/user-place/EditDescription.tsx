@@ -1,14 +1,21 @@
 import React, { ChangeEvent, useRef, useState } from "react";
+import { trpc } from "../../utils/trpc";
 import Button from "../common/Button";
 import EditButton from "../common/EditButton";
 import TextArea from "../common/TextArea";
 import LabelBar, { LabelBarProps } from "./LabelBar";
 
-const EditDescription = ({ description }: { description: string }) => {
+type EditDescriptionProps = {
+    description: string;
+    placeId: string;
+};
+
+const EditDescription = ({ description, placeId }: EditDescriptionProps) => {
     const [currentDescription, setCurrentDescription] = useState(description);
     const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setCurrentDescription(e.target.value);
     };
+    const { mutateAsync: updateDescription } = trpc.useMutation(["protectedPlace.updateDescription"]);
     const [isEditing, setIsEditing] = useState(false);
     const descriptonInputRef = useRef<HTMLTextAreaElement>(null);
 
@@ -20,7 +27,7 @@ const EditDescription = ({ description }: { description: string }) => {
     };
 
     const handleConfirm = () => {
-        //save
+        updateDescription({ placeId, description: currentDescription });
         setIsEditing(false);
     };
     const handleCancel = () => {
