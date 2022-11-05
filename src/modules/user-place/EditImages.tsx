@@ -1,16 +1,9 @@
-import Image from "next/image";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
-import { getImageSrcById } from "../../utils/getImageSrcById";
+import React from "react";
 import { trpc } from "../../utils/trpc";
-import Button from "../common/Button";
 import ImageInput from "./ImagesInput";
-import LabelBar, { LabelBarProps } from "./LabelBar";
+import LabelBar from "./LabelBar";
 import PlaceImage from "./PlaceImage";
-
-// type EditImagesProps = {
-//     placeId: string;
-// };
 
 const EditImages = () => {
     const { query } = useRouter();

@@ -1,6 +1,6 @@
 import { Combobox, Transition } from "@headlessui/react";
-import React, { ChangeEvent, useEffect, useRef, useState } from "react";
-import { HiOutlineSelector, HiX } from "react-icons/hi";
+import React, { ChangeEvent, useRef, useState } from "react";
+import { HiOutlineSelector } from "react-icons/hi";
 
 type SearchPlaceInputProps = {
     setPosition: (p: Position) => void;

@@ -1,17 +1,12 @@
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
-import Button from "../../modules/common/Button";
+import React from "react";
 import LoadingSpinner from "../../modules/common/LoadingSpinner";
-import Modal from "../../modules/common/Modal";
-import TextArea from "../../modules/common/TextArea";
-import PlaceType from "../../modules/place/PlaceTypeIcon";
 import DeletePlace from "../../modules/user-place/DeletePlace";
 import EditDescription from "../../modules/user-place/EditDescription";
 import EditImages from "../../modules/user-place/EditImages";
 import EditName from "../../modules/user-place/EditName";
 import EditPlaceType from "../../modules/user-place/EditPlaceType";
-import EditPosition from "../../modules/user-place/EditPosition";
 import { trpc } from "../../utils/trpc";
 
 const UserPlace = () => {

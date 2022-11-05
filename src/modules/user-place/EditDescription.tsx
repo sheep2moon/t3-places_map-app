@@ -1,8 +1,5 @@
 import React, { ChangeEvent, useRef, useState } from "react";
 import { trpc } from "../../utils/trpc";
-import Button from "../common/Button";
-import EditButton from "../common/EditButton";
-import TextArea from "../common/TextArea";
 import LabelBar, { LabelBarProps } from "./LabelBar";
 
 type EditDescriptionProps = {

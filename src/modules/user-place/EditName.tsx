@@ -1,9 +1,5 @@
-import React, { ChangeEvent, useImperativeHandle, useRef, useState } from "react";
+import React, { ChangeEvent, useRef, useState } from "react";
 import { trpc } from "../../utils/trpc";
-import Button from "../common/Button";
-import EditButton from "../common/EditButton";
-import InputText from "../common/InputText";
-import RoundedButton from "../common/RoundedButton";
 import LabelBar, { LabelBarProps } from "./LabelBar";
 
 type EditNameProps = {
