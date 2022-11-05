@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 import React, { useState } from "react";
 import ConfirmButton from "../../modules/add-place/ConfirmButton";
-import ImageInput from "../../modules/add-place/ImagesInput";
+import ImageInput from "../../modules/user-place/ImagesInput";
 import NewPlaceForm from "../../modules/add-place/NewPlaceForm";
 import SelectPlaceType from "../../modules/add-place/SelectPlaceType";
 import Button from "../../modules/common/Button";

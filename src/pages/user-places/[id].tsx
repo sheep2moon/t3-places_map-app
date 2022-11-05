@@ -7,6 +7,7 @@ import TextArea from "../../modules/common/TextArea";
 import PlaceType from "../../modules/place/PlaceTypeIcon";
 import DeletePlace from "../../modules/user-place/DeletePlace";
 import EditDescription from "../../modules/user-place/EditDescription";
+import EditImages from "../../modules/user-place/EditImages";
 import EditName from "../../modules/user-place/EditName";
 import EditPlaceType from "../../modules/user-place/EditPlaceType";
 import { trpc } from "../../utils/trpc";
@@ -24,6 +25,7 @@ const UserPlace = () => {
 
     return (
         <div className="w-full max-w-lg">
+            <EditImages />
             {userPlace.data?.displayName && <EditName displayName={userPlace.data?.displayName} />}
             {userPlace.data?.description && <EditDescription description={userPlace.data?.description} />}
             {userPlace.data?.type && <EditPlaceType placeTypeId={userPlace.data.type.id} />}
