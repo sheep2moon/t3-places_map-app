@@ -1,10 +1,11 @@
+import { Image } from "@prisma/client";
 import { S3 } from "aws-sdk";
 import { PresignedPost } from "aws-sdk/clients/s3.js";
 import { z } from "zod";
 import { env } from "../../env/server.mjs";
 import { createProtectedRouter } from "./context";
 
-const s3 = new S3({
+export const s3 = new S3({
     apiVersion: "2006-03-01",
     accessKeyId: env.ACCESS_KEY,
     secretAccessKey: env.SECRET_KEY,
@@ -18,7 +19,7 @@ export const imagesRouter = createProtectedRouter()
             placeId: z.string()
         }),
         async resolve({ input, ctx }) {
-            const image = await ctx.prisma.image.create({
+            const image: Image = await ctx.prisma.image.create({
                 data: {
                     placeId: input.placeId
                 }
@@ -62,5 +63,19 @@ export const imagesRouter = createProtectedRouter()
                 })
                 .promise();
             console.log(res);
+        }
+    })
+    .mutation("deleteManyImages", {
+        input: z.object({
+            imagesId: z.array(z.string())
+        }),
+        async resolve({ input }) {
+            const keys = input.imagesId.map(id => ({ Key: `placeImages/${id}` }));
+            s3.deleteObjects({
+                Bucket: env.BUCKET_NAME,
+                Delete: {
+                    Objects: keys
+                }
+            });
         }
     });

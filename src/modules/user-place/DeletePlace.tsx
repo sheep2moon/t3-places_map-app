@@ -2,15 +2,21 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { trpc } from "../../utils/trpc";
 import Button from "../common/Button";
+import LoadingSpinner from "../common/LoadingSpinner";
 import Modal from "../common/Modal";
 
-const DeletePlace = ({ id }: { id: string }) => {
+type DeletePlaceProps = {
+    id: string;
+};
+
+const DeletePlace = ({ id }: DeletePlaceProps) => {
     const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
-    const { mutateAsync: deletePlace } = trpc.useMutation("protectedPlace.deletePlace");
+    const { mutateAsync: deletePlace, isLoading } = trpc.useMutation("protectedPlace.deletePlace");
+
     const router = useRouter();
 
-    const handleDelete = () => {
-        deletePlace({ id });
+    const handleDelete = async () => {
+        await deletePlace({ id });
         setIsConfirmationOpen(false);
         router.push("/");
     };
@@ -25,7 +31,7 @@ const DeletePlace = ({ id }: { id: string }) => {
                     <div className="mb-4 text-2xl text-light">Usunąc miejsce?</div>
                     <div className="flex gap-1">
                         <Button onClick={() => setIsConfirmationOpen(false)}>Anuluj</Button>
-                        <Button onClick={handleDelete}>Tak,usuń</Button>
+                        <Button onClick={handleDelete}>{isLoading ? <LoadingSpinner /> : "Tak,usuń"}</Button>
                     </div>
                 </div>
             </Modal>

@@ -1,5 +1,7 @@
+import { s3 } from "./images";
 import { z } from "zod";
 import { createProtectedRouter } from "./context";
+import { env } from "../../env/server.mjs";
 
 export const protectedPlacesRouter = createProtectedRouter()
     .mutation("createPlace", {
@@ -56,7 +58,8 @@ export const protectedPlacesRouter = createProtectedRouter()
                     id: input.id
                 },
                 include: {
-                    type: true
+                    type: true,
+                    images: true
                 }
             });
             return res;
@@ -67,6 +70,18 @@ export const protectedPlacesRouter = createProtectedRouter()
             id: z.string()
         }),
         async resolve({ input, ctx }) {
+            const images = await ctx.prisma.image.findMany({ where: { placeId: input.id } });
+            const keys = images.map(image => ({ Key: `placeImages/${image.id}` }));
+            console.log(keys);
+
+            await s3
+                .deleteObjects({
+                    Bucket: env.BUCKET_NAME,
+                    Delete: {
+                        Objects: keys
+                    }
+                })
+                .promise();
             await ctx.prisma.place.delete({ where: { id: input.id } });
         }
     })
@@ -77,6 +92,16 @@ export const protectedPlacesRouter = createProtectedRouter()
         }),
         async resolve({ input, ctx }) {
             await ctx.prisma.place.update({ where: { id: input.placeId }, data: { displayName: input.displayName } });
+        }
+    })
+    .mutation("updatePosition", {
+        input: z.object({
+            placeId: z.string(),
+            lat: z.number(),
+            lng: z.number()
+        }),
+        async resolve({ input, ctx }) {
+            await ctx.prisma.place.update({ where: { id: input.placeId }, data: { lat: input.lat, lng: input.lng } });
         }
     })
     .mutation("updateDescription", {
