@@ -8,6 +8,7 @@ import { renderToString } from "react-dom/server";
 import { getPlaceImageSrc } from "../../utils/getImageSrc";
 import Button from "../common/Button";
 import { FaArrowRight } from "react-icons/fa";
+import { usePlacesMapStore } from "../../zustand/placesMapStore";
 
 type PlaceMarkerProps = {
     place: Place & { type: PlaceType; images: ImageType[] };
@@ -16,11 +17,17 @@ type PlaceMarkerProps = {
 const PlaceMarker = ({ place }: PlaceMarkerProps) => {
     const markerRef = useRef<L.Marker>(null);
     console.log("marker");
+    const { setCurrentPlaceId, setShowPlaceModal } = usePlacesMapStore(state => state);
 
     const placeIcon = L.icon({
         iconUrl: place.type.icon,
         iconSize: [22, 22]
     });
+
+    const handleOpenModal = () => {
+        setCurrentPlaceId(place.id);
+        setShowPlaceModal(true);
+    };
 
     return (
         <Marker icon={placeIcon} ref={markerRef} position={{ lat: place.lat, lng: place.lng }}>
@@ -38,7 +45,7 @@ const PlaceMarker = ({ place }: PlaceMarkerProps) => {
                             <Image src={getPlaceImageSrc(place.images[0]?.id)} alt="widok z miejsca" layout="fill" />
                         </div>
                     )}
-                    <Button className="mt-2 flex justify-between" variant="secondary">
+                    <Button className="mt-2 flex justify-between" variant="secondary" onClick={handleOpenModal}>
                         Szczegóły
                         <FaArrowRight />
                     </Button>

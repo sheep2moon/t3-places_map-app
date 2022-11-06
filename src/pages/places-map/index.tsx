@@ -2,13 +2,24 @@ import type { NextPage } from "next";
 import { useState } from "react";
 import dynamic from "next/dynamic";
 import PlaceTypeFilter from "../../modules/places-map/PlaceTypeFilter";
+import PlaceDetailsModal from "../../modules/places-map/PlaceDetailsModal";
+import { usePlacesMapStore } from "../../zustand/placesMapStore";
 
 const Home: NextPage = () => {
     const PlacesMap = dynamic(() => import("../../modules/places-map/PlacesMap"));
+
+    const showPlaceModal = usePlacesMapStore(state => state.showPlaceModal);
+
     return (
         <>
-            <PlaceTypeFilter />
-            <PlacesMap />
+            {!showPlaceModal && (
+                <>
+                    <PlaceTypeFilter />
+                    <PlacesMap />
+                </>
+            )}
+
+            <PlaceDetailsModal />
         </>
     );
 };

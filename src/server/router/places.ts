@@ -15,4 +15,12 @@ export const placesRouter = createProtectedRouter()
             if (input.placeTypeId) return await ctx.prisma.place.findMany({ where: { placeTypeId: input.placeTypeId }, include: { type: true, images: true } });
             else return await ctx.prisma.place.findMany({ include: { type: true, images: true } });
         }
+    })
+    .query("getPlaceDetails", {
+        input: z.object({
+            placeId: z.string()
+        }),
+        resolve: async ({ input, ctx }) => {
+            return await ctx.prisma.place.findUnique({ where: { id: input.placeId } });
+        }
     });
