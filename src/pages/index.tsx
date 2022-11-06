@@ -1,9 +1,11 @@
 import type { NextPage } from "next";
+import dynamic from "next/dynamic";
 
 const Home: NextPage = () => {
+    const PlacesMap = dynamic(() => import("../modules/homepage/PlacesMap"));
     return (
         <>
-            <h1>resman-T3!</h1>
+            <PlacesMap />
         </>
     );
 };

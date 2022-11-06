@@ -1,7 +1,7 @@
 import { Image as ImageType } from "@prisma/client";
 import Image from "next/image";
 import React, { useState } from "react";
-import { getPlaceImageSrc } from "../../utils/getImageSrcById";
+import { getPlaceImageSrc } from "../../utils/getImageSrc";
 import { trpc } from "../../utils/trpc";
 import LoadingSpinner from "../common/LoadingSpinner";
 import { RiDeleteBin5Line } from "react-icons/ri";

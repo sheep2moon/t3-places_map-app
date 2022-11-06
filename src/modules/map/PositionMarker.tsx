@@ -1,13 +1,13 @@
 import React, { useRef } from "react";
 import { Marker, useMapEvent } from "react-leaflet";
 
-type PlacePositionProps = {
+type PositionMarkerProps = {
     placePosition?: Position;
     setPlacePosition: (p: Position) => void;
     disabled?: boolean;
 };
 
-const PlaceMarker = ({ placePosition, setPlacePosition, disabled = false }: PlacePositionProps) => {
+const PositionMarker = ({ placePosition, setPlacePosition, disabled = false }: PositionMarkerProps) => {
     const markerRef = useRef(null);
 
     const markerEventHandlers = {
@@ -27,4 +27,4 @@ const PlaceMarker = ({ placePosition, setPlacePosition, disabled = false }: Plac
     return <Marker ref={markerRef} position={[placePosition.lat, placePosition.lng]} eventHandlers={markerEventHandlers} />;
 };
 
-export default PlaceMarker;
+export default PositionMarker;

@@ -1,7 +1,7 @@
 import { Place } from "@prisma/client";
 import create from "zustand";
 
-type NewPlaceState = Omit<Place, "id"> & {
+type NewPlaceState = Omit<Place, "id" | "addedById"> & {
     // showError: boolean;
     setPosition: (p: Position) => void;
     setName: (n: string) => void;
