@@ -1,3 +1,4 @@
+import { z } from "zod";
 import { createProtectedRouter } from "./context";
 
 export const placesRouter = createProtectedRouter()
@@ -7,7 +8,11 @@ export const placesRouter = createProtectedRouter()
         }
     })
     .query("getPlaces", {
-        resolve: async ({ ctx }) => {
-            return await ctx.prisma.place.findMany({ include: { type: true, images: true } });
+        input: z.object({
+            placeTypeId: z.string().optional()
+        }),
+        resolve: async ({ input, ctx }) => {
+            if (input.placeTypeId) return await ctx.prisma.place.findMany({ where: { placeTypeId: input.placeTypeId }, include: { type: true, images: true } });
+            else return await ctx.prisma.place.findMany({ include: { type: true, images: true } });
         }
     });

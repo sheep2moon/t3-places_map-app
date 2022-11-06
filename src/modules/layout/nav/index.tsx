@@ -18,7 +18,7 @@ type navLink = {
 
 const navLinks: navLink[] = [
     { title: "Dodaj miejsce", href: "/add-place" },
-    { title: "Home", href: "/" },
+    { title: "Wszystkie miejsca", href: "/places-map" },
     { title: "Moje miejsca", href: "/user-places" }
 ];
 

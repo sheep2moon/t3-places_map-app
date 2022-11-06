@@ -1,10 +1,16 @@
 import React from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 import { trpc } from "../../utils/trpc";
+import { usePlacesMapStore } from "../../zustand/placesMapStore";
 import PlaceMarker from "../map/PlaceMarker";
 
+// type PlacesMapProps = {
+//     selectedTypeId: string;
+// };
+
 const PlacesMap = () => {
-    const places = trpc.useQuery(["places.getPlaces"]);
+    const { selectedTypeId } = usePlacesMapStore(state => state);
+    const places = trpc.useQuery(["places.getPlaces", { placeTypeId: selectedTypeId }]);
     return (
         <div className="relative mx-auto mt-2 aspect-square w-screen max-w-[270px] 2xsmall:max-w-[360px] xsmall:max-w-[512px]">
             <MapContainer center={[52.09, 19.09]} zoom={6}>

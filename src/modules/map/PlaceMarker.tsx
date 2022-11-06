@@ -2,6 +2,7 @@ import { Image as ImageType, Place, PlaceType } from "@prisma/client";
 import Image from "next/image";
 import L from "leaflet";
 import React, { useEffect, useRef } from "react";
+React.useLayoutEffect = React.useEffect;
 import { Marker, Popup } from "react-leaflet";
 import { renderToString } from "react-dom/server";
 import { getPlaceImageSrc } from "../../utils/getImageSrc";
@@ -14,15 +15,15 @@ type PlaceMarkerProps = {
 
 const PlaceMarker = ({ place }: PlaceMarkerProps) => {
     const markerRef = useRef<L.Marker>(null);
-    useEffect(() => {
-        const iconHtml = renderToString(<MarkerIcon type={place.type} />);
-        const customIcon = new L.DivIcon({ html: iconHtml, iconAnchor: [13, 13], iconSize: [22, 22] });
-        if (markerRef.current !== null) {
-            markerRef.current.setIcon(customIcon);
-        }
-    }, [place.type]);
+    console.log("marker");
+
+    const placeIcon = L.icon({
+        iconUrl: place.type.icon,
+        iconSize: [22, 22]
+    });
+
     return (
-        <Marker ref={markerRef} position={{ lat: place.lat, lng: place.lng }}>
+        <Marker icon={placeIcon} ref={markerRef} position={{ lat: place.lat, lng: place.lng }}>
             <Popup>
                 <div className="flex w-full min-w-[160px] flex-col">
                     <div className="mb-2 flex items-center gap-1">
@@ -44,14 +45,6 @@ const PlaceMarker = ({ place }: PlaceMarkerProps) => {
                 </div>
             </Popup>
         </Marker>
-    );
-};
-
-const MarkerIcon = ({ type }: { type: PlaceType }) => {
-    return (
-        <div className="relative h-5 w-5">
-            <Image src={type.icon} alt="znacznik na mapie" layout="fill" />
-        </div>
     );
 };
 
