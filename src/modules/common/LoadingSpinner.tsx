@@ -7,9 +7,9 @@ type LoadingSpinnerType = {
 
 const LoadingSpinner = ({ size = "medium" }: LoadingSpinnerType) => {
     return (
-        <div role="status">
+        <div role="status" className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
             <svg
-                className={clsx("inline mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-secondary", { "w-6 h-6": size === "small", "w-10 h-10": size === "medium", "w-14 h-14": size === "large" })}
+                className={clsx("mr-2 inline animate-spin fill-secondary text-gray-200 dark:text-gray-600", { "h-6 w-6": size === "small", "h-10 w-10": size === "medium", "h-14 w-14": size === "large" })}
                 viewBox="0 0 100 101"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"

@@ -6,15 +6,15 @@ import Modal from "../../common/Modal";
 import PlaceTypeIcon from "../../place/PlaceTypeIcon";
 import AddReview from "./AddReview";
 import ImageGallery from "./ImageGallery";
+import OwnerReview from "./OwnerReview";
+import Reviews from "./Reviews";
 
 const PlaceDetailsModal = () => {
     const { currentPlaceId, showPlaceModal, setShowPlaceModal } = usePlacesMapStore(state => state);
+    const userReviewQuery = trpc.useQuery(["protectedPlace.getUserReview", { placeId: currentPlaceId }]);
     const { data, isLoading } = trpc.useQuery(["places.getPlaceDetails", { placeId: currentPlaceId }]);
 
-    // useEffect(() => {
-    //     console.log(data, isLoading, showPlaceModal);
-    // }, [data, isLoading, showPlaceModal]);
-    if (isLoading && !data) return <LoadingSpinner />;
+    if (isLoading || userReviewQuery.isLoading || !data) return <LoadingSpinner />;
 
     return (
         <div className=" z-[99] ">
@@ -35,7 +35,8 @@ const PlaceDetailsModal = () => {
                     </div>
                     {data?.images && <ImageGallery images={data?.images} />}
                     <div className="mt-4 h-1 rounded-md bg-secondary/60 shadow-sm shadow-violet-700/40"></div>
-                    {data?.id && <AddReview placeId={data.id} />}
+                    {userReviewQuery.data ? <OwnerReview review={userReviewQuery.data} /> : <AddReview placeId={currentPlaceId} />}
+                    <Reviews placeId={currentPlaceId} />
                 </div>
             </Modal>
         </div>

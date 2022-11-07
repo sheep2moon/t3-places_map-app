@@ -22,6 +22,46 @@ export const protectedPlacesRouter = createProtectedRouter()
             return res;
         }
     })
+    .query("getUserReview", {
+        input: z.object({
+            placeId: z.string()
+        }),
+        async resolve({ input, ctx }) {
+            return await prisma?.review.findFirst({
+                where: {
+                    placeId: input.placeId,
+                    createdBy: ctx.session.user.id
+                }
+            });
+        }
+    })
+    .mutation("updateReview", {
+        input: z.object({
+            reviewId: z.string(),
+            comment: z.string(),
+            rate: z.number()
+        }),
+        async resolve({ input, ctx }) {
+            await ctx.prisma.review.update({
+                where: { id: input.reviewId },
+                data: {
+                    comment: input.comment,
+                    rate: input.rate
+                }
+            });
+        }
+    })
+    .mutation("deleteReview", {
+        input: z.object({
+            reviewId: z.string()
+        }),
+        async resolve({ input, ctx }) {
+            const review = await ctx.prisma.review.findFirst({ where: { id: input.reviewId } });
+            if (review?.createdBy === ctx.session.user.id) {
+                await ctx.prisma.review.delete({ where: { id: input.reviewId } });
+            }
+        }
+    })
     .query("getUserPlaces", {
         async resolve({ ctx }) {
             const res = await ctx.prisma.place.findMany({

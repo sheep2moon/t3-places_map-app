@@ -2,6 +2,7 @@ import { signIn, signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
+import UserAvatar from "../../common/UserAvatar";
 import Hamburger from "./components/Hamburger";
 import MobileMenu from "./components/MobileMenu";
 
@@ -49,10 +50,7 @@ const Nav = ({ name, image, status }: NavProps) => {
                                 Wyloguj
                             </button>
                         </div>
-                        <div className=" relative h-10 w-10">
-                            <div className="absolute inset-0 rounded-md ring-1  ring-secondary" />
-                            <Image src={image ?? ""} alt="awatar" layout="fill" className="rounded-lg " />
-                        </div>
+                        <UserAvatar image={image || ""} />
                     </div>
                 </>
             )}
