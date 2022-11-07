@@ -95,6 +95,7 @@ model Review {
 model Place {
     id          String    @id @default(cuid())
     displayName String
+    createdAt   DateTime  @default(now())
     addedBy     User      @relation(fields: [addedById], references: [id], onDelete: Cascade)
     lat         Float
     lng         Float

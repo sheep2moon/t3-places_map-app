@@ -23,12 +23,12 @@ const DeletePlace = ({ id }: DeletePlaceProps) => {
 
     return (
         <div>
-            <Button className="ml-auto mt-4 w-fit" onClick={() => setIsConfirmationOpen(true)}>
+            <Button className="ml-auto mt-4 w-fit " onClick={() => setIsConfirmationOpen(true)}>
                 Usuń miejsce
             </Button>
             <Modal isModalOpen={isConfirmationOpen} close={() => setIsConfirmationOpen(false)}>
                 <div className="flex flex-col items-center">
-                    <div className="mb-4 text-2xl text-light">Usunąc miejsce?</div>
+                    <div className="mb-4 text-xl text-primary">Usunąc miejsce?</div>
                     <div className="flex gap-1">
                         <Button onClick={() => setIsConfirmationOpen(false)}>Anuluj</Button>
                         <Button onClick={handleDelete}>{isLoading ? <LoadingSpinner /> : "Tak,usuń"}</Button>

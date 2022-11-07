@@ -46,7 +46,7 @@ const ImageInput = ({ placeId, refetch }: InputFileProps) => {
                         )}
                     </div>
                 ) : (
-                    <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform text-center">Kliknij aby wybrać zdjęcie</span>
+                    <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform text-center text-xs">Kliknij aby wybrać zdjęcie</span>
                 )}
             </div>
         </div>

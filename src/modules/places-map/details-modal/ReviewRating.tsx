@@ -18,15 +18,17 @@ const ReviewRating = ({ rate, setRate, disabled }: AddRatingProps) => {
         setHoveredStars(0);
     };
 
-    const handleClick = (rate: number) => {
-        setRate(rate);
+    const handleClick = (r: number) => {
+        console.log(r);
+
+        setRate(r);
     };
 
     return (
         <div className="flex items-center gap-2">
-            <span>Ocena</span>
+            <span className="text-xs">Twoja ocena</span>
             <div className="my-2 flex  text-amber-400">
-                {[...Array(10)].map((_, index) => (
+                {[...Array(5)].map((_, index) => (
                     <button
                         style={{ pointerEvents: disabled ? "none" : "all" }}
                         disabled={disabled}

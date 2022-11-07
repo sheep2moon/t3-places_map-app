@@ -39,7 +39,7 @@ export const protectedPlacesRouter = createProtectedRouter()
         input: z.object({
             reviewId: z.string(),
             comment: z.string(),
-            rate: z.number()
+            rate: z.number().min(0).max(5)
         }),
         async resolve({ input, ctx }) {
             await ctx.prisma.review.update({
@@ -138,7 +138,7 @@ export const protectedPlacesRouter = createProtectedRouter()
         input: z.object({
             placeId: z.string(),
             comment: z.string(),
-            rate: z.number()
+            rate: z.number().min(0).max(5)
         }),
         async resolve({ input, ctx }) {
             await ctx.prisma.review.create({

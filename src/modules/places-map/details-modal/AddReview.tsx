@@ -28,13 +28,12 @@ const AddReview = ({ placeId }: AddReviewType) => {
             <span className="text-sm font-light ">Widziałeś to miejsce? Przekaż swoją opinie.</span>
             <ReviewRating disabled={false} rate={rate} setRate={setRate} />
             <div>
-                <TextArea placeholder="Opisz w kilku słowach swoje doświadczenie z tym miejscem." name="comment" value={comment} handleChange={e => setComment(e.target.value)} />
+                <TextArea placeholder="Opisz swoje doświadczenie z tym miejscem." name="comment" value={comment} handleChange={e => setComment(e.target.value)} />
             </div>
-            <div className="mt-1 w-full">
-                <Button isLoading={addReviewMutation.isLoading} variant="alternative" onClick={handleAddReview}>
-                    Dodaj recenzje
-                </Button>
-            </div>
+
+            <Button className="mt-1 ml-auto w-fit " isLoading={addReviewMutation.isLoading} variant="alternative" onClick={handleAddReview}>
+                Dodaj recenzje
+            </Button>
         </div>
     );
 };
