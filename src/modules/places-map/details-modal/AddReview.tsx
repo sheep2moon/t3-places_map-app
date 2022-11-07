@@ -10,7 +10,12 @@ type AddReviewType = {
 
 const AddReview = ({ placeId }: AddReviewType) => {
     const ctx = trpc.useContext();
-    const addReviewMutation = trpc.useMutation(["protectedPlace.addReview"], { onSuccess: () => ctx.invalidateQueries("places.getPlaceReviews") });
+    const addReviewMutation = trpc.useMutation(["protectedPlace.addReview"], {
+        onSuccess: () => {
+            ctx.invalidateQueries("places.getPlaceReviews");
+            ctx.invalidateQueries("protectedPlace.getUserReview");
+        }
+    });
 
     const [comment, setComment] = useState<string>("");
     const [rate, setRate] = useState<number>(0);

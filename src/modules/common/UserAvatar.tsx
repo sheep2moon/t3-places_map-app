@@ -10,7 +10,7 @@ type UserAvatarProps = {
 const UserAvatar = ({ image, size = 10 }: UserAvatarProps) => {
     return (
         <div className={clsx(" relative aspect-square")} style={{ width: size * 4 }}>
-            <div className="absolute inset-0 rounded-sm ring-1  ring-light" />
+            <div className="absolute inset-0 rounded-sm" />
             <Image src={image} alt="awatar" layout="fill" className="rounded-sm " />
         </div>
     );

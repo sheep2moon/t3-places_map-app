@@ -8,10 +8,6 @@ import Footer from "./footer";
 import Nav from "./nav";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-    const session = useSession();
-    useEffect(() => {
-        console.log(session);
-    }, [session]);
     return (
         <>
             <Head>
@@ -21,9 +17,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossOrigin="" />
             </Head>
             <Script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossOrigin=""></Script>
-            <Nav status={session.status} name={session.data?.user?.name} image={session.data?.user?.image} />
+            <Nav />
 
-            <main className="container mx-auto flex h-full flex-col items-center justify-center p-1 pt-16 text-zinc-900 dark:text-light">{children}</main>
+            <main className="light:bg-light container mx-auto flex h-full flex-col items-center bg-light p-1  pt-16 text-primary dark:bg-primary dark:text-light">{children}</main>
 
             <Footer />
 

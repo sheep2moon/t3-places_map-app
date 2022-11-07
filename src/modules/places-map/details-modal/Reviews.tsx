@@ -13,16 +13,17 @@ const Reviews = ({ placeId }: ReviewsProps) => {
     if (isLoading) return <LoadingSpinner />;
     return (
         <div className="mt-4">
-            <div className="flex w-full justify-center text-xs">{data && data.length > 1 ? <span>Opinie o miejscu</span> : <span>To miejsce nie ma jeszcze żadnych opinii</span>}</div>
+            <div className="flex w-full justify-center text-xs">{data && data.length > 0 ? <span>Opinie o miejscu</span> : <span>To miejsce nie ma jeszcze żadnych opinii</span>}</div>
             {data?.map(review => (
                 <div key={review.id} className="my-2 rounded-sm bg-primary/5 p-1">
                     <div className="mb-2 flex items-center gap-2 ">
                         <UserAvatar size={6} image={review.user.image ?? ""} />
                         {review.user.name}
-                        <span className="ml-auto flex items-center text-amber-400">
+                        <span className="flex items-center text-amber-400">
                             {review.rate}
                             <IoStar />
                         </span>
+                        <span className="ml-auto text-xs text-primary">{review.createdAt.toLocaleString()}</span>
                     </div>
                     <div className="flex rounded-md ">{review.comment}</div>
                 </div>

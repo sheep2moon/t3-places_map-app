@@ -1,66 +1,56 @@
-import { signIn, signOut } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
+import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
+import useDarkMode from "../../../lib/hooks/useDarkMode";
+import Button from "../../common/Button";
+import LoadingSpinner from "../../common/LoadingSpinner";
 import UserAvatar from "../../common/UserAvatar";
+import DesktopMenu from "./components/DesktopMenu";
 import Hamburger from "./components/Hamburger";
+import Logo from "./components/Logo";
 import MobileMenu from "./components/MobileMenu";
-
-type NavProps = {
-    name: string | undefined | null;
-    image: string | undefined | null;
-    status: string;
-};
+import ThemeSwitch from "./components/ThemeSwitch";
+import UserCard from "./components/UserCard";
 
 type navLink = {
     title: string;
     href: string;
+    needAuth: boolean;
 };
 
 const navLinks: navLink[] = [
-    { title: "Dodaj miejsce", href: "/add-place" },
-    { title: "Wszystkie miejsca", href: "/places-map" },
-    { title: "Moje miejsca", href: "/user-places" }
+    { title: "Dodaj miejsce", href: "/add-place", needAuth: true },
+    { title: "Wszystkie miejsca", href: "/places-map", needAuth: false },
+    { title: "Moje miejsca", href: "/user-places", needAuth: true }
 ];
 
-const Nav = ({ name, image, status }: NavProps) => {
-    const [mobileOpen, setMobileOpen] = useState(false);
-    const closeMobile = () => setMobileOpen(false);
+const Nav = () => {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const session = useSession();
+    const isLoggedIn = !!session.data;
+    const userMetadata = session.data?.user;
+
     return (
-        <header className="fixed inset-x-0 top-0 z-[999999] flex h-16 items-center justify-between bg-primary px-4 text-light shadow-sm shadow-slate-50/20">
-            <button className="small:hidden" onClick={() => setMobileOpen(o => !o)}>
-                <Hamburger isOpen={mobileOpen} />
-            </button>
-            {status === "authenticated" && (
-                <>
-                    <MobileMenu navLinks={navLinks} isOpen={mobileOpen} close={closeMobile} />
+        <header className="fixed inset-x-0 top-0 z-[999999] flex h-16 items-center justify-between bg-light px-4 text-primary shadow-sm shadow-slate-50/20 dark:bg-primary dark:text-light">
+            <Logo />
+            <MobileMenu navLinks={navLinks} isOpen={isMenuOpen} close={() => setIsMenuOpen(false)} />
+            <DesktopMenu navLinks={navLinks} />
 
-                    <div className="hidden gap-2 small:flex">
-                        {navLinks.map(link => (
-                            <Link href={link.href} key={link.title}>
-                                <a className="p-2 transition-all hover:text-secondary">{link.title}</a>
-                            </Link>
-                        ))}
-                    </div>
+            <Hamburger isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
 
-                    <div className="flex items-center gap-2">
-                        <div className="flex flex-col items-center ">
-                            <span className="text-lg font-semibold">{name}</span>
-                            <button className="text-sm text-secondary" onClick={() => signOut()}>
-                                Wyloguj
-                            </button>
-                        </div>
-                        <UserAvatar image={image || ""} />
-                    </div>
-                </>
-            )}
-            {status === "loading" && <div>Loading...</div>}
+            <div className="hidden items-center gap-2 small:flex">
+                <ThemeSwitch />
 
-            {status === "unauthenticated" && (
-                <Link href="/auth/signin">
-                    <a className="rounded-sm border border-secondary py-2 px-4">Zaloguj się</a>
-                </Link>
-            )}
+                {isLoggedIn ? (
+                    <UserCard image={userMetadata?.image} name={userMetadata?.name} />
+                ) : (
+                    <Link href="/auth/signin">
+                        <a className="rounded-sm border border-secondary py-2 px-4">Zaloguj się</a>
+                    </Link>
+                )}
+            </div>
         </header>
     );
 };
