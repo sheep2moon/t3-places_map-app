@@ -94,6 +94,23 @@ export const protectedPlacesRouter = createProtectedRouter()
             await ctx.prisma.place.update({ where: { id: input.placeId }, data: { displayName: input.displayName } });
         }
     })
+    .mutation("addReview", {
+        input: z.object({
+            placeId: z.string(),
+            comment: z.string(),
+            rate: z.number()
+        }),
+        async resolve({ input, ctx }) {
+            await ctx.prisma.review.create({
+                data: {
+                    createdBy: ctx.session.user.id,
+                    comment: input.comment,
+                    rate: input.rate,
+                    placeId: input.placeId
+                }
+            });
+        }
+    })
     .mutation("updatePosition", {
         input: z.object({
             placeId: z.string(),

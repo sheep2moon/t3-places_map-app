@@ -1,8 +1,7 @@
 import type { NextPage } from "next";
-import { useState } from "react";
 import dynamic from "next/dynamic";
 import PlaceTypeFilter from "../../modules/places-map/PlaceTypeFilter";
-import PlaceDetailsModal from "../../modules/places-map/PlaceDetailsModal";
+import PlaceDetailsModal from "../../modules/places-map/details-modal/PlaceDetailsModal";
 import { usePlacesMapStore } from "../../zustand/placesMapStore";
 
 const Home: NextPage = () => {

@@ -21,6 +21,6 @@ export const placesRouter = createProtectedRouter()
             placeId: z.string()
         }),
         resolve: async ({ input, ctx }) => {
-            return await ctx.prisma.place.findUnique({ where: { id: input.placeId } });
+            return await ctx.prisma.place.findUnique({ where: { id: input.placeId }, include: { images: true, type: true, reviews: true } });
         }
     });

@@ -89,7 +89,7 @@ model Review {
     images    Image[]
     createdAt DateTime @default(now())
     Place     Place?   @relation(fields: [placeId], references: [id], onDelete: Cascade)
-    placeId   String?
+    placeId   String
 }
 
 model Place {
