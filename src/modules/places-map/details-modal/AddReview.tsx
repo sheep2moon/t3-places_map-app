@@ -29,7 +29,7 @@ const AddReview = ({ placeId }: AddReviewType) => {
     };
 
     return (
-        <div className="mt-2">
+        <div className="mt-2 ">
             <span className="text-sm font-light ">Widziałeś to miejsce? Przekaż swoją opinie.</span>
             <ReviewRating disabled={false} rate={rate} setRate={setRate} />
             <div>

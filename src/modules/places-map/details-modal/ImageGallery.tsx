@@ -8,6 +8,7 @@ type ImageGalleryProps = {
 };
 
 const ImageGallery = ({ images }: ImageGalleryProps) => {
+    if (images.length === 0) return null;
     return (
         <div className="mt-4 flex flex-col">
             <span className="text-xs">Zdjęcia z miejsca</span>

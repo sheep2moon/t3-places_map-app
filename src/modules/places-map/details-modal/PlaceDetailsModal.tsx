@@ -10,6 +10,10 @@ import ImageGallery from "./ImageGallery";
 import OwnerReview from "./OwnerReview";
 import Reviews from "./Reviews";
 import UserAvatar from "../../common/UserAvatar";
+import TimeBadge from "../../common/badges/TimeBadge";
+import UserBadge from "../../common/badges/UserBadge";
+import PlaceTypeBadge from "../../common/badges/PlaceTypeBadge";
+import HorizontalLine from "../../common/HorizontalLine";
 
 const PlaceDetailsModal = () => {
     const { currentPlaceId, showPlaceModal, setShowPlaceModal } = usePlacesMapStore(state => state);
@@ -22,35 +26,29 @@ const PlaceDetailsModal = () => {
         <div className=" z-[99] ">
             <Modal isModalOpen={showPlaceModal} close={() => setShowPlaceModal(false)}>
                 <div>
-                    <div className="flex flex-col text-primary">
-                        <div className="flex items-center text-lg font-bold">
-                            <MdPlace className="text-amber-600" />
-                            {data?.displayName}
+                    <div className="flex flex-col text-primary dark:text-light">
+                        <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-1">
+                                <UserBadge user={data?.addedBy} />
+                            </div>
+                            <TimeBadge>
+                                <span className="flex gap-1">{data?.createdAt.toLocaleString()}</span>
+                            </TimeBadge>
+                        </div>
+                        <div className="mt-4 flex items-center justify-between text-lg font-bold">
+                            <div className="flex items-center">
+                                <MdPlace className="text-amber-600" />
+                                {data?.displayName}
+                            </div>
+                            {data?.type && <PlaceTypeBadge placeType={data.type} />}
                         </div>
                         <div className="flex flex-col text-xs">
-                            <div className="mb-2 flex gap-1">
-                                <span>Dodane przez </span>
-                                <div className=" flex items-center gap-1">
-                                    {/* <UserAvatar image={data?.addedBy.image ?? ""} size={4} /> */}
-                                    <span className="text-primary/80 underline">{data?.addedBy.name}</span>
-                                </div>
-                                <span>dnia</span>
-                                <span>{data?.createdAt.toLocaleString()}</span>
-                            </div>
+                            <div className="mb-2 flex gap-1"></div>
                             <p>{data?.description}</p>
                         </div>
-
-                        {data?.type && (
-                            <div className="mt-4 flex items-center">
-                                <span>
-                                    <PlaceTypeIcon size="sm" placeType={data?.type} />
-                                </span>
-                                <span>{data.type.title}</span>
-                            </div>
-                        )}
                     </div>
                     {data?.images && <ImageGallery images={data?.images} />}
-                    <div className="mt-4 h-1 rounded-md bg-secondary/60 shadow-sm shadow-violet-700/40"></div>
+                    <HorizontalLine />
                     {userReviewQuery.data ? <OwnerReview review={userReviewQuery.data} /> : <AddReview placeId={currentPlaceId} />}
                     <Reviews placeId={currentPlaceId} />
                 </div>

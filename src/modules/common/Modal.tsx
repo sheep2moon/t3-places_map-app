@@ -13,7 +13,7 @@ const Modal = ({ isModalOpen, close, children }: ModalProps) => {
             <Transition appear show={isModalOpen} as={Fragment}>
                 <Dialog as="div" className="relative z-10" onClose={close}>
                     <Transition.Child as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0" enterTo="opacity-100" leave="ease-in duration-200" leaveFrom="opacity-100" leaveTo="opacity-0">
-                        <div className="fixed inset-0 bg-light bg-opacity-50" />
+                        <div className="fixed inset-0 bg-light bg-opacity-50 dark:bg-black/50" />
                     </Transition.Child>
 
                     <div className="fixed inset-0 overflow-y-auto">
@@ -27,7 +27,7 @@ const Modal = ({ isModalOpen, close, children }: ModalProps) => {
                                 leaveFrom="opacity-100 scale-100"
                                 leaveTo="opacity-0 scale-95"
                             >
-                                <Dialog.Panel className="overflow h-full w-full max-w-md transform rounded-2xl bg-light p-6 text-left align-middle shadow-xl transition-all">{children}</Dialog.Panel>
+                                <Dialog.Panel className="overflow h-full w-full max-w-md transform rounded-2xl bg-light p-6 text-left align-middle shadow-xl transition-all dark:bg-primary">{children}</Dialog.Panel>
                             </Transition.Child>
                         </div>
                     </div>
