@@ -29,11 +29,14 @@ const PlaceDetailsModal = () => {
                     <div className="flex flex-col text-primary dark:text-light">
                         <div className="flex items-center justify-between">
                             <div className="flex items-center gap-1">
+                                <span className="text-xs">Dodane przez:</span>
                                 <UserBadge user={data?.addedBy} />
                             </div>
-                            <TimeBadge>
-                                <span className="flex gap-1">{data?.createdAt.toLocaleString()}</span>
-                            </TimeBadge>
+                            <div className="flex items-center justify-center">
+                                <TimeBadge>
+                                    <span className="flex gap-1">{data?.createdAt.toLocaleString()}</span>
+                                </TimeBadge>
+                            </div>
                         </div>
                         <div className="mt-4 flex items-center justify-between text-lg font-bold">
                             <div className="flex items-center">

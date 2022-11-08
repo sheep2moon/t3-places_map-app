@@ -30,18 +30,19 @@ const Reviews = ({ placeId }: ReviewsProps) => {
                 )}
             </div>
             {data?.map(review => (
-                <div key={review.id} className="my-2 rounded-sm bg-primary/5 p-1">
-                    <div className="mb-2 flex items-center gap-2 ">
-                        <UserAvatar size={6} image={review.user.image ?? ""} />
-                        {review.user.name}
-                        <span className="flex items-center text-amber-400">
-                            {review.rate}
-                            <IoStar />
-                        </span>
+                <div key={review.id} className="rounded-sm bg-primary/5 p-2 dark:bg-black/20">
+                    <div className="mb-2 flex items-center justify-between ">
+                        <div className="flex items-center gap-2">
+                            <UserAvatar size={6} image={review.user.image ?? ""} />
+                            {review.user.name}
+                            <span className="flex items-center text-amber-400">
+                                {review.rate}
+                                <IoStar />
+                            </span>
+                        </div>
                         <TimeBadge>{review.createdAt.toLocaleString()}</TimeBadge>
-                        <span className=" text-xs "></span>
                     </div>
-                    <div className="flex rounded-md ">{review.comment}</div>
+                    <div className="flex rounded-sm p-1 text-xs dark:bg-primary/50 ">{review.comment}</div>
                 </div>
             ))}
         </div>

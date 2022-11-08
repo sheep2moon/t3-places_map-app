@@ -21,7 +21,7 @@ const PlaceTypeFilter = () => {
 
     if (isLoading) return <LoadingSpinner />;
     return (
-        <div className="mt-2 flex w-full max-w-[270px] flex-col gap-1 2xsmall:max-w-[360px] xsmall:max-w-[512px]">
+        <div className="m-2 flex w-full flex-col gap-1  xsmall:max-w-[600px]">
             <h2 className="ml-2 block w-full border-b border-secondary">Filtruj</h2>
             <div className="flex">
                 {data?.map(place => (

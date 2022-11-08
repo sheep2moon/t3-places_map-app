@@ -1,6 +1,7 @@
 import { Image as ImageType } from "@prisma/client";
 import Image from "next/image";
 import React from "react";
+import { FcStackOfPhotos } from "react-icons/fc";
 import { getPlaceImageSrc } from "../../../utils/getImageSrc";
 
 type ImageGalleryProps = {
@@ -11,7 +12,10 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
     if (images.length === 0) return null;
     return (
         <div className="mt-4 flex flex-col">
-            <span className="text-xs">Zdjęcia z miejsca</span>
+            <div className="text-md flex items-center gap-1 rounded-sm p-1 ">
+                <FcStackOfPhotos />
+                <span className="text-xs">Zdjęcia z miejsca</span>
+            </div>
             <div className="my-1 grid grid-cols-2 grid-rows-1 gap-1 xsmall:grid-cols-4 small:grid-cols-5">
                 {images.slice(0, 4).map(image => (
                     <div className="relative aspect-square" key={image.id}>

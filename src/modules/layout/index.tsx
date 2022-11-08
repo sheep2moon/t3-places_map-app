@@ -19,7 +19,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             <Script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossOrigin=""></Script>
             <Nav />
 
-            <main className="light:bg-light container mx-auto flex h-full flex-col items-center bg-light p-1  pt-16 text-primary dark:bg-primary dark:text-light">{children}</main>
+            <main className="light:bg-light  flex h-full flex-col items-center bg-light pt-16 text-primary dark:bg-primary dark:text-light">{children}</main>
 
             <Footer />
 
