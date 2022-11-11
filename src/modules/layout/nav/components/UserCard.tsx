@@ -9,14 +9,14 @@ type UserCardProps = {
 
 const UserCard = ({ name, image }: UserCardProps) => {
     return (
-        <div className="flex items-center gap-2">
-            <div className="flex flex-col items-center ">
-                <span className="text-lg font-semibold">{name}</span>
-                <button className="text-sm text-secondary" onClick={() => signOut()}>
+        <div className="w flex items-center gap-2 rounded-md p-1">
+            <div className="flex w-fit flex-col items-center">
+                {/* <span className="text-lg font-semibold">{name}</span> */}
+                {/* <button className="text-sm text-violet-900 dark:text-secondary" onClick={() => signOut()}>
                     Wyloguj
-                </button>
+                </button> */}
             </div>
-            <UserAvatar image={image ?? ""} />
+            <UserAvatar size={10} image={image ?? ""} />
         </div>
     );
 };

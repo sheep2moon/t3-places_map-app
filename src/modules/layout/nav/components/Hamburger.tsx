@@ -1,6 +1,6 @@
 import React from "react";
 
-const lineStyles = "h-1 w-8 my-1 rounded-full bg-light transition ease transform duration-300";
+const lineStyles = "h-1 w-8 my-1 rounded-full bg-primary/80 dark:bg-light transition ease transform duration-300";
 
 type HamburgerProps = {
     isMenuOpen: boolean;
