@@ -38,14 +38,14 @@ const Nav = () => {
             <MobileMenu navLinks={navLinks} isOpen={isMenuOpen} close={() => setIsMenuOpen(false)} />
             <DesktopMenu navLinks={navLinks} />
 
-            <div className="ml-auto flex items-center">
+            <div className="ml-auto flex items-center gap-2">
                 <ThemeSwitch />
                 <div className=" items-center gap-2">
                     {isLoggedIn ? (
                         <UserCard image={userMetadata?.image} name={userMetadata?.name} />
                     ) : (
                         <Link href="/auth/signin">
-                            <a className="rounded-sm border border-secondary py-2 px-4">Zaloguj się</a>
+                            <a className="border-b text-sm text-secondary">Zaloguj się</a>
                         </Link>
                     )}
                 </div>

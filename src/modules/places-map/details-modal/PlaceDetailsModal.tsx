@@ -14,6 +14,7 @@ import TimeBadge from "../../common/badges/TimeBadge";
 import UserBadge from "../../common/badges/UserBadge";
 import PlaceTypeBadge from "../../common/badges/PlaceTypeBadge";
 import HorizontalLine from "../../common/HorizontalLine";
+import ModalContainer from "./ModalContainer";
 
 const PlaceDetailsModal = () => {
     const { currentPlaceId, showPlaceModal, setShowPlaceModal } = usePlacesMapStore(state => state);
@@ -24,7 +25,7 @@ const PlaceDetailsModal = () => {
 
     return (
         <div className=" z-[99] ">
-            <Modal isModalOpen={showPlaceModal} close={() => setShowPlaceModal(false)}>
+            <ModalContainer isModalOpen={showPlaceModal} close={() => setShowPlaceModal(false)}>
                 <div>
                     <div className="flex flex-col text-primary dark:text-light">
                         <div className="flex items-center justify-between">
@@ -55,7 +56,7 @@ const PlaceDetailsModal = () => {
                     {userReviewQuery.data ? <OwnerReview review={userReviewQuery.data} /> : <AddReview placeId={currentPlaceId} />}
                     <Reviews placeId={currentPlaceId} />
                 </div>
-            </Modal>
+            </ModalContainer>
         </div>
     );
 };

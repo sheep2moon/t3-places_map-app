@@ -7,17 +7,12 @@ import { usePlacesMapStore } from "../../zustand/placesMapStore";
 const Home: NextPage = () => {
     const PlacesMap = dynamic(() => import("../../modules/places-map/PlacesMap"));
 
-    const showPlaceModal = usePlacesMapStore(state => state.showPlaceModal);
+    // const showPlaceModal = usePlacesMapStore(state => state.showPlaceModal);
 
     return (
         <>
-            {!showPlaceModal && (
-                <>
-                    <PlaceTypeFilter />
-                    <PlacesMap />
-                </>
-            )}
-
+            <PlaceTypeFilter />
+            <PlacesMap />
             <PlaceDetailsModal />
         </>
     );
