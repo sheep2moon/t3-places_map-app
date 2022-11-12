@@ -1,10 +1,10 @@
 import React from "react";
 import { IoStar } from "react-icons/io5";
-import { trpc } from "../../../utils/trpc";
-import LoadingSpinner from "../../common/LoadingSpinner";
-import TimeBadge from "../../common/badges/TimeBadge";
-import UserAvatar from "../../common/UserAvatar";
-import HorizontalLine from "../../common/HorizontalLine";
+import { trpc } from "../../../../utils/trpc";
+import LoadingSpinner from "../../../common/LoadingSpinner";
+import TimeBadge from "../../../common/badges/TimeBadge";
+import UserAvatar from "../../../common/UserAvatar";
+import HorizontalLine from "../../../common/HorizontalLine";
 import { GiStarsStack } from "react-icons/gi";
 import { MdReviews } from "react-icons/md";
 

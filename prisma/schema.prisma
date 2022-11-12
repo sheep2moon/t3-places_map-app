@@ -12,10 +12,6 @@ datasource db {
     referentialIntegrity = "prisma"
 }
 
-model Example {
-    id String @id @default(cuid())
-}
-
 // Necessary for Next auth
 model Account {
     id                String  @id @default(cuid())
@@ -44,16 +40,24 @@ model Session {
 }
 
 model User {
-    id            String    @id @default(cuid())
+    id            String       @id @default(cuid())
     name          String?
-    email         String?   @unique
+    email         String?      @unique
     emailVerified DateTime?
     image         String?
-    restaurantId  String?
     accounts      Account[]
     sessions      Session[]
     reviews       Review[]
-    places        Place[]
+    places        Place[]      @relation("AddedBy")
+    UserLibrary   UserLibrary?
+}
+
+model UserLibrary {
+    id       String  @id @default(cuid())
+    user     User    @relation(fields: [userId], references: [id])
+    wishlist Place[] @relation("Wishlist")
+    visited  Place[] @relation("Visited")
+    userId   String  @unique
 }
 
 model VerificationToken {
@@ -93,49 +97,18 @@ model Review {
 }
 
 model Place {
-    id          String    @id @default(cuid())
-    displayName String
-    createdAt   DateTime  @default(now())
-    addedBy     User      @relation(fields: [addedById], references: [id], onDelete: Cascade)
-    lat         Float
-    lng         Float
-    description String    @db.Text
-    reviews     Review[]
-    images      Image[]
-    placeTypeId String
-    type        PlaceType @relation(fields: [placeTypeId], references: [id], onDelete: Cascade)
-    addedById   String
+    id           String        @id @default(cuid())
+    displayName  String
+    createdAt    DateTime      @default(now())
+    addedBy      User          @relation("AddedBy", fields: [addedById], references: [id], onDelete: Cascade)
+    wishlistedBy UserLibrary[] @relation("Wishlist")
+    visitedBy    UserLibrary[] @relation("Visited")
+    lat          Float
+    lng          Float
+    description  String        @db.Text
+    reviews      Review[]
+    images       Image[]
+    placeTypeId  String
+    type         PlaceType     @relation(fields: [placeTypeId], references: [id], onDelete: Cascade)
+    addedById    String
 }
-
-// model Restaurant {
-//     id         String     @id @default(cuid())
-//     ownerId    String
-//     name       String
-//     orders     Order[]
-//     categories Category[]
-// }
-
-// model Category {
-//     id           String     @id @default(cuid())
-//     name         String
-//     color        String
-//     products     Product[]
-//     restaurantId String
-//     Restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
-// }
-
-// model Product {
-//     id         String   @id @default(cuid())
-//     name       String
-//     price      Int
-//     categoryId String
-//     Category   Category @relation(fields: [categoryId], references: [id])
-//     orders     Order[]
-// }
-
-// model Order {
-//     id           String     @id @default(cuid())
-//     products     Product[]
-//     restaurantId String
-//     Restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
-// }

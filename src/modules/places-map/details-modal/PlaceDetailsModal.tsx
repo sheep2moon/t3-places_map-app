@@ -1,27 +1,26 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { trpc } from "../../../utils/trpc";
 import { MdPlace } from "react-icons/md";
 import { usePlacesMapStore } from "../../../zustand/placesMapStore";
 import LoadingSpinner from "../../common/LoadingSpinner";
-import Modal from "../../common/Modal";
-import PlaceTypeIcon from "../../place/PlaceTypeIcon";
-import AddReview from "./AddReview";
+import AddReview from "./reviews/AddReview";
 import ImageGallery from "./ImageGallery";
-import OwnerReview from "./OwnerReview";
-import Reviews from "./Reviews";
-import UserAvatar from "../../common/UserAvatar";
+import OwnerReview from "./reviews/EditReview";
+import Reviews from "./reviews/Reviews";
 import TimeBadge from "../../common/badges/TimeBadge";
 import UserBadge from "../../common/badges/UserBadge";
 import PlaceTypeBadge from "../../common/badges/PlaceTypeBadge";
 import HorizontalLine from "../../common/HorizontalLine";
 import ModalContainer from "./ModalContainer";
+import UserActions from "./UserActions";
+import AddOrEditReview from "./reviews/AddOrEditReview";
 
 const PlaceDetailsModal = () => {
     const { currentPlaceId, showPlaceModal, setShowPlaceModal } = usePlacesMapStore(state => state);
-    const userReviewQuery = trpc.useQuery(["protectedPlace.getUserReview", { placeId: currentPlaceId }]);
+    const userDetailsQuery = trpc.useQuery(["user.getUserDetails"]);
     const { data, isLoading } = trpc.useQuery(["places.getPlaceDetails", { placeId: currentPlaceId }]);
 
-    if (isLoading || userReviewQuery.isLoading || !data) return <LoadingSpinner />;
+    if (isLoading || userDetailsQuery.isLoading || !data) return <LoadingSpinner />;
 
     return (
         <div className=" z-[99] ">
@@ -53,7 +52,8 @@ const PlaceDetailsModal = () => {
                     </div>
                     {data?.images && <ImageGallery images={data?.images} />}
                     <HorizontalLine />
-                    {userReviewQuery.data ? <OwnerReview review={userReviewQuery.data} /> : <AddReview placeId={currentPlaceId} />}
+                    <UserActions placeId={currentPlaceId} />
+                    <AddOrEditReview placeId={currentPlaceId} />
                     <Reviews placeId={currentPlaceId} />
                 </div>
             </ModalContainer>

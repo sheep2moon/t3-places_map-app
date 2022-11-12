@@ -1,16 +1,16 @@
 import { Review } from "@prisma/client";
 import React, { useEffect, useState } from "react";
-import { trpc } from "../../../utils/trpc";
-import Button from "../../common/Button";
-import TextArea from "../../common/TextArea";
+import { trpc } from "../../../../utils/trpc";
+import Button from "../../../common/Button";
+import TextArea from "../../../common/TextArea";
 import ReviewRating from "./ReviewRating";
 import { RiDeleteBin5Line } from "react-icons/ri";
 
-type OwnerReviewProps = {
+type EditReviewProps = {
     review: Review;
 };
 
-const OwnerReview = ({ review }: OwnerReviewProps) => {
+const EditReview = ({ review }: EditReviewProps) => {
     const [currentComment, setCurrentComment] = useState(review.comment);
     const [currentRate, setCurrentRate] = useState(review.rate);
     const [isEdit, setIsEdit] = useState(false);
@@ -19,7 +19,7 @@ const OwnerReview = ({ review }: OwnerReviewProps) => {
     const deleteReviewMutation = trpc.useMutation(["protectedPlace.deleteReview"], {
         onSuccess: () => {
             ctx.invalidateQueries(["places.getPlaceReviews"]);
-            ctx.invalidateQueries(["protectedPlace.getUserReview"]);
+            ctx.invalidateQueries(["user.getUserReviewByPlaceId"]);
         }
     });
 
@@ -75,4 +75,4 @@ const OwnerReview = ({ review }: OwnerReviewProps) => {
     );
 };
 
-export default OwnerReview;
+export default EditReview;

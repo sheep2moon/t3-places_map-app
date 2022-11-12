@@ -22,19 +22,6 @@ export const protectedPlacesRouter = createProtectedRouter()
             return res;
         }
     })
-    .query("getUserReview", {
-        input: z.object({
-            placeId: z.string()
-        }),
-        async resolve({ input, ctx }) {
-            return await prisma?.review.findFirst({
-                where: {
-                    placeId: input.placeId,
-                    createdBy: ctx.session.user.id
-                }
-            });
-        }
-    })
     .mutation("updateReview", {
         input: z.object({
             reviewId: z.string(),
@@ -134,6 +121,7 @@ export const protectedPlacesRouter = createProtectedRouter()
             await ctx.prisma.place.update({ where: { id: input.placeId }, data: { displayName: input.displayName } });
         }
     })
+
     .mutation("addReview", {
         input: z.object({
             placeId: z.string(),

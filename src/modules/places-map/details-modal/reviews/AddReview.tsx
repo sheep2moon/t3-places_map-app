@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { trpc } from "../../../utils/trpc";
-import Button from "../../common/Button";
-import TextArea from "../../common/TextArea";
+import { trpc } from "../../../../utils/trpc";
+import Button from "../../../common/Button";
+import TextArea from "../../../common/TextArea";
 import ReviewRating from "./ReviewRating";
 
 type AddReviewType = {
