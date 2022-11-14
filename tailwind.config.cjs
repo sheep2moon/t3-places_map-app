@@ -4,6 +4,9 @@ module.exports = {
     darkMode: "class",
     theme: {
         extend: {
+            fontSize: {
+                "2xs": "0.6rem"
+            },
             colors: {
                 primary: "#2C3333",
                 secondary: "#A8A4CE",

@@ -28,22 +28,23 @@ const PlaceDetailsModal = () => {
                 <div>
                     <div className="flex flex-col text-primary dark:text-light">
                         <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-1">
-                                <span className="text-xs">Dodane przez:</span>
-                                <UserBadge user={data?.addedBy} />
+                            <div className="flex flex-col">
+                                <div className="flex items-center gap-1">
+                                    <span className="text-2xs">Dodane przez:</span>
+                                    <UserBadge user={data?.addedBy} />
+                                </div>
+                                <div className="flex items-center">
+                                    <TimeBadge>
+                                        <span className="flex gap-1">{data?.createdAt.toLocaleString()}</span>
+                                    </TimeBadge>
+                                </div>
                             </div>
-                            <div className="flex items-center justify-center">
-                                <TimeBadge>
-                                    <span className="flex gap-1">{data?.createdAt.toLocaleString()}</span>
-                                </TimeBadge>
-                            </div>
+                            <div className=" flex items-center justify-between text-lg font-bold">{data?.type && <PlaceTypeBadge placeType={data.type} />}</div>
                         </div>
-                        <div className="mt-4 flex items-center justify-between text-lg font-bold">
-                            <div className="flex items-center">
-                                <MdPlace className="text-amber-600" />
-                                {data?.displayName}
-                            </div>
-                            {data?.type && <PlaceTypeBadge placeType={data.type} />}
+                        <HorizontalLine />
+                        <div className="flex items-center">
+                            <MdPlace className="text-amber-600" />
+                            {data?.displayName}
                         </div>
                         <div className="flex flex-col text-xs">
                             <div className="mb-2 flex gap-1"></div>

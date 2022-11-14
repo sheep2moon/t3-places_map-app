@@ -47,7 +47,7 @@ const UserCard = ({ name, image }: UserCardProps) => {
                                 <Link href="/profile">
                                     <a className="flex items-center gap-2 p-1">
                                         <MdFavorite className="text-secondary" />
-                                        <span>Ulubione</span>
+                                        <span>Biblioteka</span>
                                     </a>
                                 </Link>
                             </Menu.Item>

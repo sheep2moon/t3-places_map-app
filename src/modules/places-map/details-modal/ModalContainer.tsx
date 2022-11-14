@@ -17,8 +17,8 @@ const ModalContainer = ({ isModalOpen, close, children }: ModalProps) => {
                         <div className="fixed inset-0 bg-light bg-opacity-50 dark:bg-black/50" />
                     </Transition.Child>
 
-                    <div className="fixed right-0 top-0 bottom-0 overflow-y-auto">
-                        <div className=" flex min-h-screen items-center justify-center pt-16 text-center small:p-4">
+                    <div className="fixed right-0 top-0 bottom-0 overflow-y-auto shadow-md shadow-black/50">
+                        <div className="flex min-h-screen items-center justify-center pt-16 text-center small:p-4">
                             <Transition.Child
                                 as={Fragment}
                                 enter="ease-out duration-300"
@@ -28,7 +28,7 @@ const ModalContainer = ({ isModalOpen, close, children }: ModalProps) => {
                                 leaveFrom="opacity-100 scale-100"
                                 leaveTo="opacity-0 scale-95"
                             >
-                                <Dialog.Panel className="overflow atext-left h-screen w-full max-w-md transform bg-light p-2 align-middle shadow-xl transition-all dark:bg-primary small:rounded-2xl small:p-6">
+                                <Dialog.Panel className="overflow atext-left min-h-screen w-full max-w-md transform bg-light p-2 align-middle shadow-xl transition-all dark:bg-primary small:rounded-2xl small:p-6">
                                     <Button onClick={close} className="mb-2 ml-auto" variant="alternative">
                                         X
                                     </Button>
