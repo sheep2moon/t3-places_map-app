@@ -12,7 +12,7 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
     if (images.length === 0) return null;
     return (
         <div className="mt-4 flex flex-col">
-            <div className="text-md flex items-center gap-1 rounded-sm p-1 ">
+            <div className="text-md flex items-center gap-1 rounded-sm py-1 ">
                 <FcStackOfPhotos />
                 <span className="text-xs">Zdjęcia z miejsca</span>
             </div>

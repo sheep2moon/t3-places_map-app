@@ -62,7 +62,11 @@ const UserActions = ({ placeId }: UserActionsProps) => {
                     )}
                 </button>
                 <button disabled={visitedMutationLoading} onClick={handleToggleVisited} className="flex w-full items-center justify-center gap-2 border py-1 dark:border-light/20">
-                    {data?.visited.some(place => place.id === placeId) ? (
+                    {visitedMutationLoading ? (
+                        <div className="relative">
+                            <LoadingSpinner size="small" />
+                        </div>
+                    ) : data?.visited.some(place => place.id === placeId) ? (
                         <>
                             <BsCheck className="text-lg text-emerald-500" />
                             Odwiedzone
@@ -70,7 +74,7 @@ const UserActions = ({ placeId }: UserActionsProps) => {
                     ) : (
                         <>
                             <TbTarget className="text-lg text-amber-400" />
-                            Chce odwiedzić
+                            Odwiedzone?
                         </>
                     )}
                 </button>

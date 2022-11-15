@@ -16,7 +16,6 @@ type PlaceMarkerProps = {
 
 const PlaceMarker = ({ place }: PlaceMarkerProps) => {
     const markerRef = useRef<L.Marker>(null);
-    console.log("marker");
     const { setCurrentPlaceId, setShowPlaceModal } = usePlacesMapStore(state => state);
 
     const placeIcon = L.icon({
@@ -32,23 +31,23 @@ const PlaceMarker = ({ place }: PlaceMarkerProps) => {
     return (
         <Marker icon={placeIcon} ref={markerRef} position={{ lat: place.lat, lng: place.lng }}>
             <Popup>
-                <div className="flex w-full min-w-[160px] flex-col">
-                    <div className="mb-2 flex items-center gap-1">
-                        <div className="relative h-6 w-6">
-                            <Image src={place.type.icon} alt="znacznik na mapie" layout="fill" />
+                <div className="relative flex h-[120px] w-[160px] flex-col overflow-hidden rounded-md">
+                    <div className="absolute inset-0 z-10 bg-black/60 " />
+                    {place.images[0] && <Image className="object-cover" src={getPlaceImageSrc(place.images[0]?.id)} alt="widok z miejsca" layout="fill" />}
+
+                    <div className="absolute inset-0 z-20 mb-2 flex flex-col items-center gap-1 p-1 text-light">
+                        <div className="mx-auto mt-1 flex items-center gap-2">
+                            <div className="relative h-6 w-6">
+                                <Image src={place.type.icon} alt="znacznik na mapie" layout="fill" />
+                            </div>
+                            <span className="">{place.type.title}</span>
                         </div>
-                        <span>{place.type.title}</span>
+                        <span className="max-h-8 overflow-hidden text-ellipsis break-words text-center leading-4">{place.displayName}</span>
+                        <Button className="mx-auto mt-auto flex justify-between gap-2 bg-amber-300" variant="alternative" onClick={handleOpenModal}>
+                            Szczegóły
+                            <FaArrowRight />
+                        </Button>
                     </div>
-                    <span>{place.displayName}</span>
-                    {place.images[0] && (
-                        <div className="relative mx-auto h-20 w-20">
-                            <Image src={getPlaceImageSrc(place.images[0]?.id)} alt="widok z miejsca" layout="fill" />
-                        </div>
-                    )}
-                    <Button className="mt-2 flex justify-between" variant="secondary" onClick={handleOpenModal}>
-                        Szczegóły
-                        <FaArrowRight />
-                    </Button>
                 </div>
             </Popup>
         </Marker>

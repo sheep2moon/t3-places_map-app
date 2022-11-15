@@ -39,3 +39,14 @@ main{
   border: none;
 }
 
+.leaflet-popup-content-wrapper{
+  padding: 0;
+}
+.leaflet-popup-content{
+  margin: 0;
+}
+.leaflet-popup-close-button{
+  z-index: 99;
+  font-size: 1.4rem !important;
+  color: #fff !important;
+}

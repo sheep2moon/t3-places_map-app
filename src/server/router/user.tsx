@@ -30,7 +30,7 @@ export const userRouter = createProtectedRouter()
     })
     .query("getUserLibrary", {
         async resolve({ ctx }) {
-            return await prisma?.userLibrary.upsert({ where: { userId: ctx.session.user.id }, update: {}, create: { userId: ctx.session.user.id }, include: { wishlist: true, visited: true } });
+            return await prisma?.userLibrary.upsert({ where: { userId: ctx.session.user.id }, update: {}, create: { userId: ctx.session.user.id }, include: { wishlist: { include: { type: true } }, visited: { include: { type: true } } } });
         }
     })
     .mutation("toggleWishlistPlace", {

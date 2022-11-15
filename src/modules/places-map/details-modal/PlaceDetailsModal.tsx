@@ -25,7 +25,7 @@ const PlaceDetailsModal = () => {
     return (
         <div className=" z-[99] ">
             <ModalContainer isModalOpen={showPlaceModal} close={() => setShowPlaceModal(false)}>
-                <div>
+                <div className="w-full">
                     <div className="flex flex-col text-primary dark:text-light">
                         <div className="flex items-center justify-between">
                             <div className="flex flex-col">
@@ -48,7 +48,7 @@ const PlaceDetailsModal = () => {
                         </div>
                         <div className="flex flex-col text-xs">
                             <div className="mb-2 flex gap-1"></div>
-                            <p>{data?.description}</p>
+                            <pre className="whitespace-pre-wrap">{data?.description}</pre>
                         </div>
                     </div>
                     {data?.images && <ImageGallery images={data?.images} />}

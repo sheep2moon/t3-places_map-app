@@ -37,15 +37,15 @@ const UserCard = ({ name, image }: UserCardProps) => {
                             </div>
                             <Menu.Item>
                                 <Link href="/profile">
-                                    <a className="flex items-center gap-2 p-1">
+                                    <a className="flex items-center gap-2 p-1 hover:bg-light/10">
                                         <AiFillProfile className="text-secondary" />
                                         <span>Profil</span>
                                     </a>
                                 </Link>
                             </Menu.Item>
                             <Menu.Item>
-                                <Link href="/profile">
-                                    <a className="flex items-center gap-2 p-1">
+                                <Link href="/user/library">
+                                    <a className="flex items-center gap-2 p-1 hover:bg-light/10">
                                         <MdFavorite className="text-secondary" />
                                         <span>Biblioteka</span>
                                     </a>
