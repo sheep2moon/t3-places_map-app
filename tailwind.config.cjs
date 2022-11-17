@@ -10,7 +10,8 @@ module.exports = {
             colors: {
                 primary: "#2C3333",
                 secondary: "#A8A4CE",
-                light: "#DFF6FF"
+                light: "#F9F9F9",
+                dark: "#181818"
             },
             screens: {
                 "3xsmall": "320px",
