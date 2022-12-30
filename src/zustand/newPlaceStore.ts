@@ -4,7 +4,7 @@ import create from "zustand";
 type NewPlaceState = Omit<Place, "id" | "addedById" | "createdAt"> & {
     // showError: boolean;
     setPosition: (p: Position) => void;
-    setName: (n: string) => void;
+    setDisplayName: (n: string) => void;
     setDescription: (d: string) => void;
     setPlaceTypeId: (id: string) => void;
     // setShowError: (b: boolean) => void;
@@ -18,7 +18,7 @@ export const useNewPlaceStore = create<NewPlaceState>(set => ({
     description: "",
     placeTypeId: "",
     setPosition: ({ lat, lng }) => set(state => ({ ...state, lat, lng })),
-    setName: displayName => {
+    setDisplayName: displayName => {
         set(state => ({ ...state, displayName }));
     },
     setDescription: description => set(state => ({ ...state, description })),

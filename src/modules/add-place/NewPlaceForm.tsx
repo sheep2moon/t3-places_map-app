@@ -1,17 +1,16 @@
-import clsx from "clsx";
-import React, { useEffect } from "react";
+import React from "react";
 import { useNewPlaceStore } from "../../zustand/newPlaceStore";
 import InputText from "../common/InputText";
 import TextArea from "../common/TextArea";
 
 const NewPlaceForm = () => {
-    const { displayName, description, setName, setDescription } = useNewPlaceStore(state => state);
+    const { displayName, description, setDisplayName, setDescription } = useNewPlaceStore(state => state);
 
     return (
         <div>
             <div className="mt-4">
                 <label htmlFor="displayed-name">Wyświetlana nazwa</label>
-                <InputText className="mt-2" name="displayed-name" value={displayName} handleChange={e => setName(e.target.value)} />
+                <InputText className="mt-2" name="displayed-name" value={displayName} handleChange={e => setDisplayName(e.target.value)} />
             </div>
             <div className="mt-4">
                 <label htmlFor="place-description">Opis miejsca</label>

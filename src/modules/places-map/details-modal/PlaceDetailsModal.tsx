@@ -43,12 +43,12 @@ const PlaceDetailsModal = () => {
                         </div>
                         <HorizontalLine />
                         <div className="flex items-center">
-                            <MdPlace className="text-amber-600" />
-                            {data?.displayName}
+                            <MdPlace className="text-lg text-amber-600 " />
+                            <span className="overflow-hidden text-ellipsis whitespace-nowrap">{data?.displayName}</span>
                         </div>
                         <div className="flex flex-col text-xs">
                             <div className="mb-2 flex gap-1"></div>
-                            <pre className="whitespace-pre-wrap">{data?.description}</pre>
+                            <pre className="whitespace-pre-wrap text-left font-mono">{data?.description}</pre>
                         </div>
                     </div>
                     {data?.images && <ImageGallery images={data?.images} />}

@@ -13,7 +13,7 @@ const AddReview = ({ placeId }: AddReviewType) => {
     const addReviewMutation = trpc.useMutation(["protectedPlace.addReview"], {
         onSuccess: () => {
             ctx.invalidateQueries("places.getPlaceReviews");
-            ctx.invalidateQueries("protectedPlace.getUserReview");
+            ctx.invalidateQueries("user.getUserReviewByPlaceId");
         }
     });
 

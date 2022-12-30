@@ -14,7 +14,7 @@ type SuggestionPlace = {
 
 const SearchPlaceInput = ({ setPosition }: SearchPlaceInputProps) => {
     const [suggestions, setSuggestions] = useState<Array<SuggestionPlace>>([]);
-    const querySearch: { current: NodeJS.Timeout | null } = useRef(null);
+    const querySearchRef: { current: NodeJS.Timeout | null } = useRef(null);
 
     const searchPlaceByQuery = async (query: string) => {
         const queryUrl = `https://nominatim.openstreetmap.org/search?q=${query}&countrycodes=pl&format=json&addressdetails=1`;
@@ -27,10 +27,10 @@ const SearchPlaceInput = ({ setPosition }: SearchPlaceInputProps) => {
     };
 
     const handleSearchPlace = (e: ChangeEvent<HTMLInputElement>) => {
-        clearTimeout(querySearch.current as NodeJS.Timeout);
+        clearTimeout(querySearchRef.current as NodeJS.Timeout);
         if (e.target.value.length > 3) {
             const searchValue = e.target.value.includes(" ") ? e.target.value.replaceAll(" ", "+") : e.target.value;
-            querySearch.current = setTimeout(() => {
+            querySearchRef.current = setTimeout(() => {
                 searchPlaceByQuery(searchValue);
             }, 300);
         } else {

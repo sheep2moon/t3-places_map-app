@@ -6,14 +6,14 @@ import LoadingSpinner from "../common/LoadingSpinner";
 import PlaceTypeIcon from "../place/PlaceTypeIcon";
 
 const SelectPlaceType = () => {
-    const { data, isLoading } = trpc.useQuery(["places.getPlaceTypes"]);
+    const placeTypes = trpc.useQuery(["places.getPlaceTypes"]);
     const { placeTypeId, setPlaceTypeId } = useNewPlaceStore(state => state);
-    if (isLoading) return <LoadingSpinner />;
+    if (placeTypes.isLoading) return <LoadingSpinner />;
     return (
         <div className="mt-4">
             <span className="mb-2 block">Typ miejsca</span>
             <div className="flex gap-1">
-                {data?.map(placeType => (
+                {placeTypes.data?.map(placeType => (
                     <div key={placeType.id} className={clsx("transition-all", { "rounded-md bg-slate-400/20": placeTypeId === placeType.id })} onClick={() => setPlaceTypeId(placeType.id)}>
                         <PlaceTypeIcon placeType={placeType} />
                     </div>

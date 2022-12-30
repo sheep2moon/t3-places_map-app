@@ -1,7 +1,7 @@
 import { z } from "zod";
-import { createProtectedRouter } from "./context";
+import { createRouter } from "./context";
 
-export const placesRouter = createProtectedRouter()
+export const placesRouter = createRouter()
     .query("getPlaceTypes", {
         resolve: async ({ ctx }) => {
             return await ctx.prisma.placeType.findMany();
@@ -30,5 +30,15 @@ export const placesRouter = createProtectedRouter()
         }),
         resolve: async ({ input, ctx }) => {
             return await ctx.prisma.review.findMany({ where: { placeId: input.placeId }, include: { user: true } });
+        }
+    })
+    .query("getRecentlyAddedPlaces", {
+        resolve: async ({ ctx }) => {
+            return await ctx.prisma.place.findMany({ take: 3, orderBy: [{ createdAt: "desc" }] });
+        }
+    })
+    .query("getRecentlyAddedReviews", {
+        resolve: async ({ ctx }) => {
+            return await ctx.prisma.review.findMany({ take: 3, orderBy: [{ createdAt: "desc" }] });
         }
     });
