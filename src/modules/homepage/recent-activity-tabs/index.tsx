@@ -11,19 +11,19 @@ const RecentActivityTabs = () => {
     const recentlyAddedReviews = trpc.useQuery(["places.getRecentlyAddedReviews"]);
 
     return (
-        <div className="mt-8 rounded-md bg-light py-8 dark:bg-primary">
+        <div className="mt-8 rounded-md bg-light py-4 dark:bg-primary">
             <Tab.Group>
                 <HorizontalLine>
                     <Tab.List className="flex w-60 lg:w-96">
                         <CustomTab>Ostatnio dodane</CustomTab>
-                        <CustomTab>Ostatnia aktywność</CustomTab>
+                        <CustomTab>Ostatnie komentarze</CustomTab>
                     </Tab.List>
                 </HorizontalLine>
-                <Tab.Panels className="mt-8">
-                    <Tab.Panel>
+                <Tab.Panels className="mt-8 px-4">
+                    <Tab.Panel className="relative">
                         <RecentlyAddedPlaces queryResult={recentlyAddedPlaces} />
                     </Tab.Panel>
-                    <Tab.Panel>
+                    <Tab.Panel className="relative">
                         <RecentlyAddedReviews queryResult={recentlyAddedReviews} />
                     </Tab.Panel>
                 </Tab.Panels>

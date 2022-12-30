@@ -1,14 +1,20 @@
 import { PlaceType } from "@prisma/client";
+import clsx from "clsx";
 import React from "react";
 import PlaceTypeIcon from "../../place/PlaceTypeIcon";
 
-const PlaceTypeBadge = ({ placeType }: { placeType: PlaceType }) => {
+type PlaceTypeBadge = {
+    placeType: PlaceType;
+    size: ShorthandSize;
+};
+
+const PlaceTypeBadge = ({ placeType, size = "sm" }: PlaceTypeBadge) => {
     return (
         <div className="flex items-center text-sm">
             <span>
-                <PlaceTypeIcon size="sm" placeType={placeType} />
+                <PlaceTypeIcon size={size} placeType={placeType} />
             </span>
-            <span>{placeType.title}</span>
+            <span className={clsx("", { "text-base": size === "sm", "text-lg": size === "lg" })}>{placeType.title}</span>
         </div>
     );
 };

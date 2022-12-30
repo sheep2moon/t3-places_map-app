@@ -34,11 +34,21 @@ export const placesRouter = createRouter()
     })
     .query("getRecentlyAddedPlaces", {
         resolve: async ({ ctx }) => {
-            return await ctx.prisma.place.findMany({ take: 3, orderBy: [{ createdAt: "desc" }] });
+            return await ctx.prisma.place.findMany({
+                take: 3,
+                include: {
+                    type: true,
+                    images: true
+                },
+                orderBy: [{ createdAt: "desc" }],
+                where: {
+                    NOT: { images: { none: { id: undefined } } }
+                }
+            });
         }
     })
     .query("getRecentlyAddedReviews", {
         resolve: async ({ ctx }) => {
-            return await ctx.prisma.review.findMany({ take: 3, orderBy: [{ createdAt: "desc" }] });
+            return await ctx.prisma.review.findMany({ take: 3, include: { Place: { include: { images: true, type: true } } }, orderBy: [{ createdAt: "desc" }] });
         }
     });
