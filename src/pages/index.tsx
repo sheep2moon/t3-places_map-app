@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import Link from "next/link";
 import { BiMapAlt } from "react-icons/bi";
 import HorizontalLine from "../modules/common/HorizontalLine";
+import AddPlaceEncouragement from "../modules/homepage/add-place-encouragement";
 import RecentActivityTabs from "../modules/homepage/recent-activity-tabs";
 
 const Home: NextPage = () => {
@@ -24,6 +25,7 @@ const Home: NextPage = () => {
                 </div>
             </div>
             <RecentActivityTabs />
+            <AddPlaceEncouragement />
             <p className="my-12">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid nam illo architecto unde tempore magni expedita, beatae doloribus veniam nihil culpa sapiente, sequi cum? Voluptate temporibus sunt quis accusamus quo. Lorem
                 ipsum dolor, sit amet consectetur adipisicing elit. Quod sit vero quisquam illum rerum error nostrum saepe, perspiciatis tempore eos quis consectetur iure in ut soluta, ea animi eveniet iste!

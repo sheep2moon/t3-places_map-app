@@ -3,9 +3,7 @@ import { trpc } from "../../../utils/trpc";
 import { MdPlace } from "react-icons/md";
 import { usePlacesMapStore } from "../../../zustand/placesMapStore";
 import LoadingSpinner from "../../common/LoadingSpinner";
-import AddReview from "./reviews/AddReview";
 import ImageGallery from "./ImageGallery";
-import OwnerReview from "./reviews/EditReview";
 import Reviews from "./reviews/Reviews";
 import TimeBadge from "../../common/badges/TimeBadge";
 import UserBadge from "../../common/badges/UserBadge";
@@ -16,15 +14,19 @@ import UserActions from "./UserActions";
 import AddOrEditReview from "./reviews/AddOrEditReview";
 
 const PlaceDetailsModal = () => {
-    const { currentPlaceId, showPlaceModal, setShowPlaceModal } = usePlacesMapStore(state => state);
+    const { currentPlaceId, isPlaceModalOpen, setIsPlaceModalOpen } = usePlacesMapStore(state => state);
     const userDetailsQuery = trpc.useQuery(["user.getUserDetails"]);
     const { data, isLoading } = trpc.useQuery(["places.getPlaceDetails", { placeId: currentPlaceId }]);
 
     if (isLoading || userDetailsQuery.isLoading || !data) return <LoadingSpinner />;
 
+    const handleCloseModal = () => {
+        setIsPlaceModalOpen(false);
+    };
+
     return (
         <div className=" z-[99] ">
-            <ModalContainer isModalOpen={showPlaceModal} close={() => setShowPlaceModal(false)}>
+            <ModalContainer isModalOpen={isPlaceModalOpen} close={handleCloseModal}>
                 <div className="w-full">
                     <div className="flex flex-col text-primary dark:text-light">
                         <div className="flex items-center justify-between">
@@ -39,7 +41,7 @@ const PlaceDetailsModal = () => {
                                     </TimeBadge>
                                 </div>
                             </div>
-                            <div className=" flex items-center justify-between text-lg font-bold">{data?.type && <PlaceTypeBadge placeType={data.type} />}</div>
+                            <div className=" flex items-center justify-between text-lg font-bold">{data?.type && <PlaceTypeBadge size="sm" placeType={data.type} />}</div>
                         </div>
                         <HorizontalLine />
                         <div className="flex items-center">

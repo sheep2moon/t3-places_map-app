@@ -1,5 +1,5 @@
 import { Menu, Transition } from "@headlessui/react";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import React, { Fragment } from "react";
 import Button from "../../../common/Button";
@@ -13,6 +13,10 @@ type UserCardProps = {
 };
 
 const UserCard = ({ name, image }: UserCardProps) => {
+    const handleLogout = () => {
+        signOut();
+    };
+
     return (
         <div className="w flex items-center gap-2 rounded-md p-1">
             <Menu as="div" className="relative inline-block text-left">
@@ -53,7 +57,7 @@ const UserCard = ({ name, image }: UserCardProps) => {
                             </Menu.Item>
                             <Menu.Item>
                                 <div className="flex justify-center">
-                                    <Button variant="alternative" className="w-full">
+                                    <Button onClick={handleLogout} variant="alternative" className="w-full">
                                         Wyloguj
                                     </Button>
                                 </div>

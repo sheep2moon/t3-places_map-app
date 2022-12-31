@@ -1,10 +1,9 @@
 import { Image as ImageType, Place, PlaceType } from "@prisma/client";
 import Image from "next/image";
 import L from "leaflet";
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 React.useLayoutEffect = React.useEffect;
 import { Marker, Popup } from "react-leaflet";
-import { renderToString } from "react-dom/server";
 import { getPlaceImageSrc } from "../../utils/getImageSrc";
 import Button from "../common/Button";
 import { FaArrowRight } from "react-icons/fa";
@@ -16,17 +15,17 @@ type PlaceMarkerProps = {
 
 const PlaceMarker = ({ place }: PlaceMarkerProps) => {
     const markerRef = useRef<L.Marker>(null);
-    const { setCurrentPlaceId, setShowPlaceModal } = usePlacesMapStore(state => state);
+
+    const { setCurrentPlaceId, setIsPlaceModalOpen } = usePlacesMapStore(state => state);
+    const handleOpenModal = () => {
+        setCurrentPlaceId(place.id);
+        setIsPlaceModalOpen(true);
+    };
 
     const placeIcon = L.icon({
         iconUrl: place.type.icon,
         iconSize: [22, 22]
     });
-
-    const handleOpenModal = () => {
-        setCurrentPlaceId(place.id);
-        setShowPlaceModal(true);
-    };
 
     return (
         <Marker icon={placeIcon} ref={markerRef} position={{ lat: place.lat, lng: place.lng }}>

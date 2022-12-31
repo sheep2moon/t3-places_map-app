@@ -1,8 +1,10 @@
 import { Image as ImageType, Place, PlaceType } from "@prisma/client";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import React from "react";
 import { UseQueryResult } from "react-query";
 import { getPlaceImageSrc } from "../../../utils/getImageSrc";
+import { usePlacesMapStore } from "../../../zustand/placesMapStore";
 import PlaceTypeBadge from "../../common/badges/PlaceTypeBadge";
 import Button from "../../common/Button";
 import LoadingSpinner from "../../common/LoadingSpinner";
@@ -12,22 +14,26 @@ type RecentlyAddedPlacesProps = {
 };
 
 const RecentlyAddedPlaces = ({ queryResult }: RecentlyAddedPlacesProps) => {
-    if (queryResult.isLoading) return <LoadingSpinner />;
+    const { setCurrentPlaceId, setIsPlaceModalOpen } = usePlacesMapStore(state => state);
+    const router = useRouter();
 
+    const handleViewPlace = (placeId: string) => {
+        setCurrentPlaceId(placeId);
+        setIsPlaceModalOpen(true);
+        router.push("/places-map");
+    };
+
+    if (queryResult.isLoading) return <LoadingSpinner />;
     return (
-        <div className="flex h-full w-full justify-evenly ">
+        <div className="flex h-full w-full gap-2 overflow-x-auto ">
             {queryResult.data?.map(place => (
-                <div key={place.id} className="flex h-full w-full max-w-sm p-2 dark:bg-black/10">
-                    {place.images[0] && (
-                        <div className="relative aspect-square h-44 ">
-                            <Image alt="" src={getPlaceImageSrc(place.images[0].id)} layout="fill" />
-                        </div>
-                    )}
-                    <div className="flex w-full flex-col justify-between p-2">
-                        <p>{place.displayName}</p>
-                        <div className="flex flex-col">
+                <div key={place.id} className="relative z-0 w-full min-w-[260px] max-w-sm rounded-md shadow-md shadow-black/30 dark:shadow-black/60">
+                    {place.images[0] && <Image className="rounded-md object-cover" alt="" src={getPlaceImageSrc(place.images[0].id)} layout="fill" />}
+                    <div className="absolute inset-0 z-10 flex w-full flex-col justify-between rounded-md bg-black/60 p-2 ">
+                        <p className="text-center text-lg">{place.displayName}</p>
+                        <div className="flex items-center justify-between">
                             <PlaceTypeBadge placeType={place.type} size="sm" />
-                            <Button variant="alternative" className="w-full">
+                            <Button onClick={() => handleViewPlace(place.id)} variant="alternative" className="text-base">
                                 Zobacz
                             </Button>
                         </div>

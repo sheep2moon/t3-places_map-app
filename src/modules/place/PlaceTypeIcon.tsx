@@ -1,4 +1,4 @@
-import { Place, PlaceType } from "@prisma/client";
+import { PlaceType } from "@prisma/client";
 import clsx from "clsx";
 import Image from "next/image";
 import React from "react";
@@ -14,7 +14,6 @@ const PlaceTypeIcon = ({ placeType, size = "md" }: PlaceTypeProps) => {
             <div className={clsx("relative aspect-square", { "w-8": size == "sm", "w-12": size == "md", "w-16": size == "lg" })}>
                 <Image src={placeType.icon} alt="place thumbnail" layout="fill" />
             </div>
-            <span className={clsx("text-sm", { hidden: size === "sm", "text-base": size === "md" })}>{placeType.title}</span>
         </div>
     );
 };
