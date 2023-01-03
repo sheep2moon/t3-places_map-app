@@ -12,7 +12,7 @@ const PlacesMap = () => {
     const { selectedTypeId } = usePlacesMapStore(state => state);
     const places = trpc.useQuery(["places.getPlaces", { placeTypeId: selectedTypeId }]);
     return (
-        <div className="relative mx-auto mt-2 h-screen max-h-[400px] w-screen max-w-[600px] xsmall:max-h-[600px] small:aspect-square ">
+        <div className="relative mx-auto mt-2 aspect-square w-full">
             <MapContainer center={[52.09, 19.09]} zoom={6}>
                 <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
                 {places.data && places.data.map(place => <PlaceMarker key={place.id} place={place} />)}

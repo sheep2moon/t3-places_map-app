@@ -7,11 +7,11 @@ const Home: NextPage = () => {
     const PlacesMap = dynamic(() => import("../../modules/places-map/PlacesMap"));
 
     return (
-        <>
+        <div className="w-full max-w-screen-lg px-2">
             <PlaceTypeFilter />
             <PlacesMap />
             <PlaceDetailsModal />
-        </>
+        </div>
     );
 };
 

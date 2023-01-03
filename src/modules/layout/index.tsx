@@ -1,9 +1,9 @@
-import { useSession } from "next-auth/react";
 import Head from "next/head";
 import Script from "next/script";
-import React, { useEffect } from "react";
+import React from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ImageZoomModal from "../places-map/details-modal/ImageZoomModal";
 import Footer from "./footer";
 import Nav from "./nav";
 
@@ -19,7 +19,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             <Script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossOrigin=""></Script>
             <Nav />
 
-            <main className="flex h-full flex-col items-center   pt-16 text-primary    dark:text-light">{children}</main>
+            <main className="flex flex-col items-center pt-16 text-primary    dark:text-light">{children}</main>
+
+            <ImageZoomModal />
 
             <Footer />
 

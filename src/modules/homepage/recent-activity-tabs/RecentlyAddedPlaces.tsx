@@ -27,7 +27,7 @@ const RecentlyAddedPlaces = ({ queryResult }: RecentlyAddedPlacesProps) => {
     return (
         <div className="flex h-full w-full gap-2 overflow-x-auto ">
             {queryResult.data?.map(place => (
-                <div key={place.id} className="relative z-0 w-full min-w-[260px] max-w-sm rounded-md shadow-md shadow-black/30 dark:shadow-black/60">
+                <div key={place.id} className="relative z-0 w-full min-w-[260px] max-w-sm rounded-md text-light shadow-md shadow-black/30 dark:shadow-black/60">
                     {place.images[0] && <Image className="rounded-md object-cover" alt="" src={getPlaceImageSrc(place.images[0].id)} layout="fill" />}
                     <div className="absolute inset-0 z-10 flex w-full flex-col justify-between rounded-md bg-black/60 p-2 ">
                         <p className="text-center text-lg">{place.displayName}</p>

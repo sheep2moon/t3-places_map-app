@@ -2,11 +2,12 @@ import clsx from "clsx";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
+import { NavLink } from "..";
 import ThemeSwitch from "./ThemeSwitch";
 import UserCard from "./UserCard";
 
 type MobileMenuProps = {
-    navLinks: { title: string; href: string }[];
+    navLinks: NavLink[];
     close: () => void;
     isOpen: boolean;
 };
@@ -25,8 +26,9 @@ const MobileMenu = ({ navLinks, isOpen, close }: MobileMenuProps) => {
                     <div className="grid gap-4">
                         {navLinks.map(link => (
                             <Link href={link.href} key={link.title}>
-                                <a onClick={close} className="text-2xl ">
-                                    {link.title}
+                                <a onClick={close} className="flex items-center gap-2 text-3xl">
+                                    {link.icon}
+                                    <span>{link.title}</span>
                                 </a>
                             </Link>
                         ))}

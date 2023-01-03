@@ -21,8 +21,8 @@ const PlaceTypeFilter = () => {
 
     if (isLoading) return <LoadingSpinner />;
     return (
-        <div className="m-2 flex w-full flex-col gap-1  xsmall:max-w-[600px]">
-            <h2 className="ml-2 block w-full border-b border-secondary">Filtruj</h2>
+        <div className="flex w-full flex-col gap-1 py-2">
+            <h2 className="block w-full border-b border-secondary pl-2">Filtruj</h2>
             <div className="flex">
                 {data?.map(place => (
                     <button className={clsx("", { "bg-slate-200/20": selectedTypeId === place.id })} key={place.id} onClick={() => handleSelectPlaceType(place.id)}>

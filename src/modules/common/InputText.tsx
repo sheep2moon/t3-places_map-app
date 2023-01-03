@@ -1,4 +1,4 @@
-import React, { ChangeEvent, forwardRef, useImperativeHandle, useRef } from "react";
+import React from "react";
 
 type InputProps = {
     handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -20,7 +20,7 @@ const InputText = React.forwardRef<HTMLInputElement, InputProps>(({ type = "text
             id={name}
             value={value}
             onChange={handleChange}
-            className={className + " block w-full rounded-md border-gray-300 py-2 pl-2 pr-12 text-lg text-black focus:border-indigo-500 focus:ring-indigo-500 disabled:bg-light"}
+            className={className + " block w-full rounded-md border-gray-300 py-2 pl-2 pr-12 text-lg text-black focus:border-indigo-500 focus:ring-indigo-500 disabled:bg-light dark:text-light"}
             placeholder={placeholder}
         />
     );

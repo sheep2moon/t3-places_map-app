@@ -1,12 +1,9 @@
-import { signIn, signOut, useSession } from "next-auth/react";
-import { useTheme } from "next-themes";
-import Image from "next/image";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import React, { useState } from "react";
-import useDarkMode from "../../../lib/hooks/useDarkMode";
-import Button from "../../common/Button";
-import LoadingSpinner from "../../common/LoadingSpinner";
-import UserAvatar from "../../common/UserAvatar";
+import { BiMapAlt } from "react-icons/bi";
+import { RiMapPinAddLine } from "react-icons/ri";
+import { VscLibrary } from "react-icons/vsc";
 import DesktopMenu from "./components/DesktopMenu";
 import Hamburger from "./components/Hamburger";
 import Logo from "./components/Logo";
@@ -14,16 +11,17 @@ import MobileMenu from "./components/MobileMenu";
 import ThemeSwitch from "./components/ThemeSwitch";
 import UserCard from "./components/UserCard";
 
-type navLink = {
+export type NavLink = {
     title: string;
     href: string;
     needAuth: boolean;
+    icon: React.ReactNode;
 };
 
-const navLinks: navLink[] = [
-    { title: "Dodaj miejsce", href: "/add-place", needAuth: true },
-    { title: "Wszystkie miejsca", href: "/places-map", needAuth: false },
-    { title: "Moje miejsca", href: "/user-places", needAuth: true }
+const navLinks: NavLink[] = [
+    { title: "Dodaj miejsce", href: "/add-place", needAuth: true, icon: <RiMapPinAddLine /> },
+    { title: "Mapa miejsc", href: "/places-map", needAuth: false, icon: <BiMapAlt /> },
+    { title: "Moje miejsca", href: "/user-places", needAuth: true, icon: <VscLibrary /> }
 ];
 
 const Nav = () => {
@@ -33,7 +31,7 @@ const Nav = () => {
     const userMetadata = session.data?.user;
 
     return (
-        <header className="fixed inset-x-0 top-0 z-[999999] flex h-16 items-center justify-between border-b border-primary/20 bg-light px-4 text-primary shadow-sm shadow-slate-50/20 dark:border-light/20 dark:bg-primary dark:text-light">
+        <header className="fixed inset-x-0 top-0 z-[999999] flex h-16 items-center justify-between border-b border-primary/20 bg-light px-4 text-primary shadow-sm shadow-slate-50/20 dark:border-light/20 dark:bg-dark dark:text-light">
             <Logo />
             <MobileMenu navLinks={navLinks} isOpen={isMenuOpen} close={() => setIsMenuOpen(false)} />
             <DesktopMenu navLinks={navLinks} />

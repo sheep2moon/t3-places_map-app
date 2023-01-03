@@ -49,6 +49,10 @@ export const placesRouter = createRouter()
     })
     .query("getRecentlyAddedReviews", {
         resolve: async ({ ctx }) => {
-            return await ctx.prisma.review.findMany({ take: 3, include: { Place: { include: { images: true, type: true } } }, orderBy: [{ createdAt: "desc" }] });
+            return await ctx.prisma.review.findMany({
+                take: 3,
+                include: { user: true, Place: { include: { images: true, type: true } } },
+                orderBy: [{ createdAt: "desc" }]
+            });
         }
     });

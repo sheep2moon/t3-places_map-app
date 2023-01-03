@@ -16,7 +16,7 @@ const Home: NextPage = () => {
                 <p className="mx-auto mt-4 max-w-xl sm:text-xl sm:leading-relaxed">Szukaj oraz dodawaj nowe miejsca warte uwagi. Znajdziesz tutaj doskonałe miejsce na biwak, ognisko lub nowe łowisko.</p>
                 <div className="mt-4 flex justify-center">
                     <Link href="/places-map">
-                        <a className="text-md block w-fit rounded border border-blue-600 px-6 py-3 font-medium hover:bg-blue-600 focus:outline-none focus:ring active:bg-blue-500 dark:text-white sm:w-auto">
+                        <a className="text-md block w-fit rounded border border-blue-600 px-6 py-3 font-medium hover:bg-blue-600 hover:text-white focus:outline-none focus:ring active:bg-blue-500 dark:text-white sm:w-auto">
                             <div className="flex items-center gap-1">
                                 <BiMapAlt className="text-2xl" /> Zobacz mape
                             </div>
