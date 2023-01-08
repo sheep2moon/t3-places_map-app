@@ -13,8 +13,12 @@ type RecentlyAddedReviewsProps = {
 };
 
 const RecentlyAddedReviews = ({ queryResult }: RecentlyAddedReviewsProps) => {
-    if (queryResult.isLoading) return <LoadingSpinner />;
-    console.log(queryResult);
+    if (queryResult.isLoading)
+        return (
+            <div className="relative h-full w-full">
+                <LoadingSpinner />
+            </div>
+        );
 
     return (
         <div className="grid h-full w-full gap-2 overflow-x-auto small:grid-cols-3">
@@ -33,7 +37,7 @@ const RecentlyAddedReviews = ({ queryResult }: RecentlyAddedReviewsProps) => {
                     <div className="mt-auto">
                         {review.Place?.type && <PlaceTypeBadge placeType={review.Place.type} size="sm" />}
 
-                        <p>{review.Place?.displayName}</p>
+                        <p className="max-h-4 overflow-hidden overflow-ellipsis whitespace-nowrap leading-4">{review.Place?.displayName}</p>
                     </div>
                 </div>
             ))}

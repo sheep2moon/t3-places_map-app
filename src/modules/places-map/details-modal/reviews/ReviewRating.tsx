@@ -26,13 +26,13 @@ const ReviewRating = ({ rate, setRate, disabled }: AddRatingProps) => {
 
     return (
         <div className="flex items-center gap-2">
-            <span className="text-xs">Twoja ocena</span>
+            <span className="text-sm">Twoja ocena</span>
             <div className="my-2 flex  text-amber-400">
                 {[...Array(5)].map((_, index) => (
                     <button
                         style={{ pointerEvents: disabled ? "none" : "all" }}
                         disabled={disabled}
-                        className=" px-0.5 "
+                        className=" px-1 text-xl "
                         key={`rating-star-${index}`}
                         onClick={() => handleClick(index + 1)}
                         onMouseOver={() => handleMouseOver(index + 1)}

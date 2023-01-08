@@ -41,7 +41,7 @@ const PlaceMarker = ({ place }: PlaceMarkerProps) => {
                             </div>
                             <span className="">{place.type.title}</span>
                         </div>
-                        <span className="max-h-8 overflow-hidden text-ellipsis break-words text-center leading-4">{place.displayName}</span>
+                        <span className="max-h-8 overflow-hidden overflow-ellipsis break-words text-center leading-4">{place.displayName}</span>
                         <Button className="mx-auto mt-auto flex justify-between gap-2 bg-amber-300" variant="alternative" onClick={handleOpenModal}>
                             Szczegóły
                             <FaArrowRight />
