@@ -1,4 +1,5 @@
 import React from "react";
+import googleMapsIcon from "../../../assets/google-maps.png";
 import { trpc } from "../../../utils/trpc";
 import { MdPlace } from "react-icons/md";
 import { usePlacesMapStore } from "../../../zustand/placesMapStore";
@@ -12,6 +13,8 @@ import HorizontalLine from "../../common/HorizontalLine";
 import ModalContainer from "./ModalContainer";
 import UserActions from "./UserActions";
 import AddOrEditReview from "./reviews/AddOrEditReview";
+import Link from "next/link";
+import Image from "next/image";
 
 const PlaceDetailsModal = () => {
     const { currentPlaceId, isPlaceModalOpen, setIsPlaceModalOpen } = usePlacesMapStore(state => state);
@@ -54,6 +57,17 @@ const PlaceDetailsModal = () => {
                         </div>
                     </div>
                     {data?.images && <ImageGallery images={data?.images} />}
+                    <HorizontalLine />
+
+                    <a
+                        className="flex w-fit items-center gap-2 rounded-md border border-secondary bg-primary py-1 px-2 hover:bg-dark"
+                        target="_blank"
+                        rel="noreferrer"
+                        href={`http://maps.google.com/maps?z=12&t=m&q=loc:${data.lat}+${data.lng}`}
+                    >
+                        <Image alt="ikona map google" src={googleMapsIcon} width={32} height={32} />
+                        <span className="font-bold">Otwórz w mapach Google</span>
+                    </a>
                     <HorizontalLine />
                     <UserActions placeId={currentPlaceId} />
                     <AddOrEditReview placeId={currentPlaceId} />
