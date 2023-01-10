@@ -15,7 +15,7 @@ const TextArea = ({ placeholder, className = "", name, value, handleChange, ...p
                 {...props}
                 id={name}
                 name={name}
-                className={className + " h-32 rounded-md border-2 border-primary/30 bg-light p-1 text-sm text-primary dark:bg-black/20 dark:text-light"}
+                className={className + " h-32 rounded-md border-2 border-primary/30 bg-light p-1 text-sm text-primary dark:bg-zinc-700 dark:text-light"}
                 placeholder={placeholder}
                 value={value}
                 onChange={handleChange}

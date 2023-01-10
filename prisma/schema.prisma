@@ -104,7 +104,7 @@ model Place {
     wishlistedBy UserLibrary[] @relation("Wishlist")
     visitedBy    UserLibrary[] @relation("Visited")
     isPaid       Boolean
-    prices       String?
+    prices       String
     lat          Float
     lng          Float
     description  String        @db.Text

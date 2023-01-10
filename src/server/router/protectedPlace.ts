@@ -10,7 +10,9 @@ export const protectedPlacesRouter = createProtectedRouter()
             description: z.string(),
             placeTypeId: z.string(),
             lat: z.number(),
-            lng: z.number()
+            lng: z.number(),
+            isPaid: z.boolean(),
+            prices: z.string()
         }),
         async resolve({ input, ctx }) {
             const res = await ctx.prisma.place.create({

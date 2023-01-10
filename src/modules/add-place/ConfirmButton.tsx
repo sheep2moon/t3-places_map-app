@@ -6,12 +6,12 @@ import Button from "../common/Button";
 
 const ConfirmButton = () => {
     const { mutateAsync: createPlace, isLoading } = trpc.useMutation("protectedPlace.createPlace");
-    const { displayName, description, lat, lng, placeTypeId } = useNewPlaceStore(state => state);
+    const { displayName, description, lat, lng, placeTypeId, isPaid, prices } = useNewPlaceStore(state => state);
     const router = useRouter();
 
     const handleCreate = async () => {
-        if (displayName && description && lat && lng && placeTypeId) {
-            const res = await createPlace({ description, displayName, lat, lng, placeTypeId });
+        if (displayName && description && lat && lng && placeTypeId && isPaid) {
+            const res = await createPlace({ description, displayName, lat, lng, placeTypeId, isPaid, prices: JSON.stringify(prices) });
             if (res.id) {
                 router.push(`/user-places/${res.id}`);
             }
