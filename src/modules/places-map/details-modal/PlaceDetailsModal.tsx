@@ -13,7 +13,6 @@ import HorizontalLine from "../../common/HorizontalLine";
 import ModalContainer from "./ModalContainer";
 import UserActions from "./UserActions";
 import AddOrEditReview from "./reviews/AddOrEditReview";
-import Link from "next/link";
 import Image from "next/image";
 
 const PlaceDetailsModal = () => {

@@ -103,6 +103,8 @@ model Place {
     addedBy      User          @relation("AddedBy", fields: [addedById], references: [id], onDelete: Cascade)
     wishlistedBy UserLibrary[] @relation("Wishlist")
     visitedBy    UserLibrary[] @relation("Visited")
+    isPaid       Boolean
+    prices       String?
     lat          Float
     lng          Float
     description  String        @db.Text

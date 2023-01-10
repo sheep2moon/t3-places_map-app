@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 import React from "react";
 import ConfirmButton from "../../modules/add-place/ConfirmButton";
 import NewPlaceForm from "../../modules/add-place/NewPlaceForm";
+import PricesForm from "../../modules/add-place/PricesForm";
 import SelectPlaceType from "../../modules/add-place/SelectPlaceType";
 
 const LocalizationSettings = () => {
@@ -9,9 +10,10 @@ const LocalizationSettings = () => {
 
     return (
         <div className="flex-start flex w-full flex-col">
-            <div className="mx-auto flex flex-col">
+            <div className="mx-auto flex w-full max-w-2xl flex-col">
                 <NewPlaceMap />
                 <NewPlaceForm />
+                <PricesForm />
                 <SelectPlaceType />
                 <ConfirmButton />
             </div>

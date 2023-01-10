@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { BiMapAlt } from "react-icons/bi";
 import { RiMapPinAddLine } from "react-icons/ri";
 import { VscLibrary } from "react-icons/vsc";
+import SearchPlaceInput from "../../add-place/SearchPlaceInput";
 import DesktopMenu from "./components/DesktopMenu";
 import Hamburger from "./components/Hamburger";
 import Logo from "./components/Logo";
