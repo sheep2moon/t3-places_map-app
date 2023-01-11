@@ -7,9 +7,9 @@ import { createProtectedRouter } from "./context";
 
 export const s3 = new S3({
     apiVersion: "2006-03-01",
-    accessKeyId: env.ACCESS_KEY,
-    secretAccessKey: env.SECRET_KEY,
-    region: env.REGION,
+    accessKeyId: env.S3_ACCESS_KEY,
+    secretAccessKey: env.S3_SECRET_KEY,
+    region: env.S3_REGION,
     signatureVersion: "v4"
 });
 
@@ -35,7 +35,7 @@ export const imagesRouter = createProtectedRouter()
                             ["content-length-range", 0, 1000000]
                         ],
                         Expires: 60,
-                        Bucket: env.BUCKET_NAME
+                        Bucket: env.S3_BUCKET_NAME
                     },
                     (err, signed) => {
                         if (err) return reject(err);
@@ -57,7 +57,7 @@ export const imagesRouter = createProtectedRouter()
                 }
             });
             const res = await s3
-                .deleteObject({ Bucket: env.BUCKET_NAME, Key: `placeImages/${input.imageId}` }, (err, data) => {
+                .deleteObject({ Bucket: env.S3_BUCKET_NAME, Key: `placeImages/${input.imageId}` }, (err, data) => {
                     console.log("err", err);
                     console.log("data", data);
                 })
@@ -72,7 +72,7 @@ export const imagesRouter = createProtectedRouter()
         async resolve({ input }) {
             const keys = input.imagesId.map(id => ({ Key: `placeImages/${id}` }));
             s3.deleteObjects({
-                Bucket: env.BUCKET_NAME,
+                Bucket: env.S3_BUCKET_NAME,
                 Delete: {
                     Objects: keys
                 }

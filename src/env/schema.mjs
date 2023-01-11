@@ -14,10 +14,10 @@ export const serverSchema = z.object({
     DISCORD_CLIENT_SECRET: z.string(),
     GOOGLE_CLIENT_ID: z.string(),
     GOOGLE_CLIENT_SECRET: z.string(),
-    ACCESS_KEY: z.string(),
-    SECRET_KEY: z.string(),
-    BUCKET_NAME: z.string(),
-    REGION: z.string()
+    S3_ACCESS_KEY: z.string(),
+    S3_SECRET_KEY: z.string(),
+    S3_BUCKET_NAME: z.string(),
+    S3_REGION: z.string()
 });
 
 /**
