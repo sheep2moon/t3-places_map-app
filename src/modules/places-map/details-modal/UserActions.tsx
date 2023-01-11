@@ -7,6 +7,7 @@ import { IoLibrary } from "react-icons/io5";
 import { TbTarget } from "react-icons/tb";
 import { trpc } from "../../../utils/trpc";
 import Button from "../../common/Button";
+import HorizontalLine from "../../common/HorizontalLine";
 import LoadingSpinner from "../../common/LoadingSpinner";
 
 type UserActionsProps = {
@@ -38,12 +39,14 @@ const UserActions = ({ placeId }: UserActionsProps) => {
     };
 
     return (
-        <div className="flex flex-col text-primary dark:text-light">
-            <span className="flex items-center gap-1 p-1 text-left text-xs">
-                <IoLibrary />
-                Twoja biblioteka
-            </span>
-            <div className="flex gap-1 text-xs">
+        <div className="mt-4 flex flex-col text-primary dark:text-light">
+            <HorizontalLine>
+                <span className="flex items-center gap-1 p-1 text-left text-base">
+                    <IoLibrary />
+                    Twoja biblioteka
+                </span>
+            </HorizontalLine>
+            <div className="mt-4 flex gap-1 text-xs">
                 <button disabled={wishlistMutationLoading} onClick={handleToggleWishlist} className=" flex w-full items-center justify-center gap-2 border py-1 dark:border-light/20 ">
                     {wishlistMutationLoading ? (
                         <div className="relative">

@@ -3,9 +3,11 @@
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap');
 
+
 body{
-    @apply bg-gradient-to-b from-light to-teal-100 dark:from-primary dark:to-zinc-800
+    @apply bg-gradient-to-b from-light to-teal-100 dark:from-primary dark:to-zinc-800 
 }
+
 
 main{
     min-height: calc(100vh - 2rem);

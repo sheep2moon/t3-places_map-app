@@ -14,6 +14,7 @@ import ModalContainer from "./ModalContainer";
 import UserActions from "./UserActions";
 import AddOrEditReview from "./reviews/AddOrEditReview";
 import Image from "next/image";
+import PlacePricing from "./PlacePricing";
 
 const PlaceDetailsModal = () => {
     const { currentPlaceId, isPlaceModalOpen, setIsPlaceModalOpen } = usePlacesMapStore(state => state);
@@ -52,14 +53,15 @@ const PlaceDetailsModal = () => {
                         </div>
                         <div className="flex flex-col text-xs">
                             <div className="mb-2 flex gap-1"></div>
-                            <pre className="whitespace-pre-wrap text-left font-mono">{data?.description}</pre>
+                            <pre className="whitespace-pre-wrap text-left font-mono text-lg">{data?.description}</pre>
                         </div>
+                        {data.prices && <PlacePricing prices={JSON.parse(data.prices)} />}
                     </div>
                     {data?.images && <ImageGallery images={data?.images} />}
                     <HorizontalLine />
 
                     <a
-                        className="flex w-fit items-center gap-2 rounded-md border border-secondary bg-primary py-1 px-2 hover:bg-dark"
+                        className="flex w-fit items-center gap-2 rounded-md border border-secondary py-1 px-2 hover:bg-dark dark:bg-primary"
                         target="_blank"
                         rel="noreferrer"
                         href={`http://maps.google.com/maps?z=12&t=m&q=loc:${data.lat}+${data.lng}`}
@@ -67,7 +69,7 @@ const PlaceDetailsModal = () => {
                         <Image alt="ikona map google" src={googleMapsIcon} width={32} height={32} />
                         <span className="font-bold">Otwórz w mapach Google</span>
                     </a>
-                    <HorizontalLine />
+                    {/* <HorizontalLine /> */}
                     <UserActions placeId={currentPlaceId} />
                     <AddOrEditReview placeId={currentPlaceId} />
                     <Reviews placeId={currentPlaceId} />

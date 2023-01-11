@@ -10,7 +10,7 @@ type PlaceTypeBadge = {
 
 const PlaceTypeBadge = ({ placeType, size = "sm" }: PlaceTypeBadge) => {
     return (
-        <div className="flex items-center text-sm">
+        <div className="flex items-center gap-2 text-sm">
             <span>
                 <PlaceTypeIcon size={size} placeType={placeType} />
             </span>

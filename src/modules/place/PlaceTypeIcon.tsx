@@ -6,11 +6,12 @@ import React from "react";
 type PlaceTypeProps = {
     placeType: PlaceType;
     size?: ShorthandSize;
+    className?: string;
 };
 
-const PlaceTypeIcon = ({ placeType, size = "md" }: PlaceTypeProps) => {
+const PlaceTypeIcon = ({ placeType, size = "md", className }: PlaceTypeProps) => {
     return (
-        <div className={clsx("relative flex aspect-square flex-col items-center rounded-md transition-all", { "w-10": size === "sm", "w-14": size === "md", "w-28": size === "lg" })}>
+        <div className={clsx("relative flex aspect-square flex-col items-center rounded-md transition-all " + className, { "w-8": size === "sm", "w-14": size === "md", "w-28": size === "lg" })}>
             <Image src={placeType.icon} alt="place thumbnail" layout="fill" />
         </div>
     );

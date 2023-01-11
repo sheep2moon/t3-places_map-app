@@ -15,9 +15,8 @@ const ConfirmButton = () => {
             if (res.id) {
                 router.push(`/user-places/${res.id}`);
             }
-            console.log(res);
         } else {
-            console.log("er");
+            console.log("TODO - handle form errors");
         }
     };
     return (

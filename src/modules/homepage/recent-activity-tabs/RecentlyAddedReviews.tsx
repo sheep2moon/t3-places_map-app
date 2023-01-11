@@ -37,7 +37,7 @@ const RecentlyAddedReviews = ({ queryResult }: RecentlyAddedReviewsProps) => {
                     <div className="mt-auto">
                         {review.Place?.type && <PlaceTypeBadge placeType={review.Place.type} size="sm" />}
 
-                        <p className="max-h-4 overflow-hidden overflow-ellipsis whitespace-nowrap leading-4">{review.Place?.displayName}</p>
+                        <p className="mt-2 max-h-4 overflow-hidden overflow-ellipsis whitespace-nowrap leading-4">{review.Place?.displayName}</p>
                     </div>
                 </div>
             ))}

@@ -21,16 +21,41 @@ const PlaceTypeFilter = () => {
 
     if (isLoading) return <LoadingSpinner />;
     return (
-        <div className="flex w-full flex-col gap-1 py-2">
-            <h2 className="block w-full border-b border-secondary pl-2">Filtruj</h2>
-            <div className="flex">
+        <div className="flex w-full flex-col gap-1 pt-2">
+            {/* <h2 className="block w-full border-b border-secondary pl-2">Filtruj</h2> */}
+            <ul className="-mb-px flex flex-wrap rounded-t-md text-center text-sm font-medium text-gray-500 dark:bg-black/10 dark:text-gray-400">
                 {data?.map(place => (
-                    <button className={clsx("", { "bg-slate-200/20": selectedTypeId === place.id })} key={place.id} onClick={() => handleSelectPlaceType(place.id)}>
-                        <PlaceTypeIcon size="md" placeType={place} />
-                    </button>
+                    <li key={place.id} className="mr-2">
+                        <button
+                            className={clsx("inline-flex w-[140px] items-center rounded-t-lg border-b-2 border-transparent p-2 hover:border-gray-300 hover:text-gray-600 dark:hover:text-gray-300", {
+                                "border-blue-600 text-blue-600 dark:border-blue-500 dark:text-gray-200": selectedTypeId === place.id
+                            })}
+                            onClick={() => handleSelectPlaceType(place.id)}
+                        >
+                            <PlaceTypeIcon className="mr-2" size="sm" placeType={place} />
+                            <span className="text-lg">{place.title}</span>
+                        </button>
+                    </li>
                 ))}
-            </div>
+            </ul>
         </div>
+
+        // <div className="border-b border-gray-200 dark:border-gray-700">
+        //     <ul className="-mb-px flex flex-wrap text-center text-sm font-medium text-gray-500 dark:text-gray-400">
+        //         <li className="mr-2">
+        //             <a href="#" className="group inline-flex rounded-t-lg border-b-2 border-transparent p-4 hover:border-gray-300 hover:text-gray-600 dark:hover:text-gray-300">
+        //                 <PlaceTypeIcon size="md" placeType={place} />
+        //                 Profile
+        //             </a>
+        //         </li>
+        //         <li className="mr-2">
+        //             <a href="#" className="active group inline-flex rounded-t-lg border-b-2 border-blue-600 p-4 text-blue-600 dark:border-blue-500 dark:text-blue-500" aria-current="page">
+
+        //                 Dashboard
+        //             </a>
+        //         </li>
+        //     </ul>
+        // </div>
     );
 };
 

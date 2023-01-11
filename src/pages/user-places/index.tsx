@@ -8,7 +8,7 @@ const UserPlaces = () => {
     const userPlaces = trpc.useQuery(["protectedPlace.getUserPlaces"]);
     if (userPlaces.isLoading) return <LoadingSpinner />;
     return (
-        <div className="min-h-[400px] w-full">
+        <div className="mt-8 min-h-[400px] w-full max-w-2xl">
             <h1 className="mb-4 border-b-2 border-light">Twoje miejsca</h1>
             <div className="flex flex-col gap-2">
                 {userPlaces.data?.map(place => (

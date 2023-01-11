@@ -15,7 +15,12 @@ const EditReview = ({ review }: EditReviewProps) => {
     const [currentRate, setCurrentRate] = useState(review.rate);
     const [isEdit, setIsEdit] = useState(false);
     const ctx = trpc.useContext();
-    const updateReviewMutation = trpc.useMutation(["protectedPlace.updateReview"], { onSuccess: () => ctx.invalidateQueries("places.getPlaceReviews") });
+    const updateReviewMutation = trpc.useMutation(["protectedPlace.updateReview"], {
+        onSuccess: () => {
+            ctx.invalidateQueries("places.getPlaceReviews");
+            ctx.invalidateQueries(["user.getUserReviewByPlaceId"]);
+        }
+    });
     const deleteReviewMutation = trpc.useMutation(["protectedPlace.deleteReview"], {
         onSuccess: () => {
             ctx.invalidateQueries(["places.getPlaceReviews"]);
@@ -29,6 +34,8 @@ const EditReview = ({ review }: EditReviewProps) => {
     }, [review]);
 
     const handleUpdateReview = () => {
+        console.log(currentComment, review.comment);
+
         if (currentComment !== review.comment || currentRate !== review.rate) {
             updateReviewMutation.mutateAsync({ comment: currentComment, rate: currentRate, reviewId: review.id });
         }

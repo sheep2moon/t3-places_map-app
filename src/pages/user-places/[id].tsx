@@ -7,6 +7,7 @@ import EditDescription from "../../modules/user-place/EditDescription";
 import EditImages from "../../modules/user-place/EditImages";
 import EditName from "../../modules/user-place/EditName";
 import EditPlaceType from "../../modules/user-place/EditPlaceType";
+import EditPrices from "../../modules/user-place/EditPrices";
 import { trpc } from "../../utils/trpc";
 
 const UserPlace = () => {
@@ -18,12 +19,13 @@ const UserPlace = () => {
     const EditPosition = dynamic(() => import("../../modules/user-place/EditPosition"));
 
     return (
-        <div className="w-full max-w-lg">
+        <div className="w-full max-w-2xl">
             {data?.lat && data?.lng && <EditPosition placeId={id} position={{ lat: data.lat, lng: data.lng }} />}
             <EditImages />
             {data?.displayName && <EditName placeId={id} displayName={data?.displayName} />}
             {data?.description && <EditDescription placeId={id} description={data?.description} />}
             {data?.type && <EditPlaceType placeId={id} placeTypeId={data.type.id} />}
+            {data?.prices && <EditPrices prices={JSON.parse(data.prices)} />}
             <DeletePlace id={id} />
         </div>
     );
