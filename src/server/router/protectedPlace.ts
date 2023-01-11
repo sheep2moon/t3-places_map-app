@@ -105,7 +105,7 @@ export const protectedPlacesRouter = createProtectedRouter()
 
             await s3
                 .deleteObjects({
-                    Bucket: env.BUCKET_NAME,
+                    Bucket: env.S3_BUCKET_NAME,
                     Delete: {
                         Objects: keys
                     }
