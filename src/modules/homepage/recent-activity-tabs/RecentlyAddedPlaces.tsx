@@ -14,12 +14,13 @@ type RecentlyAddedPlacesProps = {
 };
 
 const RecentlyAddedPlaces = ({ queryResult }: RecentlyAddedPlacesProps) => {
-    const { setCurrentPlaceId, setIsPlaceModalOpen } = usePlacesMapStore(state => state);
+    const { setCurrentPlaceId, setIsPlaceModalOpen, setShouldFly } = usePlacesMapStore(state => state);
     const router = useRouter();
 
     const handleViewPlace = (placeId: string) => {
         setCurrentPlaceId(placeId);
         setIsPlaceModalOpen(true);
+        setShouldFly(true);
         router.push("/places-map");
     };
 
