@@ -42,12 +42,12 @@ const UserLibrary = () => {
 export default UserLibrary;
 
 const LibraryPlace = ({ place }: { place: Place & { type: PlaceType } }) => {
-    const { setCurrentPlaceId, setShowPlaceModal } = usePlacesMapStore(state => state);
+    const { setCurrentPlaceId, setIsPlaceModalOpen } = usePlacesMapStore(state => state);
     const router = useRouter();
 
     const handleGoToPlace = () => {
         setCurrentPlaceId(place.id);
-        setShowPlaceModal(true);
+        setIsPlaceModalOpen(true);
         router.push("/places-map");
     };
 
