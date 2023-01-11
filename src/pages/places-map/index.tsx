@@ -4,7 +4,7 @@ import PlaceTypeFilter from "../../modules/places-map/PlaceTypeFilter";
 import PlaceDetailsModal from "../../modules/places-map/details-modal/PlaceDetailsModal";
 
 const Home: NextPage = () => {
-    const PlacesMap = dynamic(() => import("../../modules/places-map/PlacesMap"));
+    const PlacesMap = dynamic(() => import("../../modules/places-map/PlacesMap"), { ssr: false });
 
     return (
         <div className="w-full max-w-screen-lg px-2">

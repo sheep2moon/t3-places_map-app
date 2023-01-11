@@ -6,7 +6,7 @@ import PricesForm from "../../modules/add-place/PricesForm";
 import SelectPlaceType from "../../modules/add-place/SelectPlaceType";
 
 const LocalizationSettings = () => {
-    const NewPlaceMap = dynamic(() => import("../../modules/add-place/NewPlaceMap"));
+    const NewPlaceMap = dynamic(() => import("../../modules/add-place/NewPlaceMap"), { ssr: false });
 
     return (
         <div className="flex-start flex w-full flex-col">

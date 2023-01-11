@@ -16,7 +16,7 @@ const UserPlace = () => {
     const { data, isLoading } = trpc.useQuery(["protectedPlace.getUserPlace", { id }]);
 
     if (isLoading) return <LoadingSpinner />;
-    const EditPosition = dynamic(() => import("../../modules/user-place/EditPosition"));
+    const EditPosition = dynamic(() => import("../../modules/user-place/EditPosition"), { ssr: false });
 
     return (
         <div className="w-full max-w-2xl">
