@@ -16,6 +16,21 @@ export const placesRouter = createRouter()
             else return await ctx.prisma.place.findMany({ include: { type: true, images: true } });
         }
     })
+    .query("getFilteredPlaces", {
+        input: z.object({
+            query: z.string()
+        }),
+        resolve: async ({ input, ctx }) => {
+            if (input.query.length > 2) {
+                return await ctx.prisma.place.findMany({
+                    where: {
+                        displayName: { contains: input.query }
+                    }
+                });
+            }
+            return null;
+        }
+    })
     .query("getPlaceDetails", {
         input: z.object({
             placeId: z.string()

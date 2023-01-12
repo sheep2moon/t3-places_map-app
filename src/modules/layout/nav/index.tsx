@@ -4,8 +4,6 @@ import React, { useState } from "react";
 import { BiMapAlt } from "react-icons/bi";
 import { RiMapPinAddLine } from "react-icons/ri";
 import { VscLibrary } from "react-icons/vsc";
-import SearchPlaceInput from "../../add-place/SearchPlaceInput";
-import DesktopMenu from "./components/DesktopMenu";
 import Hamburger from "./components/Hamburger";
 import Logo from "./components/Logo";
 import MobileMenu from "./components/MobileMenu";
@@ -38,7 +36,7 @@ const Nav = () => {
             <MobileMenu navLinks={navLinks} isOpen={isMenuOpen} close={() => setIsMenuOpen(false)} />
             <PlacesSearch />
 
-            <div className="ml-auto flex items-center gap-2">
+            <div className="ml-4 flex items-center gap-2">
                 <ThemeSwitch />
                 <div className=" items-center gap-2">
                     {isLoggedIn ? (
