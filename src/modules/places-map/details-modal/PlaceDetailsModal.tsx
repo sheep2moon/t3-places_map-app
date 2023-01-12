@@ -18,10 +18,9 @@ import PlacePricing from "./PlacePricing";
 
 const PlaceDetailsModal = () => {
     const { currentPlaceId, isPlaceModalOpen, setIsPlaceModalOpen } = usePlacesMapStore(state => state);
-    const userDetailsQuery = trpc.useQuery(["user.getUserDetails"]);
     const { data, isLoading } = trpc.useQuery(["places.getPlaceDetails", { placeId: currentPlaceId }]);
 
-    if (isLoading || userDetailsQuery.isLoading || !data) return <LoadingSpinner />;
+    if (isLoading || !data) return <LoadingSpinner />;
 
     const handleCloseModal = () => {
         setIsPlaceModalOpen(false);
