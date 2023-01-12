@@ -15,11 +15,13 @@ import UserActions from "./UserActions";
 import AddOrEditReview from "./reviews/AddOrEditReview";
 import Image from "next/image";
 import PlacePricing from "./PlacePricing";
+import { useSession } from "next-auth/react";
+import LoginEncourage from "./LoginEncourage";
 
 const PlaceDetailsModal = () => {
     const { currentPlaceId, isPlaceModalOpen, setIsPlaceModalOpen } = usePlacesMapStore(state => state);
     const { data, isLoading } = trpc.useQuery(["places.getPlaceDetails", { placeId: currentPlaceId }]);
-
+    const session = useSession();
     if (isLoading || !data) return <LoadingSpinner />;
 
     const handleCloseModal = () => {
@@ -69,8 +71,8 @@ const PlaceDetailsModal = () => {
                         <span className="font-bold">Otwórz w mapach Google</span>
                     </a>
                     {/* <HorizontalLine /> */}
-                    <UserActions placeId={currentPlaceId} />
-                    <AddOrEditReview placeId={currentPlaceId} />
+                    {session.status === "authenticated" ? <UserActions placeId={currentPlaceId} /> : <LoginEncourage />}
+                    {session.status === "authenticated" && <AddOrEditReview placeId={currentPlaceId} />}
                     <Reviews placeId={currentPlaceId} />
                 </div>
             </ModalContainer>
