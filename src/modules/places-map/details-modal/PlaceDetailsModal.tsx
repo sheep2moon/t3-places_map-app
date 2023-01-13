@@ -1,7 +1,6 @@
 import React from "react";
 import googleMapsIcon from "../../../assets/google-maps.png";
 import { trpc } from "../../../utils/trpc";
-import { MdPlace } from "react-icons/md";
 import { usePlacesMapStore } from "../../../zustand/placesMapStore";
 import LoadingSpinner from "../../common/LoadingSpinner";
 import ImageGallery from "./ImageGallery";
@@ -17,6 +16,9 @@ import Image from "next/image";
 import PlacePricing from "./PlacePricing";
 import { useSession } from "next-auth/react";
 import LoginEncourage from "./LoginEncourage";
+import { getPlaceImageSrc } from "../../../utils/getImageSrc";
+import { IoMdPricetags } from "react-icons/io";
+import { FcStackOfPhotos } from "react-icons/fc";
 
 const PlaceDetailsModal = () => {
     const { currentPlaceId, isPlaceModalOpen, setIsPlaceModalOpen } = usePlacesMapStore(state => state);
@@ -33,47 +35,63 @@ const PlaceDetailsModal = () => {
             <ModalContainer isModalOpen={isPlaceModalOpen} close={handleCloseModal}>
                 <div className="w-full">
                     <div className="flex flex-col text-primary dark:text-light">
-                        <div className="flex items-center justify-between">
-                            <div className="flex flex-col">
-                                <div className="flex items-center gap-1">
-                                    <span className="text-2xs">Dodane przez:</span>
-                                    <UserBadge user={data?.addedBy} />
-                                </div>
-                                <div className="flex items-center">
-                                    <TimeBadge>
-                                        <span className="flex gap-1">{data?.createdAt.toLocaleString()}</span>
-                                    </TimeBadge>
-                                </div>
+                        <div className="relative h-48 w-full">
+                            {data?.images[0]?.id && <Image src={getPlaceImageSrc(data?.images[0]?.id)} alt="widok z miejsca" layout="fill" objectFit="cover" />}
+                            <div className="absolute bottom-1 left-1">{data?.type && <PlaceTypeBadge size="sm" placeType={data.type} />}</div>
+                            <div className="absolute bottom-1 right-1">
+                                <TimeBadge>
+                                    <span className="flex gap-1">{data?.createdAt.toLocaleString()}</span>
+                                </TimeBadge>
                             </div>
-                            <div className=" flex items-center justify-between text-lg font-bold">{data?.type && <PlaceTypeBadge size="sm" placeType={data.type} />}</div>
                         </div>
-                        <HorizontalLine />
-                        <div className="flex items-center">
-                            <MdPlace className="text-lg text-amber-600 " />
-                            <span className="overflow-hidden text-ellipsis whitespace-nowrap">{data?.displayName}</span>
+                        <div className="mt-4 flex flex-col items-start px-4">
+                            <span className="text-xl font-bold">{data?.displayName}</span>
+                            <div className="flex items-center gap-1 rounded-md ">
+                                <span className="text-xs">Dodane przez:</span>
+                                <UserBadge user={data?.addedBy} />
+                            </div>
                         </div>
-                        <div className="flex flex-col text-xs">
-                            <div className="mb-2 flex gap-1"></div>
-                            <pre className="whitespace-pre-wrap text-left font-mono text-lg">{data?.description}</pre>
-                        </div>
-                        {data.prices && <PlacePricing prices={JSON.parse(data.prices)} />}
-                    </div>
-                    {data?.images && <ImageGallery images={data?.images} />}
-                    <HorizontalLine />
 
-                    <a
-                        className="flex w-fit items-center gap-2 rounded-md border border-secondary py-1 px-2 hover:bg-dark dark:bg-primary"
-                        target="_blank"
-                        rel="noreferrer"
-                        href={`http://maps.google.com/maps?z=12&t=m&q=loc:${data.lat}+${data.lng}`}
-                    >
-                        <Image alt="ikona map google" src={googleMapsIcon} width={32} height={32} />
-                        <span className="font-bold">Otwórz w mapach Google</span>
-                    </a>
-                    {/* <HorizontalLine /> */}
-                    {session.status === "authenticated" ? <UserActions placeId={currentPlaceId} /> : <LoginEncourage />}
-                    {session.status === "authenticated" && <AddOrEditReview placeId={currentPlaceId} />}
-                    <Reviews placeId={currentPlaceId} />
+                        <div className="px-2">
+                            <HorizontalLine>
+                                <div className="flex items-center gap-1 text-base">
+                                    <span>Opis</span>
+                                </div>
+                            </HorizontalLine>
+                            <div className="flex flex-col text-xs">
+                                <pre className="whitespace-pre-wrap text-left font-mono text-lg">{data?.description}</pre>
+                            </div>
+                            <HorizontalLine className="mb-2">
+                                <div className="flex items-center gap-1">
+                                    <IoMdPricetags />
+                                    Ceny
+                                </div>
+                            </HorizontalLine>
+                            {data.prices && <PlacePricing prices={JSON.parse(data.prices)} />}
+                            <HorizontalLine className="mb-2">
+                                <div className="flex items-center gap-1">
+                                    <FcStackOfPhotos />
+                                    <span className="text-base">Zdjęcia</span>
+                                </div>
+                            </HorizontalLine>
+                            {data?.images && <ImageGallery images={data?.images} />}
+                            <HorizontalLine />
+
+                            <a
+                                className="flex w-fit items-center gap-2 rounded-md border border-secondary py-1 px-2 hover:bg-dark dark:bg-primary"
+                                target="_blank"
+                                rel="noreferrer"
+                                href={`http://maps.google.com/maps?z=12&t=m&q=loc:${data.lat}+${data.lng}`}
+                            >
+                                <Image alt="ikona map google" src={googleMapsIcon} width={32} height={32} />
+                                <span className="font-bold">Otwórz w mapach Google</span>
+                            </a>
+                            {/* <HorizontalLine /> */}
+                            {session.status === "authenticated" ? <UserActions placeId={currentPlaceId} /> : <LoginEncourage />}
+                            {session.status === "authenticated" && <AddOrEditReview placeId={currentPlaceId} />}
+                            <Reviews placeId={currentPlaceId} />
+                        </div>
+                    </div>
                 </div>
             </ModalContainer>
         </div>

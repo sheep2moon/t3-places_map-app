@@ -3,7 +3,7 @@ import Image from "next/image";
 import L from "leaflet";
 import React, { useRef } from "react";
 React.useLayoutEffect = React.useEffect;
-import { Marker, Popup, useMap } from "react-leaflet";
+import { Marker, Popup } from "react-leaflet";
 import { getPlaceImageSrc } from "../../utils/getImageSrc";
 import Button from "../common/Button";
 import { FaArrowRight } from "react-icons/fa";
@@ -15,13 +15,11 @@ type PlaceMarkerProps = {
 
 const PlaceMarker = ({ place }: PlaceMarkerProps) => {
     const markerRef = useRef<L.Marker>(null);
-    const map = useMap();
 
     const { setCurrentPlaceId, setIsPlaceModalOpen } = usePlacesMapStore(state => state);
     const handleOpenModal = () => {
         setCurrentPlaceId(place.id);
         setIsPlaceModalOpen(true);
-        map.flyTo({ lat: place.lat, lng: place.lng }, 12);
     };
 
     const placeIcon = L.icon({

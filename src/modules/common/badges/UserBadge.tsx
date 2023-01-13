@@ -8,7 +8,7 @@ const UserBadge = ({ user }: { user: User }) => {
             <div className="relative aspect-square h-4">
                 <Image src={user.image ?? ""} className="rounded-sm" alt="awatar użytkownika" layout="fill" />
             </div>
-            <div className="font-medium dark:text-white">
+            <div className="text-base font-medium dark:text-white">
                 <div>{user.name}</div>
             </div>
         </div>

@@ -8,7 +8,7 @@ type ButtonProps = {
 
 const EditButton = ({ children, className, ...props }: ButtonProps) => {
     return (
-        <button {...props} className={clsx("text-small-regular flex items-center gap-2 rounded-sm px-2 hover:text-violet-300 disabled:opacity-50", className)}>
+        <button {...props} className={clsx("text-small-regular flex items-center gap-2 rounded-sm px-2 hover:text-violet-300 disabled:opacity-50 ", className)}>
             <FiEdit />
             {children}
         </button>

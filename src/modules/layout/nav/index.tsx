@@ -1,14 +1,13 @@
 import { useSession } from "next-auth/react";
-import Link from "next/link";
 import React, { useState } from "react";
 import { BiMapAlt } from "react-icons/bi";
 import { RiMapPinAddLine } from "react-icons/ri";
 import { VscLibrary } from "react-icons/vsc";
+import InternalLink from "../../common/links/InternalLink";
 import Hamburger from "./components/Hamburger";
 import Logo from "./components/Logo";
 import MobileMenu from "./components/MobileMenu";
 import PlacesSearch from "./components/PlacesSearch";
-import ThemeSwitch from "./components/ThemeSwitch";
 import UserCard from "./components/UserCard";
 
 export type NavLink = {
@@ -37,14 +36,13 @@ const Nav = () => {
             <PlacesSearch />
 
             <div className="ml-4 flex items-center gap-2">
-                <ThemeSwitch />
                 <div className=" items-center gap-2">
                     {isLoggedIn ? (
                         <UserCard image={userMetadata?.image} name={userMetadata?.name} />
                     ) : (
-                        <Link href="/auth/signin">
-                            <a className="border-b text-sm text-secondary">Zaloguj się</a>
-                        </Link>
+                        <InternalLink variant="filled" href="/auth/signin">
+                            Zaloguj się
+                        </InternalLink>
                     )}
                 </div>
                 <Hamburger isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />

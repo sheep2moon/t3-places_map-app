@@ -16,13 +16,13 @@ const Reviews = ({ placeId }: ReviewsProps) => {
     const { data, isLoading } = trpc.useQuery(["places.getPlaceReviews", { placeId }]);
     if (isLoading) return <LoadingSpinner />;
     return (
-        <div className="mt-4">
+        <div className="mt-8">
             <div className="flex w-full justify-center text-xs text-primary dark:text-light">
                 {data && data.length > 0 ? (
                     <HorizontalLine>
-                        <div className="text-md flex items-center gap-1">
-                            <span>Opinie</span>
+                        <div className="flex items-center gap-1 text-base">
                             <MdReviews className="text-lg text-amber-300" />
+                            <span>Opinie</span>
                         </div>
                     </HorizontalLine>
                 ) : (
@@ -30,7 +30,7 @@ const Reviews = ({ placeId }: ReviewsProps) => {
                 )}
             </div>
             {data?.map(review => (
-                <div key={review.id} className="rounded-sm bg-primary/5 p-2 dark:bg-black/20">
+                <div key={review.id} className="mt-2 rounded-sm bg-primary/5 p-2 dark:bg-black/20">
                     <div className="mb-2 flex items-center justify-between ">
                         <div className="flex items-center gap-2">
                             <UserAvatar size={6} image={review.user.image ?? ""} />
