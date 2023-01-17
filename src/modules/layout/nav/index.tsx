@@ -7,7 +7,7 @@ import InternalLink from "../../common/links/InternalLink";
 import Hamburger from "./components/Hamburger";
 import Logo from "./components/Logo";
 import MobileMenu from "./components/MobileMenu";
-import PlacesSearch from "./components/PlacesSearch";
+import PlacesSearch from "../../search-places-modal/PlacesSearch";
 import UserCard from "./components/UserCard";
 
 export type NavLink = {

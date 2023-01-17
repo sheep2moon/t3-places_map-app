@@ -30,8 +30,6 @@ const FlyHandler = ({ currentPlaceId }: { currentPlaceId: string }) => {
     const map = useMap();
     useEffect(() => {
         if (!isLoading && data) {
-            console.log("jestem", data);
-
             map.flyTo({ lat: data.lat, lng: data.lng });
             setShouldFly(false);
         }

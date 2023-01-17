@@ -48,9 +48,9 @@ const EditPlaceType = ({ placeTypeId, placeId }: EditPlaceTypeProps) => {
     return (
         <div className="flex flex-col">
             <LabelBar {...labelBarProps} />
-            <div className="flex rounded-b-md bg-slate-300/20 p-2">
+            <div className="flex gap-2 rounded-b-md bg-slate-300/20 p-2">
                 {placeTypes.data?.map(placeType => (
-                    <div key={placeType.id} onClick={() => handleSelect(placeType.id)} className={clsx("rounded-md", { " bg-slate-900/20 outline outline-2 outline-emerald-400": currentPlaceType === placeType.id })}>
+                    <div key={placeType.id} onClick={() => handleSelect(placeType.id)} className={clsx("rounded-full", { " bg-slate-900/20 outline outline-4 outline-secondary": currentPlaceType === placeType.id })}>
                         <PlaceTypeIcon placeType={placeType} />
                     </div>
                 ))}

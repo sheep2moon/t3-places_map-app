@@ -30,18 +30,18 @@ const PlaceMarker = ({ place }: PlaceMarkerProps) => {
     return (
         <Marker icon={placeIcon} ref={markerRef} position={{ lat: place.lat, lng: place.lng }}>
             <Popup>
-                <div className="relative flex h-[120px] w-[160px] flex-col overflow-hidden rounded-md">
+                <div className="relative flex h-[140px] w-[160px] flex-col overflow-hidden rounded-md">
                     <div className="absolute inset-0 z-10 bg-black/60 " />
                     {place.images[0] && <Image className="object-cover" src={getPlaceImageSrc(place.images[0]?.id)} alt="widok z miejsca" layout="fill" />}
 
-                    <div className="absolute inset-0 z-20 mb-2 flex flex-col items-center gap-1 p-1 text-light">
+                    <div className="absolute inset-0 z-20 flex flex-col items-center gap-1 p-1 text-light">
                         <div className="mx-auto mt-1 flex items-center gap-2">
                             <div className="relative h-6 w-6">
                                 <Image src={place.type.icon} alt="znacznik na mapie" layout="fill" />
                             </div>
-                            <span className="">{place.type.title}</span>
+                            <span className="text-base">{place.type.title}</span>
                         </div>
-                        <span className="max-h-8 overflow-hidden overflow-ellipsis break-words text-center text-lg leading-4">{place.displayName}</span>
+                        <span className="max-h-15 overflow-hidden overflow-ellipsis break-words text-center text-base leading-5">{place.displayName}</span>
 
                         <Button className="mx-auto mt-auto flex justify-between gap-2 " variant="secondary" onClick={handleOpenModal}>
                             Szczegóły

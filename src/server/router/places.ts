@@ -25,6 +25,11 @@ export const placesRouter = createRouter()
                 return await ctx.prisma.place.findMany({
                     where: {
                         displayName: { contains: input.query }
+                    },
+                    include: {
+                        type: true,
+                        images: true,
+                        reviews: true
                     }
                 });
             }
