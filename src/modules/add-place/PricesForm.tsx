@@ -8,7 +8,7 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 
 const PricesForm = () => {
     const { isPaid, setIsPaid, setPrices, prices } = useNewPlaceStore(store => store);
-    const [priceCount, setPriceCount] = useState(0);
+    const [pricesCount, setPricesCount] = useState(0);
 
     const handleToggleIsPaid = () => {
         setIsPaid(!isPaid);
@@ -37,12 +37,12 @@ const PricesForm = () => {
     const handleDeletePrice = (index: number) => {
         const newPrices = prices.filter((_, i) => i !== index);
         setPrices(newPrices);
-        setPriceCount(prev => prev - 1);
+        setPricesCount(prev => prev - 1);
     };
 
     const handleAddNewPrice = () => {
         setPrices([...prices, { title: "", value: "" }]);
-        setPriceCount(prev => prev + 1);
+        setPricesCount(prev => prev + 1);
     };
 
     return (
@@ -66,7 +66,7 @@ const PricesForm = () => {
                             <span className="ml-2">Cena</span>
                         </div>
                     )}
-                    {Array(priceCount)
+                    {Array(pricesCount)
                         .fill(0)
                         .map((_, index) => (
                             <div className="mb-2 flex w-full items-center gap-1" key={`${index}`}>

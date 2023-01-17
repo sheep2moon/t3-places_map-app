@@ -14,7 +14,7 @@ const PlaceTypeBadge = ({ placeType, size = "sm" }: PlaceTypeBadge) => {
             <span>
                 <PlaceTypeIcon size={size} placeType={placeType} />
             </span>
-            <span className={clsx("", { "text-base": size === "sm", "text-lg": size === "lg" })}>{placeType.title}</span>
+            <span className={clsx("", { "text-base": size === "sm", "text-lg": size === "md", "text-xl": size === "lg" })}>{placeType.title}</span>
         </div>
     );
 };
