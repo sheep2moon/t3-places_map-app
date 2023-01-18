@@ -1,5 +1,6 @@
 import React from "react";
-import googleMapsIcon from "../../../assets/google-maps.png";
+import googleMapsIcon from "../../../assets/google-maps-icon.png";
+import mapMarkerIcon from "../../../assets/map-marker-icon.svg";
 import { trpc } from "../../../utils/trpc";
 import { usePlacesMapStore } from "../../../zustand/placesMapStore";
 import LoadingSpinner from "../../common/LoadingSpinner";
@@ -19,14 +20,21 @@ import LoginEncourage from "./LoginEncourage";
 import { getPlaceImageSrc } from "../../../utils/getImageSrc";
 import { IoMdPricetags } from "react-icons/io";
 import { FcStackOfPhotos } from "react-icons/fc";
+import Button from "../../common/Button";
+import { GiConvergenceTarget } from "react-icons/gi";
 
 const PlaceDetailsModal = () => {
-    const { currentPlaceId, isPlaceModalOpen, setIsPlaceModalOpen } = usePlacesMapStore(state => state);
+    const { currentPlaceId, isPlaceModalOpen, setIsPlaceModalOpen, setFlyTo } = usePlacesMapStore(state => state);
     const { data, isLoading } = trpc.useQuery(["places.getPlaceDetails", { placeId: currentPlaceId }]);
     const session = useSession();
     if (isLoading || !data) return <LoadingSpinner />;
 
     const handleCloseModal = () => {
+        setIsPlaceModalOpen(false);
+    };
+
+    const handleFlyToPlace = () => {
+        setFlyTo({ lat: data.lat, lng: data.lng });
         setIsPlaceModalOpen(false);
     };
 
@@ -77,15 +85,16 @@ const PlaceDetailsModal = () => {
                             {data?.images && <ImageGallery images={data?.images} />}
                             <HorizontalLine />
 
-                            <a
-                                className="flex w-fit items-center gap-2 rounded-md border border-secondary py-1 px-2 hover:bg-dark dark:bg-primary"
-                                target="_blank"
-                                rel="noreferrer"
-                                href={`http://maps.google.com/maps?z=12&t=m&q=loc:${data.lat}+${data.lng}`}
-                            >
-                                <Image alt="ikona map google" src={googleMapsIcon} width={32} height={32} />
-                                <span className="font-bold">Otwórz w mapach Google</span>
-                            </a>
+                            <div className="grid grid-cols-2 gap-2">
+                                <a className="flex w-full items-center justify-center gap-2 rounded-sm  bg-dark py-1 px-2" target="_blank" rel="noreferrer" href={`http://maps.google.com/maps?z=12&t=m&q=loc:${data.lat}+${data.lng}`}>
+                                    <Image alt="ikona map google" src={googleMapsIcon} width={32} height={32} />
+                                    <span className="text-xs font-bold">Otwórz w mapach Google</span>
+                                </a>
+                                <button onClick={handleFlyToPlace} className="flex items-center justify-center gap-2 rounded-sm bg-dark px-2 py-1">
+                                    <Image src={mapMarkerIcon} alt="ikona mapy z punktem" width={32} height={32} />
+                                    <span className="text-xs font-bold">Pokaż na mapie</span>
+                                </button>
+                            </div>
                             {/* <HorizontalLine /> */}
                             {session.status === "authenticated" ? <UserActions placeId={currentPlaceId} /> : <LoginEncourage />}
                             {session.status === "authenticated" && <AddOrEditReview placeId={currentPlaceId} />}

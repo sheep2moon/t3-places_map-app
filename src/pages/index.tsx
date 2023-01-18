@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import { BiMapAlt } from "react-icons/bi";
 import InternalLink from "../modules/common/links/InternalLink";
 import AddPlaceEncouragement from "../modules/homepage/add-place-encouragement";
+import PlaceTypesTabs from "../modules/homepage/place-types-tabs/PlaceTypesTabs";
 import RecentActivityTabs from "../modules/homepage/recent-activity-tabs";
 
 const Home: NextPage = () => {
@@ -21,6 +22,7 @@ const Home: NextPage = () => {
                     </InternalLink>
                 </div>
             </div>
+            <PlaceTypesTabs />
             <RecentActivityTabs />
             <AddPlaceEncouragement />
             <p className="my-12">
