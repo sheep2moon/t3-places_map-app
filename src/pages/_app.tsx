@@ -44,5 +44,5 @@ export default withTRPC<AppRouter>({
         };
     },
 
-    ssr: false
+    ssr: true
 })(MyApp);
