@@ -1,3 +1,4 @@
+import { Place } from "@prisma/client";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
@@ -16,13 +17,13 @@ type SearchResultsProps = {
 
 const SearchResults = ({ query, close }: SearchResultsProps) => {
     const searchResults = trpc.useQuery(["places.getFilteredPlaces", { query }]);
-    const { setCurrentPlaceId, setIsPlaceModalOpen, setShouldFly } = usePlacesMapStore(store => store);
+    const { setCurrentPlaceId, setIsPlaceModalOpen, setFlyTo } = usePlacesMapStore(store => store);
     const router = useRouter();
 
-    const handleGoToPlace = (placeId: string) => {
-        setCurrentPlaceId(placeId);
+    const handleGoToPlace = (place: Place) => {
+        setCurrentPlaceId(place.id);
         setIsPlaceModalOpen(true);
-        setShouldFly(true);
+        setFlyTo({ lat: place.lat, lng: place.lng });
         close();
         router.push("/places-map");
     };
@@ -31,7 +32,7 @@ const SearchResults = ({ query, close }: SearchResultsProps) => {
     return (
         <div className="mt-4 flex w-full flex-col items-start">
             {searchResults.data?.map(result => (
-                <button onClick={() => handleGoToPlace(result.id)} key={result.id} className="flex w-full  rounded-sm p-2 dark:bg-black/30">
+                <button onClick={() => handleGoToPlace(result)} key={result.id} className="flex w-full  rounded-sm p-2 dark:bg-black/30">
                     <div className="relative my-auto aspect-square h-16 small:h-20">
                         <Image layout="fill" alt="podgląd miejsca" src={getPlaceImageSrc(result.images[0]?.id || "")} />
                     </div>
