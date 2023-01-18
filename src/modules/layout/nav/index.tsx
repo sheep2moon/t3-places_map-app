@@ -30,13 +30,13 @@ const Nav = () => {
     const userMetadata = session.data?.user;
 
     return (
-        <header className="fixed inset-x-0 top-0 z-[999999] flex h-16 items-center justify-between border-b border-primary/20 bg-light px-4 text-primary shadow-sm dark:border-dark dark:bg-stone-800 dark:text-light dark:shadow-stone-900/20">
-            <Logo />
-            <MobileMenu navLinks={navLinks} isOpen={isMenuOpen} close={() => setIsMenuOpen(false)} />
-            <PlacesSearch />
+        <header className="fixed inset-x-0 top-0 z-[999999] h-16 border-b border-primary/20 bg-light px-2 text-primary shadow-sm dark:border-dark dark:bg-stone-800 dark:text-light dark:shadow-stone-900/20 lg:px-4">
+            <div className="mx-auto flex h-full max-w-screen-large items-center justify-between">
+                <Logo />
+                <MobileMenu navLinks={navLinks} isOpen={isMenuOpen} close={() => setIsMenuOpen(false)} />
+                <PlacesSearch />
 
-            <div className="ml-4 flex items-center gap-2">
-                <div className=" items-center gap-2">
+                <div className="ml-2 flex h-full items-center gap-2 lg:ml-4">
                     {isLoggedIn ? (
                         <UserCard image={userMetadata?.image} name={userMetadata?.name} />
                     ) : (
@@ -44,8 +44,8 @@ const Nav = () => {
                             Zaloguj się
                         </InternalLink>
                     )}
+                    <Hamburger isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
                 </div>
-                <Hamburger isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
             </div>
         </header>
     );

@@ -29,9 +29,9 @@ const SearchResults = ({ query, close }: SearchResultsProps) => {
 
     if (searchResults.isLoading) return <LoadingSpinner />;
     return (
-        <div className="mt-4 flex flex-col items-start">
+        <div className="mt-4 flex w-full flex-col items-start">
             {searchResults.data?.map(result => (
-                <div key={result.id} className="flex w-full  rounded-sm p-2 dark:bg-black/30">
+                <button onClick={() => handleGoToPlace(result.id)} key={result.id} className="flex w-full  rounded-sm p-2 dark:bg-black/30">
                     <div className="relative my-auto aspect-square h-16 small:h-20">
                         <Image layout="fill" alt="podgląd miejsca" src={getPlaceImageSrc(result.images[0]?.id || "")} />
                     </div>
@@ -49,10 +49,10 @@ const SearchResults = ({ query, close }: SearchResultsProps) => {
                             <span className="ml-2">({result.reviews.length} ocen)</span>
                         </div>
                     </div>
-                    <button onClick={() => handleGoToPlace(result.id)} className="my-auto ml-auto pr-2 small:pr-4">
+                    <div className="my-auto ml-auto pr-2 small:pr-4">
                         <AiOutlineRight className="text-2xl small:text-4xl" />
-                    </button>
-                </div>
+                    </div>
+                </button>
             ))}
         </div>
     );

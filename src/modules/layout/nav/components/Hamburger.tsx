@@ -9,7 +9,7 @@ type HamburgerProps = {
 
 const Hamburger = ({ isMenuOpen, setIsMenuOpen }: HamburgerProps) => {
     return (
-        <button className="ml-auto" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+        <button aria-label="Otwórz menu" className="ml-auto" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             <div className="group flex h-12 w-12 flex-col items-center justify-center">
                 <div className={`${lineStyles} ${isMenuOpen ? "translate-y-3 rotate-45 opacity-50 group-hover:opacity-100" : "opacity-50 group-hover:opacity-100"}`} />
                 <div className={`${lineStyles} ${isMenuOpen ? "opacity-0" : "opacity-50 group-hover:opacity-100"}`} />

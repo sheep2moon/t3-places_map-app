@@ -12,7 +12,7 @@ const Home: NextPage = () => {
                     Odkryj ciekawe miejsca.
                     <span className="sm:block"> Poszerz horyzonty. </span>
                 </h1>
-                <p className="mx-auto mt-4 max-w-xl sm:text-xl sm:leading-relaxed">Szukaj oraz dodawaj nowe miejsca warte uwagi. Znajdziesz tutaj doskonałe miejsce na biwak, ognisko lub nowe łowisko.</p>
+                <p className="mx-auto mt-4 max-w-md sm:text-xl sm:leading-relaxed lg:max-w-xl">Szukaj oraz dodawaj nowe miejsca warte uwagi. Znajdziesz tutaj doskonałe miejsce na biwak, ognisko lub nowe łowisko.</p>
                 <div className="mt-4 flex justify-center">
                     <InternalLink href="/places-map" variant="filled">
                         <div className="flex items-center gap-1">

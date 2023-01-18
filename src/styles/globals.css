@@ -17,6 +17,9 @@ main{
   height: calc(100vh - 4rem);
 }
 
+.max-h-container-screen{
+  max-height: calc(100vh - 4rem);
+}
 
 :root {
   font-family: 'Kanit', sans-serif;
@@ -55,4 +58,8 @@ main{
   z-index: 99;
   font-size: 1.4rem !important;
   color: #fff !important;
+}
+
+.leaflet-control-attribution{
+  display: none;
 }

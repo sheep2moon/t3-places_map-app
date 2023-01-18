@@ -23,7 +23,7 @@ const PlacesSearch = () => {
 
     return (
         <>
-            <button className="ml-auto p-1" onClick={() => setIsModalOpen(true)}>
+            <button aria-label="Wyszukaj miejsca" className="ml-auto p-1" onClick={() => setIsModalOpen(true)}>
                 <ImSearch className="text-xl" />
             </button>
             <SearchModalContainer close={close} isModalOpen={isModalOpen}>

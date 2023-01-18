@@ -7,7 +7,7 @@ const Home: NextPage = () => {
     const PlacesMap = dynamic(() => import("../../modules/places-map/PlacesMap"), { ssr: false });
 
     return (
-        <div className="h-container-screen w-full max-w-screen-lg">
+        <div className="h-container-screen w-screen max-w-screen-large">
             <PlaceTypeFilter />
             <PlacesMap />
             <PlaceDetailsModal />
