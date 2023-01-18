@@ -21,7 +21,7 @@ const ConfirmButton = () => {
     };
     return (
         <div className="mx-auto my-8 flex w-full justify-center">
-            <Button variant="alternative" className="h-10 w-full" isLoading={isLoading} onClick={handleCreate}>
+            <Button variant="filled" className="h-10 w-full" isLoading={isLoading} onClick={handleCreate}>
                 <p className="text-xl">Przejdź dalej</p>
             </Button>
         </div>

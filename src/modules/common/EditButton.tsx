@@ -2,9 +2,7 @@ import clsx from "clsx";
 import React from "react";
 import { FiEdit } from "react-icons/fi";
 
-type ButtonProps = {
-    variant?: "primary" | "secondary" | "alternative";
-} & React.ButtonHTMLAttributes<HTMLButtonElement>;
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const EditButton = ({ children, className, ...props }: ButtonProps) => {
     return (

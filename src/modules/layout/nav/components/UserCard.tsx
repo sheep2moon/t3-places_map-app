@@ -57,7 +57,7 @@ const UserCard = ({ name, image }: UserCardProps) => {
                             </Menu.Item>
                             <Menu.Item>
                                 <div className="flex justify-center">
-                                    <Button onClick={handleLogout} variant="alternative" className="w-full">
+                                    <Button onClick={handleLogout} variant="filled" className="w-full">
                                         Wyloguj
                                     </Button>
                                 </div>

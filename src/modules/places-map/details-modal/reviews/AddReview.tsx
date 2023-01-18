@@ -36,7 +36,7 @@ const AddReview = ({ placeId }: AddReviewType) => {
                 <TextArea placeholder="Opisz swoje doświadczenie z tym miejscem." name="comment" value={comment} handleChange={e => setComment(e.target.value)} />
             </div>
 
-            <Button className="mt-1 ml-auto w-fit " isLoading={addReviewMutation.isLoading} variant="alternative" onClick={handleAddReview}>
+            <Button className="mt-1 ml-auto w-fit " isLoading={addReviewMutation.isLoading} variant="filled" onClick={handleAddReview}>
                 Dodaj recenzje
             </Button>
         </div>

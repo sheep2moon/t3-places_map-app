@@ -29,7 +29,7 @@ const Modal = ({ isModalOpen, close, children }: ModalProps) => {
                                 leaveTo="opacity-0 scale-95"
                             >
                                 <Dialog.Panel className="overflow atext-left h-full w-full max-w-md transform bg-light p-2 align-middle shadow-xl transition-all dark:bg-primary small:rounded-2xl small:p-6">
-                                    <Button onClick={close} className="mb-2 ml-auto" variant="alternative">
+                                    <Button onClick={close} className="mb-2 ml-auto" variant="filled">
                                         X
                                     </Button>
                                     {children}

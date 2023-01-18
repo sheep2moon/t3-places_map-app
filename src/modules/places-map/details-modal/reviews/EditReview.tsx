@@ -60,20 +60,20 @@ const EditReview = ({ review }: EditReviewProps) => {
                 <TextArea disabled={!isEdit} placeholder="Opisz w kilku słowach swoje doświadczenie z tym miejscem." name="comment" value={currentComment} handleChange={e => setCurrentComment(e.target.value)} />
             </div>
             <div className="mt-1 flex w-full justify-between">
-                <Button onClick={handleDeleteReview} variant="alternative" isLoading={deleteReviewMutation.isLoading}>
+                <Button onClick={handleDeleteReview} variant="filled" isLoading={deleteReviewMutation.isLoading}>
                     <RiDeleteBin5Line />
                 </Button>
                 {isEdit ? (
                     <div className="flex gap-1">
-                        <Button onClick={handleCancelChanges} variant="alternative">
+                        <Button onClick={handleCancelChanges} variant="filled">
                             Anuluj
                         </Button>
-                        <Button onClick={handleUpdateReview} variant="alternative">
+                        <Button onClick={handleUpdateReview} variant="filled">
                             Zapisz
                         </Button>
                     </div>
                 ) : (
-                    <Button onClick={() => setIsEdit(true)} variant="alternative">
+                    <Button onClick={() => setIsEdit(true)} variant="filled">
                         Edytuj
                     </Button>
                 )}
