@@ -11,7 +11,7 @@ const RecentActivityTabs = () => {
     const recentlyAddedReviews = trpc.useQuery(["places.getRecentlyAddedReviews"]);
 
     return (
-        <div className="mt-8 rounded-md bg-light p-4 shadow shadow-dark/10 dark:bg-primary">
+        <div className="rounded-md pt-8 ">
             <Tab.Group>
                 <HorizontalLine>
                     <Tab.List className="flex w-80 gap-2 lg:w-96">
@@ -19,8 +19,8 @@ const RecentActivityTabs = () => {
                         <CustomTab>Ostatnie komentarze</CustomTab>
                     </Tab.List>
                 </HorizontalLine>
-                <Tab.Panels className="mt-8 h-64 ">
-                    <Tab.Panel className="h-full">
+                <Tab.Panels className="mt-4 h-64 px-4">
+                    <Tab.Panel className="h-full ">
                         <RecentlyAddedPlaces queryResult={recentlyAddedPlaces} />
                     </Tab.Panel>
                     <Tab.Panel className="h-full">
@@ -41,7 +41,7 @@ const CustomTab = ({ children }: { children: React.ReactNode }) => {
                 clsx(
                     "w-full rounded-lg py-2.5 text-sm font-medium leading-5 shadow shadow-dark/40 ring-white ring-opacity-60 ring-offset-1 ring-offset-blue-400 focus:outline-none focus:ring-2 lg:text-base",
                     { "bg-white/[0.12] font-bold dark:text-secondary": selected },
-                    { "text-dark hover:bg-white/[0.12] hover:text-secondary dark:text-light": !selected }
+                    { "bg-dark/20 text-dark shadow-sm shadow-secondary/20 hover:bg-white/[0.12] hover:text-secondary dark:text-light": !selected }
                 )
             }
         >

@@ -13,7 +13,7 @@ type MobileMenuProps = {
 const MobileMenu = ({ navLinks, isOpen, close }: MobileMenuProps) => {
     return (
         <div
-            className={clsx("fixed inset-x-0 top-16 bottom-0 z-50 bg-gradient-to-br from-light to-violet-200 p-2 transition dark:from-primary dark:to-violet-900", { "translate-x-0": isOpen, "translate-x-full": !isOpen })}
+            className={clsx("fixed inset-x-0 top-16 bottom-0 z-50 bg-gradient-to-br from-light to-secondary p-2 transition dark:from-primary dark:to-dark", { "translate-x-0": isOpen, "translate-x-full": !isOpen })}
             onClick={e => e.stopPropagation()}
         >
             <div className="flex h-full flex-col items-center justify-center gap-4">

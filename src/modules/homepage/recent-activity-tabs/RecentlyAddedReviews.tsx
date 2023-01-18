@@ -23,7 +23,7 @@ const RecentlyAddedReviews = ({ queryResult }: RecentlyAddedReviewsProps) => {
     return (
         <div className="grid h-full w-full gap-2 overflow-x-auto small:grid-cols-3">
             {queryResult.data?.map(review => (
-                <div key={review.id} className="flex h-full w-full min-w-[260px] max-w-md flex-col justify-between rounded-md border bg-light/20 p-2 shadow-md dark:border-dark dark:bg-dark/20 dark:shadow-dark">
+                <div key={review.id} className="flex h-full w-full min-w-[260px] max-w-md flex-col justify-between rounded-md border border-secondary/10 bg-light/20 p-2 shadow-md dark:bg-dark">
                     <span className="flex w-full items-center justify-between text-xs">
                         <UserBadge user={review.user} />
                         <TimeBadge>{review.createdAt.toLocaleDateString()}</TimeBadge>
@@ -37,7 +37,7 @@ const RecentlyAddedReviews = ({ queryResult }: RecentlyAddedReviewsProps) => {
                     <div className="mt-auto">
                         {review.Place?.type && <PlaceTypeBadge placeType={review.Place.type} size="sm" />}
 
-                        <p className="mt-2 max-h-4 overflow-hidden overflow-ellipsis whitespace-nowrap leading-4">{review.Place?.displayName}</p>
+                        <p className="mt-2 max-h-6 overflow-hidden overflow-ellipsis whitespace-nowrap text-xl font-bold leading-6">{review.Place?.displayName}</p>
                     </div>
                 </div>
             ))}

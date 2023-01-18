@@ -52,6 +52,16 @@ const PlaceDetailsModal = () => {
                                 </TimeBadge>
                             </div>
                         </div>
+                        <div className="mx-1 mt-1 grid grid-cols-2 gap-1">
+                            <a className="flex w-full items-center justify-center gap-2 rounded-sm  bg-dark py-1 px-2" target="_blank" rel="noreferrer" href={`http://maps.google.com/maps?z=12&t=m&q=loc:${data.lat}+${data.lng}`}>
+                                <Image alt="ikona map google" src={googleMapsIcon} width={32} height={32} />
+                                <span className="text-xs font-bold">Otwórz w mapach Google</span>
+                            </a>
+                            <button onClick={handleFlyToPlace} className="flex items-center justify-center gap-2 rounded-sm bg-dark px-2 py-1">
+                                <Image src={mapMarkerIcon} alt="ikona mapy z punktem" width={32} height={32} />
+                                <span className="text-xs font-bold">Pokaż na mapie</span>
+                            </button>
+                        </div>
                         <div className="mt-4 flex flex-col items-start px-4">
                             <span className="text-xl font-bold">{data?.displayName}</span>
                             <div className="flex items-center gap-1 rounded-md ">
@@ -84,22 +94,20 @@ const PlaceDetailsModal = () => {
                             </HorizontalLine>
                             {data?.images && <ImageGallery images={data?.images} />}
                             <HorizontalLine />
-
-                            <div className="grid grid-cols-2 gap-2">
-                                <a className="flex w-full items-center justify-center gap-2 rounded-sm  bg-dark py-1 px-2" target="_blank" rel="noreferrer" href={`http://maps.google.com/maps?z=12&t=m&q=loc:${data.lat}+${data.lng}`}>
-                                    <Image alt="ikona map google" src={googleMapsIcon} width={32} height={32} />
-                                    <span className="text-xs font-bold">Otwórz w mapach Google</span>
-                                </a>
-                                <button onClick={handleFlyToPlace} className="flex items-center justify-center gap-2 rounded-sm bg-dark px-2 py-1">
-                                    <Image src={mapMarkerIcon} alt="ikona mapy z punktem" width={32} height={32} />
-                                    <span className="text-xs font-bold">Pokaż na mapie</span>
-                                </button>
-                            </div>
                             {/* <HorizontalLine /> */}
                             {session.status === "authenticated" ? <UserActions placeId={currentPlaceId} /> : <LoginEncourage />}
                             {session.status === "authenticated" && <AddOrEditReview placeId={currentPlaceId} />}
                             <Reviews placeId={currentPlaceId} />
                         </div>
+
+                        <p className="mt-8">
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error ducimus repellendus, quibusdam praesentium perferendis, sint dolorum nulla natus officia animi eos soluta quos eveniet. Error, maxime. Similique
+                            quae repellat atque?
+                        </p>
+                        <p className="mt-8">
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error ducimus repellendus, quibusdam praesentium perferendis, sint dolorum nulla natus officia animi eos soluta quos eveniet. Error, maxime. Similique
+                            quae repellat atque?
+                        </p>
                     </div>
                 </div>
             </ModalContainer>

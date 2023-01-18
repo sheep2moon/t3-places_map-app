@@ -9,6 +9,8 @@ import Logo from "./components/Logo";
 import MobileMenu from "./components/MobileMenu";
 import PlacesSearch from "../../search-places-modal/PlacesSearch";
 import UserCard from "./components/UserCard";
+import { MdLogin } from "react-icons/md";
+import Link from "next/link";
 
 export type NavLink = {
     title: string;
@@ -30,19 +32,24 @@ const Nav = () => {
     const userMetadata = session.data?.user;
 
     return (
-        <header className="fixed inset-x-0 top-0 z-[999999] h-16 border-b border-primary/20 bg-light px-2 text-primary shadow-sm dark:border-dark dark:bg-stone-800 dark:text-light dark:shadow-stone-900/20 lg:px-4">
+        <header className="fixed inset-x-0 top-0 z-[999999] h-16 border-b border-dark/20 bg-light px-2 text-primary shadow-md dark:border-dark dark:bg-primary dark:text-light dark:shadow-black/40 lg:px-4">
             <div className="mx-auto flex h-full max-w-screen-large items-center justify-between">
                 <Logo />
                 <MobileMenu navLinks={navLinks} isOpen={isMenuOpen} close={() => setIsMenuOpen(false)} />
                 <PlacesSearch />
 
-                <div className="ml-2 flex h-full items-center gap-2 lg:ml-4">
+                <div className="ml-2 flex h-full items-center gap-4 lg:ml-4">
                     {isLoggedIn ? (
                         <UserCard image={userMetadata?.image} name={userMetadata?.name} />
                     ) : (
-                        <InternalLink variant="filled" href="/auth/signin">
-                            Zaloguj się
-                        </InternalLink>
+                        <Link href="/auth/signin">
+                            <a>
+                                <div className="flex items-center gap-2 border-secondary sm:border-b-2">
+                                    <MdLogin className="text-2xl" />
+                                    <span className="hidden text-lg sm:block">Zaloguj się</span>
+                                </div>
+                            </a>
+                        </Link>
                     )}
                     <Hamburger isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
                 </div>

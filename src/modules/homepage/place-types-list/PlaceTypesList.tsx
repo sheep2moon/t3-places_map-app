@@ -4,7 +4,7 @@ import HorizontalLine from "../../common/HorizontalLine";
 import LoadingSpinner from "../../common/LoadingSpinner";
 import PlaceTypeIcon from "../../place/PlaceTypeIcon";
 
-const PlaceTypesTabs = () => {
+const PlaceTypesList = () => {
     const placeTypes = trpc.useQuery(["places.getPlaceTypes"]);
 
     if (placeTypes.isLoading) return <LoadingSpinner />;
@@ -27,4 +27,4 @@ const PlaceTypesTabs = () => {
     );
 };
 
-export default PlaceTypesTabs;
+export default PlaceTypesList;
