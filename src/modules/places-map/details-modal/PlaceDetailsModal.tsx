@@ -40,7 +40,7 @@ const PlaceDetailsModal = () => {
         <div className=" z-[99] ">
             <ModalContainer isModalOpen={isPlaceModalOpen} close={handleCloseModal}>
                 <div className="w-full  bg-light pb-4 dark:bg-primary">
-                    <div className="flex flex-col text-primary dark:text-light">
+                    <div className="flex flex-col pb-12 text-primary dark:text-light">
                         <div className="relative h-48 w-full">
                             {data?.images[0]?.id && <Image src={getPlaceImageSrc(data?.images[0]?.id)} alt="widok z miejsca" layout="fill" objectFit="cover" />}
                             <div className="absolute bottom-1 left-1">{data?.type && <PlaceTypeBadge size="sm" placeType={data.type} />}</div>
@@ -51,11 +51,16 @@ const PlaceDetailsModal = () => {
                             </div>
                         </div>
                         <div className="mx-1 mt-1 grid grid-cols-2 gap-1">
-                            <a className="flex w-full items-center justify-center gap-2 rounded-sm  bg-dark py-1 px-2" target="_blank" rel="noreferrer" href={`http://maps.google.com/maps?z=12&t=m&q=loc:${data.lat}+${data.lng}`}>
+                            <a
+                                className="flex w-full items-center justify-center gap-2 rounded-sm bg-secondary  py-1 px-2 dark:bg-dark"
+                                target="_blank"
+                                rel="noreferrer"
+                                href={`http://maps.google.com/maps?z=12&t=m&q=loc:${data.lat}+${data.lng}`}
+                            >
                                 <Image alt="ikona map google" src={googleMapsIcon} width={32} height={32} />
                                 <span className="text-xs font-bold">Otwórz w mapach Google</span>
                             </a>
-                            <button onClick={handleFlyToPlace} className="flex items-center justify-center gap-2 rounded-sm bg-dark px-2 py-1">
+                            <button onClick={handleFlyToPlace} className="flex items-center justify-center gap-2 rounded-sm bg-secondary px-2 py-1 dark:bg-dark">
                                 <Image src={mapMarkerIcon} alt="ikona mapy z punktem" width={32} height={32} />
                                 <span className="text-xs font-bold">Pokaż na mapie</span>
                             </button>
@@ -97,15 +102,6 @@ const PlaceDetailsModal = () => {
                             {session.status === "authenticated" && <AddOrEditReview placeId={currentPlaceId} />}
                             <Reviews placeId={currentPlaceId} />
                         </div>
-
-                        <p className="mt-8">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error ducimus repellendus, quibusdam praesentium perferendis, sint dolorum nulla natus officia animi eos soluta quos eveniet. Error, maxime. Similique
-                            quae repellat atque?
-                        </p>
-                        <p className="mt-8">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error ducimus repellendus, quibusdam praesentium perferendis, sint dolorum nulla natus officia animi eos soluta quos eveniet. Error, maxime. Similique
-                            quae repellat atque?
-                        </p>
                     </div>
                 </div>
             </ModalContainer>

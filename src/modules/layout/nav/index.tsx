@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { BiMapAlt } from "react-icons/bi";
 import { RiMapPinAddLine } from "react-icons/ri";
 import { VscLibrary } from "react-icons/vsc";
-import InternalLink from "../../common/links/InternalLink";
 import Hamburger from "./components/Hamburger";
 import Logo from "./components/Logo";
 import MobileMenu from "./components/MobileMenu";
@@ -32,7 +31,7 @@ const Nav = () => {
     const userMetadata = session.data?.user;
 
     return (
-        <header className="fixed inset-x-0 top-0 z-[999999] h-16 border-b border-dark/20 bg-light px-2 text-primary shadow-md dark:border-dark dark:bg-primary dark:text-light dark:shadow-black/40 lg:px-4">
+        <header className="fixed inset-x-0 top-0 z-[999999] h-16 border-b border-dark/20 bg-secondary px-2 text-primary shadow-md dark:border-dark dark:bg-primary dark:text-light dark:shadow-black/40 lg:px-4">
             <div className="mx-auto flex h-full max-w-screen-large items-center justify-between">
                 <Logo />
                 <MobileMenu navLinks={navLinks} isOpen={isMenuOpen} close={() => setIsMenuOpen(false)} />
