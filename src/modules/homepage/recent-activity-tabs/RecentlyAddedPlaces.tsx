@@ -14,13 +14,13 @@ type RecentlyAddedPlacesProps = {
 };
 
 const RecentlyAddedPlaces = ({ queryResult }: RecentlyAddedPlacesProps) => {
-    const { setCurrentPlaceId, setIsPlaceModalOpen, setShouldFly } = usePlacesMapStore(state => state);
+    const { setCurrentPlaceId, setIsPlaceModalOpen, setFlyTo } = usePlacesMapStore(state => state);
     const router = useRouter();
 
-    const handleViewPlace = (placeId: string) => {
-        setCurrentPlaceId(placeId);
+    const handleViewPlace = (place: Place) => {
+        setCurrentPlaceId(place.id);
         setIsPlaceModalOpen(true);
-        setShouldFly(true);
+        setFlyTo({ lat: place.lat, lng: place.lng });
         router.push("/places-map");
     };
 
@@ -39,7 +39,7 @@ const RecentlyAddedPlaces = ({ queryResult }: RecentlyAddedPlacesProps) => {
                         <p className="text-center text-lg">{place.displayName}</p>
                         <div className="flex items-center justify-between">
                             <PlaceTypeBadge placeType={place.type} size="sm" />
-                            <Button onClick={() => handleViewPlace(place.id)} variant="outline" className="text-base">
+                            <Button onClick={() => handleViewPlace(place)} variant="outline" className="text-base">
                                 Zobacz
                             </Button>
                         </div>

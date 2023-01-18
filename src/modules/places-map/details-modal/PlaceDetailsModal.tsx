@@ -20,8 +20,6 @@ import LoginEncourage from "./LoginEncourage";
 import { getPlaceImageSrc } from "../../../utils/getImageSrc";
 import { IoMdPricetags } from "react-icons/io";
 import { FcStackOfPhotos } from "react-icons/fc";
-import Button from "../../common/Button";
-import { GiConvergenceTarget } from "react-icons/gi";
 
 const PlaceDetailsModal = () => {
     const { currentPlaceId, isPlaceModalOpen, setIsPlaceModalOpen, setFlyTo } = usePlacesMapStore(state => state);
