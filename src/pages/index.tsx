@@ -1,7 +1,6 @@
 import type { NextPage } from "next";
-import Link from "next/link";
 import { BiMapAlt } from "react-icons/bi";
-import HorizontalLine from "../modules/common/HorizontalLine";
+import InternalLink from "../modules/common/links/InternalLink";
 import AddPlaceEncouragement from "../modules/homepage/add-place-encouragement";
 import RecentActivityTabs from "../modules/homepage/recent-activity-tabs";
 
@@ -15,13 +14,11 @@ const Home: NextPage = () => {
                 </h1>
                 <p className="mx-auto mt-4 max-w-xl sm:text-xl sm:leading-relaxed">Szukaj oraz dodawaj nowe miejsca warte uwagi. Znajdziesz tutaj doskonałe miejsce na biwak, ognisko lub nowe łowisko.</p>
                 <div className="mt-4 flex justify-center">
-                    <Link href="/places-map">
-                        <a className="text-md block w-fit rounded border border-blue-600 px-6 py-3 font-medium hover:bg-blue-600 hover:text-white focus:outline-none focus:ring active:bg-blue-500 dark:text-white sm:w-auto">
-                            <div className="flex items-center gap-1">
-                                <BiMapAlt className="text-2xl" /> Zobacz mape
-                            </div>
-                        </a>
-                    </Link>
+                    <InternalLink href="/places-map" variant="filled">
+                        <div className="flex items-center gap-1">
+                            <BiMapAlt className="text-2xl" /> Zobacz mape
+                        </div>
+                    </InternalLink>
                 </div>
             </div>
             <RecentActivityTabs />

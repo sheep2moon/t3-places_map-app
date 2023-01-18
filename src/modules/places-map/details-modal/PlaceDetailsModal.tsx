@@ -33,7 +33,7 @@ const PlaceDetailsModal = () => {
     return (
         <div className=" z-[99] ">
             <ModalContainer isModalOpen={isPlaceModalOpen} close={handleCloseModal}>
-                <div className="w-full">
+                <div className="w-full  bg-light pb-4 dark:bg-primary">
                     <div className="flex flex-col text-primary dark:text-light">
                         <div className="relative h-48 w-full">
                             {data?.images[0]?.id && <Image src={getPlaceImageSrc(data?.images[0]?.id)} alt="widok z miejsca" layout="fill" objectFit="cover" />}

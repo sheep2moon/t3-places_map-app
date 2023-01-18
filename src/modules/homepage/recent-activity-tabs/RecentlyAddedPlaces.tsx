@@ -31,7 +31,7 @@ const RecentlyAddedPlaces = ({ queryResult }: RecentlyAddedPlacesProps) => {
             </div>
         );
     return (
-        <div className="grid h-full  w-full gap-2 overflow-x-auto overflow-y-scroll lg:grid-cols-3">
+        <div className="grid h-full  w-full gap-2 overflow-x-auto overflow-y-auto lg:grid-cols-3">
             {queryResult.data?.map(place => (
                 <div key={place.id} className="relative z-0 h-full min-h-[12rem] w-full min-w-[260px] max-w-md rounded-md text-light shadow-md shadow-black/30 dark:shadow-black/60">
                     {place.images[0] && <Image className="rounded-md object-cover" alt="" src={getPlaceImageSrc(place.images[0].id)} layout="fill" />}
@@ -39,7 +39,7 @@ const RecentlyAddedPlaces = ({ queryResult }: RecentlyAddedPlacesProps) => {
                         <p className="text-center text-lg">{place.displayName}</p>
                         <div className="flex items-center justify-between">
                             <PlaceTypeBadge placeType={place.type} size="sm" />
-                            <Button onClick={() => handleViewPlace(place.id)} variant="alternative" className="text-base">
+                            <Button onClick={() => handleViewPlace(place.id)} variant="outline" className="text-base">
                                 Zobacz
                             </Button>
                         </div>

@@ -40,7 +40,7 @@ const CustomTab = ({ children }: { children: React.ReactNode }) => {
             className={({ selected }) =>
                 clsx(
                     "w-full rounded-lg py-2.5 text-sm font-medium leading-5 shadow shadow-dark/40 ring-white ring-opacity-60 ring-offset-1 ring-offset-blue-400 focus:outline-none focus:ring-2 lg:text-base",
-                    { "bg-white  font-bold dark:text-dark": selected },
+                    { "bg-white/[0.12] font-bold dark:text-secondary": selected },
                     { "text-dark hover:bg-white/[0.12] hover:text-secondary dark:text-light": !selected }
                 )
             }

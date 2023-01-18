@@ -9,7 +9,6 @@ import SearchPlaceTypeSelect from "./SearchPlaceTypeSelect";
 const PlacesSearch = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedPlaceTypeTitle, setSelectedPlaceTypeTitle] = useState("");
-
     const [searchQuery, setSearchQuery] = useState("");
     const debouncedQuery = useDebounce(searchQuery, 500);
     // const [isResultsVisible, setIsResultsVisible] = useState(false);
@@ -19,6 +18,7 @@ const PlacesSearch = () => {
     };
     const close = () => {
         setIsModalOpen(false);
+        setSearchQuery("");
     };
 
     return (

@@ -5,7 +5,6 @@ import LoadingSpinner from "../../../common/LoadingSpinner";
 import TimeBadge from "../../../common/badges/TimeBadge";
 import UserAvatar from "../../../common/UserAvatar";
 import HorizontalLine from "../../../common/HorizontalLine";
-import { GiStarsStack } from "react-icons/gi";
 import { MdReviews } from "react-icons/md";
 
 type ReviewsProps = {
@@ -42,7 +41,7 @@ const Reviews = ({ placeId }: ReviewsProps) => {
                         </div>
                         <TimeBadge>{review.createdAt.toLocaleString()}</TimeBadge>
                     </div>
-                    <div className="flex rounded-sm p-1 text-xs dark:bg-primary/50 ">{review.comment}</div>
+                    <div className="flex rounded-sm p-1 text-base dark:bg-primary/50 ">{review.comment}</div>
                 </div>
             ))}
         </div>

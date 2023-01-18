@@ -4,7 +4,6 @@ import React from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ImageZoomModal from "../places-map/details-modal/ImageZoomModal";
-import Footer from "./footer";
 import Nav from "./nav";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
@@ -23,7 +22,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
             <ImageZoomModal />
 
-            <Footer />
+            {/* <Footer /> */}
 
             <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
             <ToastContainer />

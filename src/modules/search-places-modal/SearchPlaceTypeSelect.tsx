@@ -17,7 +17,7 @@ const SearchPlaceTypeSelect = ({ selectedPlaceTypeTitle, setSelectedPlaceTypeTit
     return (
         <RadioGroup value={selectedPlaceTypeTitle} onChange={setSelectedPlaceTypeTitle}>
             <div className="flex flex-col gap-2">
-                <RadioGroup.Label className=" text-left text-xl">Typ miejsca: {selectedPlaceTypeTitle || "dowolne"}</RadioGroup.Label>
+                <RadioGroup.Label className=" text-left text-lg small:text-xl">Typ miejsca: {selectedPlaceTypeTitle || "dowolne"}</RadioGroup.Label>
                 <div className="flex gap-2">
                     <RadioGroup.Option value="">
                         {({ checked }) => (

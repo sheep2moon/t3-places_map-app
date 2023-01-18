@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import { AiOutlineRight } from "react-icons/ai";
@@ -19,7 +18,6 @@ const SearchResults = ({ query, close }: SearchResultsProps) => {
     const searchResults = trpc.useQuery(["places.getFilteredPlaces", { query }]);
     const { setCurrentPlaceId, setIsPlaceModalOpen, setShouldFly } = usePlacesMapStore(store => store);
     const router = useRouter();
-    if (searchResults.isLoading) return <LoadingSpinner />;
 
     const handleGoToPlace = (placeId: string) => {
         setCurrentPlaceId(placeId);
@@ -29,27 +27,30 @@ const SearchResults = ({ query, close }: SearchResultsProps) => {
         router.push("/places-map");
     };
 
+    if (searchResults.isLoading) return <LoadingSpinner />;
     return (
         <div className="mt-4 flex flex-col items-start">
             {searchResults.data?.map(result => (
                 <div key={result.id} className="flex w-full  rounded-sm p-2 dark:bg-black/30">
-                    <div className="relative aspect-square h-20">
+                    <div className="relative my-auto aspect-square h-16 small:h-20">
                         <Image layout="fill" alt="podgląd miejsca" src={getPlaceImageSrc(result.images[0]?.id || "")} />
                     </div>
-                    <div className="ml-4 flex flex-col items-start ">
+                    <div className="ml-2 flex flex-col items-start small:ml-4 ">
+                        <div className="flex items-center gap-2">
+                            <span className="text-left text-lg small:text-2xl">{result.displayName}</span>
+                        </div>
                         <div className="flex items-center gap-2">
                             <PlaceTypeIcon size="sm" placeType={result.type} />
-                            <span className="text-2xl">{result.displayName}</span>
+                            {result.isPaid ? <span className="text-rose-400">Płatne $</span> : <span className="text-emerald-400">Darmowe</span>}
                         </div>
-                        <div className="ml-10">{result.isPaid ? <span className="text-rose-400">Płatne $</span> : <span className="text-emerald-400">Darmowe</span>}</div>
-                        <div className="ml-10 flex items-center gap-1">
+                        <div className="flex items-center gap-1">
                             <span>Ocena</span>
                             <RatingBadge reviews={result.reviews} />
                             <span className="ml-2">({result.reviews.length} ocen)</span>
                         </div>
                     </div>
-                    <button onClick={() => handleGoToPlace(result.id)} className="my-auto ml-auto mr-4">
-                        <AiOutlineRight className="text-4xl" />
+                    <button onClick={() => handleGoToPlace(result.id)} className="my-auto ml-auto pr-2 small:pr-4">
+                        <AiOutlineRight className="text-2xl small:text-4xl" />
                     </button>
                 </div>
             ))}
