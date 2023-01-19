@@ -11,7 +11,7 @@ import HorizontalLine from "../../common/HorizontalLine";
 import LoadingSpinner from "../../common/LoadingSpinner";
 
 const RecentlyAddedPlaces = () => {
-    const recentlyAddedPlaces = trpc.useQuery(["places.getRecentlyAddedPlaces"]);
+    const { data, isLoading } = trpc.useQuery(["places.getRecentlyAddedPlaces"]);
     const { setCurrentPlaceId, setIsPlaceModalOpen, setFlyTo } = usePlacesMapStore(state => state);
     const router = useRouter();
 
@@ -22,19 +22,18 @@ const RecentlyAddedPlaces = () => {
         router.push("/places-map");
     };
 
-    if (recentlyAddedPlaces.isLoading)
-        return (
-            <div className="relative h-full w-full">
-                <LoadingSpinner />
-            </div>
-        );
     return (
         <div className="mt-8 flex flex-col">
             <HorizontalLine>
                 <h2 className="text-lg font-bold md:text-xl lg:text-2xl">Ostatnio dodane miejsca</h2>
             </HorizontalLine>
+            {isLoading && (
+                <div className="relative h-48 w-full">
+                    <LoadingSpinner />
+                </div>
+            )}
             <div className="mt-4 grid h-full w-full gap-2 px-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                {recentlyAddedPlaces.data?.map(place => (
+                {data?.map(place => (
                     <div key={place.id} className="relative h-full min-h-[12rem] w-full min-w-[220px] max-w-md rounded-md text-light shadow-md shadow-black/30 dark:shadow-black/60">
                         {place.images[0] && <Image className="rounded-md object-cover" alt="" src={getPlaceImageSrc(place.images[0].id)} layout="fill" />}
                         <div className="absolute inset-0 z-10 flex w-full flex-col justify-between rounded-md bg-black/60 p-2 ">

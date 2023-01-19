@@ -27,12 +27,11 @@ const Home: NextPage = () => {
             <RecentlyAddedPlaces />
             <RecentlyAddedReviews />
             <AddPlaceEncouragement />
-            <p className="my-12">
+            <p className="my-12 px-4">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid nam illo architecto unde tempore magni expedita, beatae doloribus veniam nihil culpa sapiente, sequi cum? Voluptate temporibus sunt quis accusamus quo. Lorem
                 ipsum dolor, sit amet consectetur adipisicing elit. Quod sit vero quisquam illum rerum error nostrum saepe, perspiciatis tempore eos quis consectetur iure in ut soluta, ea animi eveniet iste!
             </p>
         </div>
     );
 };
-
 export default Home;
