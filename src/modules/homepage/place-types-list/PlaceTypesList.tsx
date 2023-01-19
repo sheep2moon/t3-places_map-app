@@ -12,7 +12,7 @@ const PlaceTypesList = () => {
     return (
         <div className="mx-auto mt-8 flex flex-col items-center">
             <HorizontalLine>
-                <h2 className="text-lg font-bold md:text-xl lg:text-2xl">Czego poszukujesz?</h2>
+                <h2 className="text-lg font-bold md:text-xl lg:text-2xl">Zobacz miejsca z danej kategorii</h2>
             </HorizontalLine>
             <div className="my-8 flex gap-8">
                 {placeTypes.data?.map(placeType => (

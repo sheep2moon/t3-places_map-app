@@ -31,7 +31,7 @@ const PlaceMarker = ({ place }: PlaceMarkerProps) => {
         <Marker icon={placeIcon} ref={markerRef} position={{ lat: place.lat, lng: place.lng }}>
             <Popup>
                 <div className="relative flex h-[140px] w-[160px] flex-col overflow-hidden rounded-md">
-                    <div className="absolute inset-0 z-10 bg-black/60 " />
+                    <div className="absolute inset-0 z-10 bg-dark/60 " />
                     {place.images[0] && <Image className="object-cover" src={getPlaceImageSrc(place.images[0]?.id)} alt="widok z miejsca" layout="fill" />}
 
                     <div className="absolute inset-0 z-20 flex flex-col items-center gap-1 p-1 text-light">
@@ -43,7 +43,7 @@ const PlaceMarker = ({ place }: PlaceMarkerProps) => {
                         </div>
                         <span className="max-h-15 overflow-hidden overflow-ellipsis break-words text-center text-base leading-5">{place.displayName}</span>
 
-                        <Button className="mx-auto mt-auto flex justify-between gap-2 " variant="outline" onClick={handleOpenModal}>
+                        <Button className="mx-auto mt-auto flex justify-between gap-2 " variant="filled" onClick={handleOpenModal}>
                             Szczegóły
                             <FaArrowRight />
                         </Button>

@@ -4,6 +4,8 @@ import InternalLink from "../modules/common/links/InternalLink";
 import AddPlaceEncouragement from "../modules/homepage/add-place-encouragement";
 import PlaceTypesList from "../modules/homepage/place-types-list/PlaceTypesList";
 import RecentActivityTabs from "../modules/homepage/recent-activity-tabs";
+import RecentlyAddedPlaces from "../modules/homepage/recent-activity-tabs/RecentlyAddedPlaces";
+import RecentlyAddedReviews from "../modules/homepage/recent-activity-tabs/RecentlyAddedReviews";
 
 const Home: NextPage = () => {
     return (
@@ -23,7 +25,8 @@ const Home: NextPage = () => {
                 </div>
             </div>
             <PlaceTypesList />
-            <RecentActivityTabs />
+            <RecentlyAddedPlaces />
+            <RecentlyAddedReviews />
             <AddPlaceEncouragement />
             <p className="my-12">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid nam illo architecto unde tempore magni expedita, beatae doloribus veniam nihil culpa sapiente, sequi cum? Voluptate temporibus sunt quis accusamus quo. Lorem

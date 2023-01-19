@@ -10,7 +10,12 @@ const RecentActivityTabs = () => {
     const recentlyAddedPlaces = trpc.useQuery(["places.getRecentlyAddedPlaces"]);
     const recentlyAddedReviews = trpc.useQuery(["places.getRecentlyAddedReviews"]);
 
-    return <div className="rounded-md pt-8 "></div>;
+    return (
+        <div className="rounded-md pt-8 ">
+            <RecentlyAddedPlaces queryResult={recentlyAddedPlaces} />
+            <RecentlyAddedReviews queryResult={recentlyAddedReviews} />
+        </div>
+    );
 };
 
 export default RecentActivityTabs;
