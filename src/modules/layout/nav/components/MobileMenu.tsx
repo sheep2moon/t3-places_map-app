@@ -20,11 +20,9 @@ const MobileMenu = ({ navLinks, isOpen, close }: MobileMenuProps) => {
                 <div className="flex flex-col gap-8">
                     <div className="grid gap-4">
                         {navLinks.map(link => (
-                            <Link href={link.href} key={link.title}>
-                                <a onClick={close} className="flex items-center gap-2 text-3xl">
-                                    {link.icon}
-                                    <span>{link.title}</span>
-                                </a>
+                            <Link href={link.href} key={link.title} onClick={close} className="flex items-center gap-2 text-3xl">
+                                {link.icon}
+                                <span>{link.title}</span>
                             </Link>
                         ))}
                     </div>

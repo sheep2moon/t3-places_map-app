@@ -14,10 +14,8 @@ const UserPlace = ({ place, placeType }: UserPlaceProps) => {
         <div className="flex w-full items-center rounded-sm bg-black/20 py-1 px-2">
             <PlaceTypeIcon placeType={placeType} size="sm" />
             <div className="ml-4">{place.displayName}</div>
-            <Link href={`/user-places/${place.id}`}>
-                <a className="ml-auto px-3">
-                    <FaArrowRight />
-                </a>
+            <Link href={`/user-places/${place.id}`} className="ml-auto px-3">
+                <FaArrowRight />
             </Link>
         </div>
     );

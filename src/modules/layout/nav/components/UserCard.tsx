@@ -1,5 +1,5 @@
 import { Menu, Transition } from "@headlessui/react";
-import { signOut, useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import Link from "next/link";
 import React, { Fragment } from "react";
 import Button from "../../../common/Button";
@@ -40,19 +40,15 @@ const UserCard = ({ name, image }: UserCardProps) => {
                                 <span>{name}</span>
                             </div>
                             <Menu.Item>
-                                <Link href="/profile">
-                                    <a className="flex items-center gap-2 p-1 hover:bg-light/10">
-                                        <AiFillProfile className="text-secondary" />
-                                        <span>Profil</span>
-                                    </a>
+                                <Link className="flex items-center gap-2 p-1 hover:bg-light/10" href="/profile">
+                                    <AiFillProfile className="text-secondary" />
+                                    <span>Profil</span>
                                 </Link>
                             </Menu.Item>
                             <Menu.Item>
-                                <Link href="/user/library">
-                                    <a className="flex items-center gap-2 p-1 hover:bg-light/10">
-                                        <MdFavorite className="text-secondary" />
-                                        <span>Biblioteka</span>
-                                    </a>
+                                <Link className="flex items-center gap-2 p-1 hover:bg-light/10" href="/user/library">
+                                    <MdFavorite className="text-secondary" />
+                                    <span>Biblioteka</span>
                                 </Link>
                             </Menu.Item>
                             <Menu.Item>

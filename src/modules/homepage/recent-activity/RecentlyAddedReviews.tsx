@@ -4,11 +4,7 @@ import { trpc } from "../../../utils/trpc";
 import TimeBadge from "../../common/badges/TimeBadge";
 import UserBadge from "../../common/badges/UserBadge";
 import HorizontalLine from "../../common/HorizontalLine";
-import LoadingSpinner from "../../common/LoadingSpinner";
 import BlockSkeleton from "../../common/skeletons/BlockSkeleton";
-import CardSkeleton from "../../common/skeletons/CardSkeleton";
-import LineSkeleton from "../../common/skeletons/LineSkeleton";
-import TextSkeleton from "../../common/skeletons/TextSkeleton";
 import PlaceTypeIcon from "../../place/PlaceTypeIcon";
 
 const RecentlyAddedReviews = () => {

@@ -42,12 +42,10 @@ const Nav = () => {
                         <UserCard image={userMetadata?.image} name={userMetadata?.name} />
                     ) : (
                         <Link href="/auth/signin">
-                            <a>
-                                <div className="flex items-center gap-2 border-secondary sm:border-b-2">
-                                    <MdLogin className="text-2xl" />
-                                    <span className="hidden text-lg sm:block">Zaloguj się</span>
-                                </div>
-                            </a>
+                            <div className="flex items-center gap-2 rounded-md p-1 sm:border-b-2 sm:bg-secondary sm:text-dark">
+                                <MdLogin className="text-2xl" />
+                                <span className="hidden text-base font-semibold sm:block sm:pr-2">Zaloguj się</span>
+                            </div>
                         </Link>
                     )}
                     <Hamburger isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
