@@ -19,6 +19,7 @@ import LoginEncourage from "./LoginEncourage";
 import { getPlaceImageSrc } from "../../../utils/getImageSrc";
 import { IoMdPricetags } from "react-icons/io";
 import { FcStackOfPhotos } from "react-icons/fc";
+import PlaceDetailsModalSkeleton from "./PlaceDetailsModalSkeleton";
 
 const PlaceDetailsModal = () => {
     const { currentPlaceId, isPlaceModalOpen, setIsPlaceModalOpen } = usePlacesMapStore(state => state);
@@ -35,7 +36,7 @@ const PlaceDetailsModal = () => {
             <ModalContainer isModalOpen={isPlaceModalOpen} close={handleCloseModal}>
                 <div className="w-full bg-light pb-4 dark:bg-primary">
                     <div className="flex flex-col pb-12 text-primary dark:text-light">
-                        {isLoading && <div>Skeleton</div>}
+                        {isLoading && <PlaceDetailsModalSkeleton />}
                         {!isLoading && data && <ModalContent data={data} />}
                     </div>
                 </div>

@@ -13,7 +13,6 @@ type ReviewsProps = {
 
 const Reviews = ({ placeId }: ReviewsProps) => {
     const { data, isLoading } = trpc.useQuery(["places.getPlaceReviews", { placeId }]);
-    if (isLoading) return <LoadingSpinner />;
     return (
         <div className="mt-8">
             <div className="flex w-full justify-center text-xs text-primary dark:text-light">
@@ -28,6 +27,11 @@ const Reviews = ({ placeId }: ReviewsProps) => {
                     <span>To miejsce nie ma jeszcze żadnych opinii</span>
                 )}
             </div>
+            {isLoading && (
+                <div className="relative h-48 w-full">
+                    <LoadingSpinner />
+                </div>
+            )}
             {data?.map(review => (
                 <div key={review.id} className="mt-2 rounded-sm bg-primary/5 p-2 dark:bg-black/20">
                     <div className="mb-2 flex items-center justify-between ">

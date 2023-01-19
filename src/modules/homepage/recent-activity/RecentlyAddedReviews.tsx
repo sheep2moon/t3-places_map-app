@@ -5,6 +5,10 @@ import TimeBadge from "../../common/badges/TimeBadge";
 import UserBadge from "../../common/badges/UserBadge";
 import HorizontalLine from "../../common/HorizontalLine";
 import LoadingSpinner from "../../common/LoadingSpinner";
+import BlockSkeleton from "../../common/skeletons/BlockSkeleton";
+import CardSkeleton from "../../common/skeletons/CardSkeleton";
+import LineSkeleton from "../../common/skeletons/LineSkeleton";
+import TextSkeleton from "../../common/skeletons/TextSkeleton";
 import PlaceTypeIcon from "../../place/PlaceTypeIcon";
 
 const RecentlyAddedReviews = () => {
@@ -15,11 +19,7 @@ const RecentlyAddedReviews = () => {
             <HorizontalLine>
                 <h2 className="text-lg font-bold md:text-xl lg:text-2xl">Ostatnie recenzje</h2>
             </HorizontalLine>
-            {isLoading && (
-                <div className="relative h-48 w-full">
-                    <LoadingSpinner />
-                </div>
-            )}
+            {isLoading && <LoadingSkeleton />}
             <div className="mt-4 grid h-full w-full gap-2 px-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 {data?.map(review => (
                     <div key={review.id} className="flex h-full min-h-[12rem] w-full min-w-[260px] max-w-md flex-col justify-between rounded-md border border-secondary/10 bg-light/20 p-2 shadow-md dark:bg-dark">
@@ -46,3 +46,22 @@ const RecentlyAddedReviews = () => {
 };
 
 export default RecentlyAddedReviews;
+
+const LoadingSkeleton = () => {
+    return (
+        <div className="mt-4 grid h-48 w-full flex-wrap gap-2 overflow-hidden px-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            <div className="h-48 w-full min-w-[220px] max-w-md">
+                <BlockSkeleton />
+            </div>
+            <div className="h-48 w-full min-w-[220px] max-w-md">
+                <BlockSkeleton />
+            </div>
+            <div className="h-48 w-full min-w-[220px] max-w-md">
+                <BlockSkeleton />
+            </div>
+            <div className="h-48 w-full min-w-[220px] max-w-md">
+                <BlockSkeleton />
+            </div>
+        </div>
+    );
+};
