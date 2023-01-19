@@ -3,7 +3,6 @@ import { BiMapAlt } from "react-icons/bi";
 import InternalLink from "../modules/common/links/InternalLink";
 import AddPlaceEncouragement from "../modules/homepage/add-place-encouragement";
 import PlaceTypesList from "../modules/homepage/place-types-list/PlaceTypesList";
-import RecentActivityTabs from "../modules/homepage/recent-activity-tabs";
 import RecentlyAddedPlaces from "../modules/homepage/recent-activity-tabs/RecentlyAddedPlaces";
 import RecentlyAddedReviews from "../modules/homepage/recent-activity-tabs/RecentlyAddedReviews";
 

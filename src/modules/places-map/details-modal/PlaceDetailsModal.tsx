@@ -3,7 +3,6 @@ import googleMapsIcon from "../../../assets/google-maps-icon.png";
 import mapMarkerIcon from "../../../assets/map-marker-icon.svg";
 import { inferQueryOutput, trpc } from "../../../utils/trpc";
 import { usePlacesMapStore } from "../../../zustand/placesMapStore";
-import LoadingSpinner from "../../common/LoadingSpinner";
 import ImageGallery from "./ImageGallery";
 import Reviews from "./reviews/Reviews";
 import TimeBadge from "../../common/badges/TimeBadge";
@@ -20,10 +19,9 @@ import LoginEncourage from "./LoginEncourage";
 import { getPlaceImageSrc } from "../../../utils/getImageSrc";
 import { IoMdPricetags } from "react-icons/io";
 import { FcStackOfPhotos } from "react-icons/fc";
-import { UseQueryResult } from "react-query";
 
 const PlaceDetailsModal = () => {
-    const { currentPlaceId, isPlaceModalOpen, setIsPlaceModalOpen, setFlyTo } = usePlacesMapStore(state => state);
+    const { currentPlaceId, isPlaceModalOpen, setIsPlaceModalOpen } = usePlacesMapStore(state => state);
     const { data, isLoading } = trpc.useQuery(["places.getPlaceDetails", { placeId: currentPlaceId }]);
 
     // if (isLoading || !data) return <LoadingSpinner />;
