@@ -35,7 +35,7 @@ const ImageInput = ({ placeId, refetch }: InputFileProps) => {
     return (
         <div className="w-full">
             <div className="relative aspect-square w-full rounded-md bg-light/5">
-                <input className="absolute inset-0 z-10 opacity-0" type="file" onChange={handleFileChange} />
+                <input className="absolute inset-0 z-10 cursor-pointer opacity-0" type="file" onChange={handleFileChange} />
                 {file ? (
                     <div className="relative aspect-square w-full border">
                         <Image src={URL.createObjectURL(file)} alt="podgląd" layout="fill" />

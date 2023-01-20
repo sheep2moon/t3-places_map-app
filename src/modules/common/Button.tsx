@@ -15,10 +15,10 @@ const Button = ({ children, className, isLoading = false, variant = "filled", ..
             className={clsx(
                 "relative flex h-8  items-center justify-center rounded-sm px-1 text-base transition duration-200 disabled:opacity-50",
                 {
-                    " mr-2 mb-2 rounded-lg bg-secondary px-5 py-2.5 text-sm font-medium text-dark hover:bg-white focus:outline-none focus:ring-4 focus:ring-secondary dark:focus:ring-secondary": variant === "filled",
-                    "mr-2 mb-2 rounded-lg border border-purple-700 px-5 py-2.5 text-center text-sm font-medium text-purple-700 hover:bg-purple-800 hover:text-white focus:outline-none focus:ring-4 focus:ring-purple-300 dark:border-purple-400 dark:text-purple-200 dark:hover:bg-purple-500 dark:hover:text-white dark:focus:ring-purple-900":
+                    "rounded-lg bg-secondary px-5 py-2.5 text-sm font-medium text-dark hover:bg-white focus:outline-none focus:ring-4 focus:ring-secondary dark:focus:ring-secondary": variant === "filled",
+                    "rounded-lg border border-purple-700 px-5 py-2.5 text-center text-sm font-medium text-purple-700 hover:bg-purple-800 hover:text-white focus:outline-none focus:ring-4 focus:ring-purple-300 dark:border-purple-400 dark:text-purple-200 dark:hover:bg-purple-500 dark:hover:text-white dark:focus:ring-purple-900":
                         variant === "secondary",
-                    "mr-2 mb-2 rounded-lg border border-secondary px-5 py-2.5 text-center text-sm font-medium text-secondary hover:bg-secondary hover:text-white focus:outline-none focus:ring-4 focus:ring-secondary dark:border-secondary dark:text-secondary dark:hover:bg-secondary  dark:hover:text-dark dark:focus:ring-secondary":
+                    "rounded-lg border border-secondary px-5 py-2.5 text-center text-sm font-medium text-secondary hover:bg-secondary hover:text-white focus:outline-none focus:ring-4 focus:ring-secondary dark:border-secondary dark:text-secondary dark:hover:bg-secondary  dark:hover:text-dark dark:focus:ring-secondary":
                         variant === "outline"
                 },
                 className

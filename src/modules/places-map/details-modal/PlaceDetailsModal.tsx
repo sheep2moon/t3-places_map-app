@@ -19,7 +19,10 @@ import LoginEncourage from "./LoginEncourage";
 import { getPlaceImageSrc } from "../../../utils/getImageSrc";
 import { IoMdPricetags } from "react-icons/io";
 import { FcStackOfPhotos } from "react-icons/fc";
-import PlaceDetailsModalSkeleton from "./PlaceDetailsModalSkeleton";
+import ImageSkeleton from "../../common/skeletons/ImageSkeleton";
+import CardSkeleton from "../../common/skeletons/CardSkeleton";
+import TextSkeleton from "../../common/skeletons/TextSkeleton";
+import LineSkeleton from "../../common/skeletons/LineSkeleton";
 
 const PlaceDetailsModal = () => {
     const { currentPlaceId, isPlaceModalOpen, setIsPlaceModalOpen } = usePlacesMapStore(state => state);
@@ -123,5 +126,29 @@ const ModalContent = ({ data }: ModalContentProps) => {
                 <Reviews placeId={currentPlaceId} />
             </div>
         </>
+    );
+};
+
+const PlaceDetailsModalSkeleton = () => {
+    return (
+        <div className="w-full" role="status">
+            <div className="h-48">
+                <ImageSkeleton />
+            </div>
+            <div className="flex flex-col gap-4 px-4">
+                <CardSkeleton />
+                <LineSkeleton />
+                <TextSkeleton />
+                <LineSkeleton />
+                <div className="grid h-36 grid-cols-3 gap-2 py-2">
+                    <ImageSkeleton />
+                    <ImageSkeleton />
+                    <ImageSkeleton />
+                </div>
+                <LineSkeleton />
+                <TextSkeleton />
+            </div>
+            <span className="sr-only">Wczytywanie...</span>
+        </div>
     );
 };

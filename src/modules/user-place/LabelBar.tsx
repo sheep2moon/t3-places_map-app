@@ -12,16 +12,16 @@ export type LabelBarProps = {
 
 const LabelBar = ({ label, isEditing, handleCancel, handleEdit, handleConfirm }: LabelBarProps) => {
     return (
-        <div className="mt-2 flex items-center justify-between rounded-t-md bg-black/30 p-2">
+        <div className="mt-2 flex h-12 items-center justify-between rounded-t-md bg-black/30 p-2">
             <label htmlFor="description" className="">
                 {label}
             </label>
             {isEditing ? (
                 <div className="flex gap-1">
-                    <Button onClick={handleCancel} variant="secondary">
+                    <Button onClick={handleCancel} variant="filled">
                         Anuluj
                     </Button>
-                    <Button onClick={handleConfirm} variant="secondary">
+                    <Button onClick={handleConfirm} variant="filled">
                         Zapisz
                     </Button>
                 </div>

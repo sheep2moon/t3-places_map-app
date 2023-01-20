@@ -9,6 +9,7 @@ import type { Session } from "next-auth";
 import "../styles/globals.css";
 import Layout from "../modules/layout";
 import { ThemeProvider } from "next-themes";
+import { useEffect } from "react";
 
 const MyApp: AppType<{ session: Session | null }> = ({ Component, pageProps: { session, ...pageProps } }) => {
     return (
