@@ -1,5 +1,7 @@
+import { router } from "@trpc/server";
 import clsx from "clsx";
-import React from "react";
+import { NextRouter, useRouter } from "next/router";
+import React, { useEffect } from "react";
 import { trpc } from "../../utils/trpc";
 import { usePlacesMapStore } from "../../zustand/placesMapStore";
 import LoadingSpinner from "../common/LoadingSpinner";
@@ -13,11 +15,26 @@ import PlaceTypeIcon from "../place/PlaceTypeIcon";
 const PlaceTypeFilter = () => {
     const { data, isLoading } = trpc.useQuery(["places.getPlaceTypes"]);
     const { selectedTypeId, setSelectedTypeId } = usePlacesMapStore(state => state);
+    const router: NextRouter = useRouter();
 
     const handleSelectPlaceType = (typeId: string) => {
         if (selectedTypeId !== typeId) setSelectedTypeId(typeId);
         else setSelectedTypeId("");
     };
+
+    // useEffect(() => {
+    //     if (selectedTypeId) {
+    //         router.replace({ pathname: router.pathname, query: selectedTypeId }, undefined, { shallow: true });
+    //     }
+    // }, [selectedTypeId]);
+
+    useEffect(() => {
+        const typeId = router.query.typeId as string;
+        if (typeId) {
+            setSelectedTypeId(typeId);
+            router.replace({ pathname: router.pathname, query: "" }, undefined, { shallow: true });
+        }
+    }, []);
 
     if (isLoading) return <LoadingSpinner />;
     return (

@@ -18,7 +18,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             <Script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossOrigin=""></Script>
             <Nav />
 
-            <main className="flex flex-col items-center pt-16 text-primary    dark:text-light">{children}</main>
+            <main className="flex flex-col items-center pt-16 text-primary dark:text-light ">{children}</main>
 
             <ImageZoomModal />
 

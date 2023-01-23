@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { trpc } from "../../../utils/trpc";
 import HorizontalLine from "../../common/HorizontalLine";
@@ -14,15 +15,15 @@ const PlaceTypesList = () => {
             </HorizontalLine>
             <div className="my-8 flex gap-8">
                 {isLoading && (
-                    <div className="relative h-40 w-full">
+                    <div className="relative h-[148px]  w-full">
                         <LoadingSpinner />
                     </div>
                 )}
                 {data?.map(placeType => (
-                    <div key={placeType.id} className=" flex flex-col items-center gap-2">
+                    <Link href={`/places-map?typeId=${placeType.id}`} key={placeType.id} className=" flex flex-col items-center gap-2">
                         <PlaceTypeIcon placeType={placeType} size="lg" />
                         <p className="text-lg md:text-xl">{placeType.title}</p>
-                    </div>
+                    </Link>
                 ))}
             </div>
             {/* <HorizontalLine /> */}

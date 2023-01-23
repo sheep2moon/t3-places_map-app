@@ -31,7 +31,7 @@ const RecentlyAddedPlaces = () => {
             {isLoading && <LoadingSkeleton />}
             <div className="mt-4 grid h-full w-full gap-2 px-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 {data?.map(place => (
-                    <div key={place.id} className="relative h-full min-h-[12rem] w-full min-w-[220px] max-w-md rounded-md text-light shadow-md shadow-black/30 dark:shadow-black/60">
+                    <div key={place.id} className="relative h-48 w-full min-w-[220px] max-w-md rounded-md text-light shadow-md shadow-black/30 dark:shadow-black/60">
                         {place.images[0] && <Image className="rounded-md object-cover" alt="" src={getPlaceImageSrc(place.images[0].id)} layout="fill" />}
                         <div className="absolute inset-0 z-10 flex w-full flex-col justify-between rounded-md bg-black/60 p-2 ">
                             <p className="text-center text-lg">{place.displayName}</p>
@@ -54,16 +54,16 @@ export default RecentlyAddedPlaces;
 const LoadingSkeleton = () => {
     return (
         <div className="mt-4 grid h-48 w-full flex-wrap gap-2 overflow-hidden px-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            <div className="h-48 w-full min-w-[220px] max-w-md">
+            <div className="h-full w-full min-w-[220px] max-w-md">
                 <ImageSkeleton />
             </div>
-            <div className="h-48 w-full min-w-[220px] max-w-md">
+            <div className="h-full w-full min-w-[220px] max-w-md">
                 <ImageSkeleton />
             </div>
-            <div className="h-48 w-full min-w-[220px] max-w-md">
+            <div className="h-full w-full min-w-[220px] max-w-md">
                 <ImageSkeleton />
             </div>
-            <div className="h-48 w-full min-w-[220px] max-w-md">
+            <div className="h-full w-full min-w-[220px] max-w-md">
                 <ImageSkeleton />
             </div>
         </div>
