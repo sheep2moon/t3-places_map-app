@@ -1,5 +1,5 @@
 import { Review } from "@prisma/client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { trpc } from "../../../../utils/trpc";
 import Button from "../../../common/Button";
 import TextArea from "../../../common/TextArea";
@@ -15,6 +15,7 @@ const EditReview = ({ review }: EditReviewProps) => {
     const [currentRate, setCurrentRate] = useState(review.rate);
     const [isEdit, setIsEdit] = useState(false);
     const ctx = trpc.useContext();
+    const reviewInputRef = useRef<HTMLTextAreaElement>(null);
     const updateReviewMutation = trpc.useMutation(["protectedPlace.updateReview"], {
         onSuccess: () => {
             ctx.invalidateQueries("places.getPlaceReviews");
@@ -33,11 +34,11 @@ const EditReview = ({ review }: EditReviewProps) => {
         setCurrentRate(review.rate);
     }, [review]);
 
-    const handleUpdateReview = () => {
+    const handleUpdateReview = async () => {
         console.log(currentComment, review.comment);
 
         if (currentComment !== review.comment || currentRate !== review.rate) {
-            updateReviewMutation.mutateAsync({ comment: currentComment, rate: currentRate, reviewId: review.id });
+            await updateReviewMutation.mutateAsync({ comment: currentComment, rate: currentRate, reviewId: review.id });
         }
         setIsEdit(false);
     };
@@ -52,12 +53,19 @@ const EditReview = ({ review }: EditReviewProps) => {
         deleteReviewMutation.mutateAsync({ reviewId: review.id });
     };
 
+    const handleEdit = () => {
+        setIsEdit(true);
+        setTimeout(() => {
+            reviewInputRef?.current?.focus();
+        }, 20);
+    };
+
     return (
         <div className="mt-2">
             <span>Twoja opinia</span>
             <ReviewRating disabled={!isEdit} rate={currentRate} setRate={setCurrentRate} />
             <div>
-                <TextArea disabled={!isEdit} placeholder="Opisz w kilku słowach swoje doświadczenie z tym miejscem." name="comment" value={currentComment} handleChange={e => setCurrentComment(e.target.value)} />
+                <TextArea ref={reviewInputRef} disabled={!isEdit} placeholder="Opisz w kilku słowach swoje doświadczenie z tym miejscem." name="comment" value={currentComment} handleChange={e => setCurrentComment(e.target.value)} />
             </div>
             <div className="mt-1 flex w-full justify-between">
                 <Button onClick={handleDeleteReview} variant="filled" isLoading={deleteReviewMutation.isLoading}>
@@ -65,15 +73,15 @@ const EditReview = ({ review }: EditReviewProps) => {
                 </Button>
                 {isEdit ? (
                     <div className="flex gap-1">
-                        <Button onClick={handleCancelChanges} variant="filled">
+                        <Button className="w-24" onClick={handleCancelChanges} variant="filled">
                             Anuluj
                         </Button>
-                        <Button onClick={handleUpdateReview} variant="filled">
+                        <Button className="w-24" isLoading={updateReviewMutation.isLoading} onClick={handleUpdateReview} variant="filled">
                             Zapisz
                         </Button>
                     </div>
                 ) : (
-                    <Button onClick={() => setIsEdit(true)} variant="filled">
+                    <Button onClick={handleEdit} variant="filled">
                         Edytuj
                     </Button>
                 )}

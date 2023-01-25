@@ -29,7 +29,10 @@ export const authOptions: NextAuthOptions = {
             clientSecret: env.DISCORD_CLIENT_SECRET
         })
         // ...add more providers here
-    ]
+    ],
+    pages: {
+        signIn: "/auth/signin"
+    }
 };
 
 export default NextAuth(authOptions);
