@@ -10,6 +10,7 @@ import PlacesSearch from "../../search-places-modal/PlacesSearch";
 import UserCard from "./components/UserCard";
 import { MdLogin } from "react-icons/md";
 import Link from "next/link";
+import InternalLink from "../../common/links/InternalLink";
 
 export type NavLink = {
     title: string;
@@ -31,7 +32,7 @@ const Nav = () => {
     const userMetadata = session.data?.user;
 
     return (
-        <header className="fixed inset-x-0 top-0 z-[999999] h-16 border-b border-dark/20 bg-secondary px-2 text-primary shadow-md dark:border-dark dark:bg-primary dark:text-light dark:shadow-black/40 lg:px-4  ">
+        <header className="fixed inset-x-0 top-0 z-[999999] h-16 border-b border-dark/20 bg-indigo-900 px-2 text-light shadow-md dark:border-dark dark:bg-primary dark:text-light dark:shadow-black/40 lg:px-4  ">
             <div className="mx-auto flex h-full max-w-screen-large items-center justify-between">
                 <Logo />
                 <MobileMenu navLinks={navLinks} isOpen={isMenuOpen} close={() => setIsMenuOpen(false)} />
@@ -41,12 +42,12 @@ const Nav = () => {
                     {isLoggedIn ? (
                         <UserCard image={userMetadata?.image} name={userMetadata?.name} />
                     ) : (
-                        <Link href="/auth/signin">
-                            <div className="flex items-center gap-2 rounded-md p-1 sm:border-b-2 sm:bg-secondary sm:text-dark">
+                        <InternalLink href="/auth/signin">
+                            <div className="flex items-center gap-2 text-secondary">
                                 <MdLogin className="text-2xl" />
                                 <span className="hidden text-base font-semibold sm:block sm:pr-2">Zaloguj się</span>
                             </div>
-                        </Link>
+                        </InternalLink>
                     )}
                     <Hamburger isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
                 </div>

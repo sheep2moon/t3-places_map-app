@@ -10,7 +10,7 @@ const Home: NextPage = () => {
     return (
         <div className="mt-6 w-full max-w-screen-large">
             <div className="mx-auto mb-6 max-w-screen-lg p-2">
-                <h1 className="bg-gradient-to-r from-green-800 via-blue-500 to-purple-800 bg-clip-text pb-4 text-center text-3xl font-extrabold text-transparent dark:from-green-300 dark:to-purple-500 sm:text-5xl">
+                <h1 className="bg-gradient-to-r from-teal-800 via-indigo-500 to-indigo-800 bg-clip-text pb-4 text-center text-4xl font-extrabold text-transparent dark:from-indigo-600 dark:via-indigo-300 dark:to-indigo-500 sm:text-5xl">
                     Odkryj ciekawe miejsca.
                     <span className="sm:block"> Poszerz horyzonty. </span>
                 </h1>

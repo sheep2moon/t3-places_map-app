@@ -8,10 +8,10 @@ module.exports = {
                 "2xs": "0.6rem"
             },
             colors: {
-                primary: "#16213E",
+                primary: "#151235",
                 secondary: "#FAECD6",
                 light: "#F9F9F9",
-                dark: "#1A1A2E"
+                dark: "#0f0d26"
             },
             screens: {
                 "3xsmall": "320px",

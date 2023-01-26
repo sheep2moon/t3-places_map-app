@@ -1,7 +1,6 @@
 import React from "react";
 import { IoStar } from "react-icons/io5";
 import { trpc } from "../../../utils/trpc";
-import TimeBadge from "../../common/badges/TimeBadge";
 import UserBadge from "../../common/badges/UserBadge";
 import HorizontalLine from "../../common/HorizontalLine";
 import BlockSkeleton from "../../common/skeletons/BlockSkeleton";
@@ -18,16 +17,16 @@ const RecentlyAddedReviews = () => {
             {isLoading && <LoadingSkeleton />}
             <div className="mt-4 grid h-full w-full gap-2 px-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 {data?.map(review => (
-                    <div key={review.id} className="flex h-48 w-full min-w-[260px] max-w-md flex-col justify-between rounded-md border border-secondary/10 bg-light/20 p-2 shadow-md dark:bg-dark">
+                    <div key={review.id} className="flex h-48 w-full min-w-[260px] max-w-md flex-col justify-between rounded-md border border-secondary/10 bg-light p-2 shadow-md dark:bg-dark">
                         <span className="flex w-full items-center justify-between text-xs">
                             <UserBadge user={review.user} />
-                            <TimeBadge>{review.createdAt.toLocaleDateString()}</TimeBadge>
+                            <span className="flex items-center gap-1">
+                                <p className="text-lg font-bold">{review.rate}</p>
+                                <IoStar className="text-xl text-amber-400" />
+                            </span>
                         </span>
                         <HorizontalLine />
-                        <span className="flex items-center gap-2">
-                            <p>{review.rate}</p>
-                            <IoStar />
-                        </span>
+
                         <span>{review.comment}</span>
                         <div className="mt-auto flex items-center gap-1">
                             {review.Place?.type && <PlaceTypeIcon size="sm" placeType={review.Place.type} />}

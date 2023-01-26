@@ -13,7 +13,10 @@ type MobileMenuProps = {
 const MobileMenu = ({ navLinks, isOpen, close }: MobileMenuProps) => {
     return (
         <div
-            className={clsx("fixed inset-x-0 top-16 bottom-0 z-50 bg-gradient-to-br from-light to-secondary p-2 transition dark:from-primary dark:to-dark", { "translate-x-0": isOpen, "translate-x-full": !isOpen })}
+            className={clsx("fixed inset-x-0 top-16 bottom-0 z-50 bg-gradient-to-br from-light to-secondary p-2 text-dark transition dark:from-primary dark:to-dark dark:text-secondary", {
+                "translate-x-0": isOpen,
+                "translate-x-full": !isOpen
+            })}
             onClick={e => e.stopPropagation()}
         >
             <div className="flex h-full flex-col items-center justify-center gap-4">
@@ -21,7 +24,7 @@ const MobileMenu = ({ navLinks, isOpen, close }: MobileMenuProps) => {
                     <div className="grid gap-4">
                         {navLinks.map(link => (
                             <Link href={link.href} key={link.title} onClick={close} className="flex items-center gap-2 text-3xl">
-                                {link.icon}
+                                <span className="text-indigo-800 dark:text-indigo-400">{link.icon}</span>
                                 <span>{link.title}</span>
                             </Link>
                         ))}

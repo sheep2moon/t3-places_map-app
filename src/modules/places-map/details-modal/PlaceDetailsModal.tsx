@@ -79,13 +79,18 @@ const ModalContent = ({ data }: ModalContentProps) => {
                 </div>
             </div>
             <div className="mx-1 mt-1 grid grid-cols-2 gap-1">
-                <a className="flex w-full items-center justify-center gap-2 rounded-sm bg-secondary  py-1 px-2 dark:bg-dark" target="_blank" rel="noreferrer" href={`http://maps.google.com/maps?z=12&t=m&q=loc:${data.lat}+${data.lng}`}>
+                <a
+                    className="flex w-full items-center justify-center gap-2 rounded-sm border-2 border-indigo-900 py-1 px-2 dark:bg-dark"
+                    target="_blank"
+                    rel="noreferrer"
+                    href={`http://maps.google.com/maps?z=12&t=m&q=loc:${data.lat}+${data.lng}`}
+                >
                     <Image alt="ikona map google" src={googleMapsIcon} width={32} height={32} />
-                    <span className="text-xs font-bold">Otwórz w mapach Google</span>
+                    <span className="text-sm">Otwórz w mapach Google</span>
                 </a>
-                <button onClick={handleFlyToPlace} className="flex items-center justify-center gap-2 rounded-sm bg-secondary px-2 py-1 dark:bg-dark">
+                <button onClick={handleFlyToPlace} className="flex items-center justify-center gap-2 rounded-sm border-2 border-indigo-900  px-2 py-1 dark:bg-dark">
                     <Image src={mapMarkerIcon} alt="ikona mapy z punktem" width={32} height={32} />
-                    <span className="text-xs font-bold">Pokaż na mapie</span>
+                    <span className="text-sm">Pokaż na mapie</span>
                 </button>
             </div>
             <div className="mt-4 flex flex-col items-start px-4">

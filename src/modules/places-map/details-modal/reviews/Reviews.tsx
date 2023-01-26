@@ -33,7 +33,7 @@ const Reviews = ({ placeId }: ReviewsProps) => {
                 </div>
             )}
             {data?.map(review => (
-                <div key={review.id} className="mt-2 rounded-sm bg-primary/5 p-2 dark:bg-black/20">
+                <div key={review.id} className="mt-2 rounded-sm border border-indigo-200 bg-indigo-100 p-2 dark:border-indigo-900 dark:bg-black/20">
                     <div className="mb-2 flex items-center justify-between ">
                         <div className="flex items-center gap-2">
                             <UserAvatar size={6} image={review.user.image ?? ""} />
