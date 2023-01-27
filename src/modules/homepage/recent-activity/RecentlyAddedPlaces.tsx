@@ -16,7 +16,7 @@ type RecentlyAddedPlacesProps = {
 };
 
 const RecentlyAddedPlaces = ({ recentlyAddedPlaces }: RecentlyAddedPlacesProps) => {
-    const { data, isLoading } = trpc.useQuery(["places.getRecentlyAddedPlaces"]);
+    // const { data, isLoading } = trpc.useQuery(["places.getRecentlyAddedPlaces"]);
     const { setCurrentPlaceId, setIsPlaceModalOpen, setFlyTo } = usePlacesMapStore(state => state);
     const router = useRouter();
 
