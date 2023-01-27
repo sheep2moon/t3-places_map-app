@@ -1,3 +1,4 @@
+import { Place, PlaceType, Review, Image as ImageType, User } from "@prisma/client";
 import type { NextPage } from "next";
 import { BiMapAlt } from "react-icons/bi";
 import InternalLink from "../modules/common/links/InternalLink";
@@ -6,11 +7,19 @@ import PlaceTypesList from "../modules/homepage/place-types-list/PlaceTypesList"
 import RecentlyAddedPlaces from "../modules/homepage/recent-activity/RecentlyAddedPlaces";
 import RecentlyAddedReviews from "../modules/homepage/recent-activity/RecentlyAddedReviews";
 
-const Home: NextPage = () => {
+type HomeProps = {
+    placeTypes: PlaceType[];
+    recentlyAddedPlaces: string;
+    recentlyAddedReviews: string;
+};
+
+const Home: NextPage<HomeProps> = ({ placeTypes, recentlyAddedPlaces, recentlyAddedReviews }) => {
+    console.log("static props: !", placeTypes);
+
     return (
         <div className="mt-6 w-full max-w-screen-large">
             <div className="mx-auto mb-6 max-w-screen-lg p-2">
-                <h1 className="bg-gradient-to-r from-teal-800 via-indigo-500 to-indigo-800 bg-clip-text pb-4 text-center text-4xl font-extrabold text-transparent dark:from-indigo-600 dark:via-indigo-300 dark:to-indigo-500 sm:text-5xl">
+                <h1 className="bg-gradient-to-r  from-indigo-600 via-indigo-400 to-indigo-500 bg-clip-text pb-4 text-center text-4xl font-extrabold text-transparent sm:text-5xl">
                     Odkryj ciekawe miejsca.
                     <span className="sm:block"> Poszerz horyzonty. </span>
                 </h1>
@@ -23,9 +32,9 @@ const Home: NextPage = () => {
                     </InternalLink>
                 </div>
             </div>
-            <PlaceTypesList />
-            <RecentlyAddedPlaces />
-            <RecentlyAddedReviews />
+            <PlaceTypesList placeTypes={placeTypes} />
+            <RecentlyAddedPlaces recentlyAddedPlaces={JSON.parse(recentlyAddedPlaces)} />
+            <RecentlyAddedReviews recentlyAddedReviews={JSON.parse(recentlyAddedReviews)} />
             <AddPlaceEncouragement />
             <p className="my-12 px-4">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid nam illo architecto unde tempore magni expedita, beatae doloribus veniam nihil culpa sapiente, sequi cum? Voluptate temporibus sunt quis accusamus quo. Lorem
@@ -35,3 +44,31 @@ const Home: NextPage = () => {
     );
 };
 export default Home;
+
+export async function getStaticProps() {
+    const placeTypes = await prisma?.placeType.findMany();
+    const recentlyAddedPlaces = await prisma?.place.findMany({
+        take: 3,
+        include: {
+            type: true,
+            images: true
+        },
+        orderBy: [{ createdAt: "desc" }],
+        where: {
+            NOT: { images: { none: { id: undefined } } }
+        }
+    });
+    const recentlyAddedReviews = await prisma?.review.findMany({
+        take: 3,
+        include: { user: true, Place: { include: { images: true, type: true } } },
+        orderBy: [{ createdAt: "desc" }]
+    });
+
+    return {
+        props: {
+            placeTypes,
+            recentlyAddedPlaces: JSON.stringify(recentlyAddedPlaces),
+            recentlyAddedReviews: JSON.stringify(recentlyAddedReviews)
+        }
+    };
+}

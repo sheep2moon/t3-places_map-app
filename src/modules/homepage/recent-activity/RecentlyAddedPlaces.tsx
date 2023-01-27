@@ -1,4 +1,4 @@
-import { Place } from "@prisma/client";
+import { Image as ImageType, Place, PlaceType } from "@prisma/client";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
@@ -11,7 +11,11 @@ import HorizontalLine from "../../common/HorizontalLine";
 import LoadingSpinner from "../../common/LoadingSpinner";
 import ImageSkeleton from "../../common/skeletons/ImageSkeleton";
 
-const RecentlyAddedPlaces = () => {
+type RecentlyAddedPlacesProps = {
+    recentlyAddedPlaces: (Place & { type: PlaceType; images: ImageType[] })[];
+};
+
+const RecentlyAddedPlaces = ({ recentlyAddedPlaces }: RecentlyAddedPlacesProps) => {
     const { data, isLoading } = trpc.useQuery(["places.getRecentlyAddedPlaces"]);
     const { setCurrentPlaceId, setIsPlaceModalOpen, setFlyTo } = usePlacesMapStore(state => state);
     const router = useRouter();
@@ -28,9 +32,9 @@ const RecentlyAddedPlaces = () => {
             <HorizontalLine>
                 <h2 className="text-lg font-bold md:text-xl lg:text-2xl">Ostatnio dodane miejsca</h2>
             </HorizontalLine>
-            {isLoading && <LoadingSkeleton />}
+            {/* {isLoading && <LoadingSkeleton />} */}
             <div className="mt-4 grid h-full w-full gap-2 px-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                {data?.map(place => (
+                {recentlyAddedPlaces.map(place => (
                     <div key={place.id} className="relative h-48 w-full min-w-[220px] max-w-md rounded-md text-light shadow-md shadow-black/30 dark:shadow-black/60">
                         {place.images[0] && <Image className="rounded-md object-cover" alt="" src={getPlaceImageSrc(place.images[0].id)} layout="fill" />}
                         <div className="absolute inset-0 z-10 flex w-full flex-col justify-between rounded-md bg-black/60 p-2 ">

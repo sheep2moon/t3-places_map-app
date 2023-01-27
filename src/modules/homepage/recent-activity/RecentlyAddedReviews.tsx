@@ -1,3 +1,4 @@
+import { Place, PlaceType, Review, User, Image as ImageType } from "@prisma/client";
 import React from "react";
 import { IoStar } from "react-icons/io5";
 import { trpc } from "../../../utils/trpc";
@@ -6,7 +7,11 @@ import HorizontalLine from "../../common/HorizontalLine";
 import BlockSkeleton from "../../common/skeletons/BlockSkeleton";
 import PlaceTypeIcon from "../../place/PlaceTypeIcon";
 
-const RecentlyAddedReviews = () => {
+export type RecentlyAddedReviewsProps = {
+    recentlyAddedReviews: (Review & { user: User; Place: Place & { type: PlaceType; images: ImageType } })[];
+};
+
+const RecentlyAddedReviews = ({ recentlyAddedReviews }: RecentlyAddedReviewsProps) => {
     const { data, isLoading } = trpc.useQuery(["places.getRecentlyAddedReviews"]);
 
     return (
@@ -16,7 +21,7 @@ const RecentlyAddedReviews = () => {
             </HorizontalLine>
             {isLoading && <LoadingSkeleton />}
             <div className="mt-4 grid h-full w-full gap-2 px-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                {data?.map(review => (
+                {recentlyAddedReviews.map(review => (
                     <div key={review.id} className="flex h-48 w-full min-w-[260px] max-w-md flex-col justify-between rounded-md border border-secondary/10 bg-light p-2 shadow-md dark:bg-dark">
                         <span className="flex w-full items-center justify-between text-xs">
                             <UserBadge user={review.user} />
