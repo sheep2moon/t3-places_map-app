@@ -43,7 +43,7 @@ const PlaceTypeFilter = () => {
                     <li key={place.id} className="rounded-sm bg-dark/10 dark:bg-primary">
                         <button
                             className={clsx("flex h-full w-[160px] items-center rounded-t-lg border-b-2 border-transparent px-2 hover:border-indigo-400 hover:text-gray-600 dark:hover:text-gray-300", {
-                                "border-indigo-600 bg-indigo-200 text-primary hover:border-indigo-600 dark:border-secondary dark:text-gray-200": selectedTypeId === place.id
+                                "border border-indigo-600 bg-indigo-200 text-primary hover:border-indigo-600 dark:border-indigo-900 dark:bg-dark dark:text-gray-200": selectedTypeId === place.id
                             })}
                             onClick={() => handleSelectPlaceType(place.id)}
                         >

@@ -20,8 +20,8 @@ const Home: NextPage<HomeProps> = ({ placeTypes, recentlyAddedPlaces, recentlyAd
         <div className="mt-6 w-full max-w-screen-large">
             <div className="mx-auto mb-6 max-w-screen-lg p-2">
                 <h1 className="bg-gradient-to-r  from-indigo-600 via-indigo-400 to-indigo-500 bg-clip-text pb-4 text-center text-4xl font-extrabold text-transparent sm:text-5xl">
-                    Odkryj ciekawe miejsca.
-                    <span className="sm:block"> Poszerz horyzonty. </span>
+                    Tekst Górny
+                    <span className="block"> oraz dolny. </span>
                 </h1>
                 <p className="mx-auto mt-4 max-w-md px-4 sm:text-xl sm:leading-relaxed lg:max-w-xl">Szukaj oraz dodawaj nowe miejsca warte uwagi. Znajdziesz tutaj doskonałe miejsce na biwak, ognisko lub nowe łowisko.</p>
                 <div className="mt-4 flex justify-center">

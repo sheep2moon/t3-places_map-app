@@ -3,13 +3,10 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
 import { getPlaceImageSrc } from "../../../utils/getImageSrc";
-import { trpc } from "../../../utils/trpc";
 import { usePlacesMapStore } from "../../../zustand/placesMapStore";
 import PlaceTypeBadge from "../../common/badges/PlaceTypeBadge";
 import Button from "../../common/Button";
 import HorizontalLine from "../../common/HorizontalLine";
-import LoadingSpinner from "../../common/LoadingSpinner";
-import ImageSkeleton from "../../common/skeletons/ImageSkeleton";
 
 type RecentlyAddedPlacesProps = {
     recentlyAddedPlaces: (Place & { type: PlaceType; images: ImageType[] })[];
@@ -55,21 +52,21 @@ const RecentlyAddedPlaces = ({ recentlyAddedPlaces }: RecentlyAddedPlacesProps) 
 
 export default RecentlyAddedPlaces;
 
-const LoadingSkeleton = () => {
-    return (
-        <div className="mt-4 grid h-48 w-full flex-wrap gap-2 overflow-hidden px-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            <div className="h-full w-full min-w-[220px] max-w-md">
-                <ImageSkeleton />
-            </div>
-            <div className="h-full w-full min-w-[220px] max-w-md">
-                <ImageSkeleton />
-            </div>
-            <div className="h-full w-full min-w-[220px] max-w-md">
-                <ImageSkeleton />
-            </div>
-            <div className="h-full w-full min-w-[220px] max-w-md">
-                <ImageSkeleton />
-            </div>
-        </div>
-    );
-};
+// const LoadingSkeleton = () => {
+//     return (
+//         <div className="mt-4 grid h-48 w-full flex-wrap gap-2 overflow-hidden px-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+//             <div className="h-full w-full min-w-[220px] max-w-md">
+//                 <ImageSkeleton />
+//             </div>
+//             <div className="h-full w-full min-w-[220px] max-w-md">
+//                 <ImageSkeleton />
+//             </div>
+//             <div className="h-full w-full min-w-[220px] max-w-md">
+//                 <ImageSkeleton />
+//             </div>
+//             <div className="h-full w-full min-w-[220px] max-w-md">
+//                 <ImageSkeleton />
+//             </div>
+//         </div>
+//     );
+// };

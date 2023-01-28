@@ -11,7 +11,7 @@ type PlaceTypeProps = {
 
 const PlaceTypeIcon = ({ placeType, size = "md", className }: PlaceTypeProps) => {
     return (
-        <div className={clsx("relative flex aspect-square flex-col items-center rounded-md transition-all " + className, { "w-8": size === "sm", "w-14": size === "md", "w-16 xsmall:w-20 small:w-28": size === "lg" })}>
+        <div className={clsx("relative flex aspect-square flex-col items-center rounded-md transition-all " + className, { "w-8": size === "sm", "w-14": size === "md", "w-14 xsmall:w-20 small:w-28": size === "lg" })}>
             <Image src={placeType.icon} alt="place thumbnail" layout="fill" />
         </div>
     );
