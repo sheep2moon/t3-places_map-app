@@ -18,7 +18,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(({ placeho
                 {...props}
                 id={name}
                 name={name}
-                className={className + "h-32 rounded-md border-2 border-primary/30 bg-light p-1 text-sm text-primary dark:border-light/10 dark:bg-dark/50 dark:text-light dark:enabled:bg-dark"}
+                className={className + "h-32 rounded-md border-2 border-primary/30 bg-light p-1 text-base text-primary dark:border-light/10 dark:bg-dark/50 dark:text-light "}
                 placeholder={placeholder}
                 value={value}
                 onChange={handleChange}

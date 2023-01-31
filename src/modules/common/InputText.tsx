@@ -14,7 +14,10 @@ const InputText = React.forwardRef<HTMLInputElement, InputProps>(({ type = "text
             id={name}
             value={value}
             onChange={handleChange}
-            className={className + "block w-full rounded-md border-gray-300 bg-zinc-700 py-2 pl-2 pr-12 text-lg text-black focus:border-indigo-500 focus:ring-indigo-500 disabled:bg-light dark:text-light"}
+            className={
+                className +
+                "block w-full rounded-md border-2 border-primary/30 bg-light p-1 py-2 pl-2 pr-12 text-base text-primary focus:border-indigo-500 focus:ring-indigo-500 disabled:bg-light dark:border-light/10 dark:bg-dark dark:text-light"
+            }
             placeholder={placeholder}
         />
     );

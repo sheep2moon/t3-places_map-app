@@ -61,7 +61,7 @@ const PricesForm = () => {
                 <div className="mt-2 flex w-full flex-col gap-1">
                     {/* <p>Wprowadź cennik</p> */}
                     {prices.length > 0 && (
-                        <div className="grid grid-cols-2 gap-1 p-1 pr-11 dark:bg-stone-900">
+                        <div className="grid grid-cols-2 gap-1 rounded-t-md p-1 pr-11 dark:bg-dark">
                             <span className="ml-2">Nazwa usługi</span>
                             <span className="ml-2">Cena</span>
                         </div>
@@ -72,7 +72,7 @@ const PricesForm = () => {
                             <div className="mb-2 flex w-full items-center gap-1" key={`${index}`}>
                                 <InputText value={prices[index]?.title} placeholder="1 godzina" handleChange={e => handlePriceTitleChange(index, e.target.value)} />
                                 <InputText value={prices[index]?.value} placeholder="20zł/os" handleChange={e => handlePriceValueChange(index, e.target.value)} />
-                                <button onClick={() => handleDeletePrice(index)} className="h-10 w-10 shrink-0 rounded-md bg-stone-900 hover:bg-black">
+                                <button onClick={() => handleDeletePrice(index)} className="h-10 w-10 shrink-0 rounded-md bg-white shadow-sm shadow-primary/40 hover:bg-black dark:bg-stone-900">
                                     X
                                 </button>
                             </div>
