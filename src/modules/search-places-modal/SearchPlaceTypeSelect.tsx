@@ -32,9 +32,9 @@ const SearchPlaceTypeSelect = ({ selectedPlaceTypeTitle, setSelectedPlaceTypeTit
                     {placeTypes.data.map(placeType => (
                         <RadioGroup.Option value={placeType.title} key={placeType.id}>
                             {({ checked }) => (
-                                <div className={clsx("flex w-20 flex-col items-center rounded-md p-1", { "bg-light/10 shadow-md shadow-black dark:text-secondary": checked })}>
+                                <div className={clsx("flex w-24 flex-col items-center rounded-md p-1", { " bg-light/10 shadow-md shadow-black dark:text-secondary": checked })}>
                                     <PlaceTypeIcon placeType={placeType} size="md" />
-                                    <span className="">{placeType.title}</span>
+                                    <span className="line-clamp-2">{placeType.title}</span>
                                 </div>
                             )}
                         </RadioGroup.Option>

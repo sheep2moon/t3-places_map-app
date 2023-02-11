@@ -30,20 +30,20 @@ const PlaceMarker = ({ place }: PlaceMarkerProps) => {
     return (
         <Marker icon={placeIcon} ref={markerRef} position={{ lat: place.lat, lng: place.lng }}>
             <Popup>
-                <div className="relative flex h-[140px] w-[160px] flex-col overflow-hidden rounded-md">
+                <div className="relative flex h-[140px] w-[180px] flex-col overflow-hidden rounded-md">
                     <div className="absolute inset-0 z-10 bg-dark/60 " />
                     {place.images[0] && <Image className="object-cover" src={getPlaceImageSrc(place.images[0]?.id)} alt="widok z miejsca" layout="fill" />}
 
-                    <div className="absolute inset-0 z-20 flex flex-col items-center gap-1 p-1 text-light">
-                        <div className="mx-auto mt-1 flex items-center gap-2">
-                            <div className="relative h-6 w-6">
+                    <div className="absolute inset-0 z-20 flex flex-col gap-1 p-1 text-light">
+                        <div className="mt-1 flex items-center gap-1">
+                            <div className="relative h-4 w-4">
                                 <Image src={place.type.icon} alt="znacznik na mapie" layout="fill" />
                             </div>
-                            <span className="text-base">{place.type.title}</span>
+                            <span className="text-sm ">{place.type.title}</span>
                         </div>
-                        <span className="max-h-15 overflow-hidden overflow-ellipsis break-words text-center text-base leading-5">{place.displayName}</span>
+                        <span className="h-12 text-center text-base line-clamp-2">Belweder brezydencki sdkiokoakw</span>
 
-                        <Button className="mx-auto mt-auto mb-4 flex justify-between gap-2 " variant="filled" onClick={handleOpenModal}>
+                        <Button className="mx-auto mt-auto mb-2 flex justify-between gap-2 " variant="filled" onClick={handleOpenModal}>
                             Szczegóły
                             <FaArrowRight />
                         </Button>

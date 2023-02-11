@@ -2,6 +2,7 @@ import { s3 } from "./images";
 import { z } from "zod";
 import { createProtectedRouter } from "./context";
 import { env } from "../../env/server.mjs";
+import { resolve } from "path";
 
 export const protectedPlacesRouter = createProtectedRouter()
     .mutation("createPlace", {
@@ -167,5 +168,19 @@ export const protectedPlacesRouter = createProtectedRouter()
         }),
         async resolve({ input, ctx }) {
             await ctx.prisma.place.update({ where: { id: input.placeId }, data: { placeTypeId: input.placeTypeId } });
+        }
+    })
+    .mutation("updatePlacePrices", {
+        input: z.object({
+            placeId: z.string(),
+            prices: z.string()
+        }),
+        async resolve({ input, ctx }) {
+            await ctx.prisma.place.update({
+                where: { id: input.placeId },
+                data: {
+                    prices: input.prices
+                }
+            });
         }
     });

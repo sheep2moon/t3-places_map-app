@@ -19,13 +19,13 @@ const UserPlace = () => {
     const EditPosition = dynamic(() => import("../../modules/user-place/EditPosition"), { ssr: false });
 
     return (
-        <div className="w-full max-w-2xl">
+        <div className="w-full max-w-2xl pt-4 pb-16">
             {data?.lat && data?.lng && <EditPosition placeId={id} position={{ lat: data.lat, lng: data.lng }} />}
             <EditImages />
             {data?.displayName && <EditName placeId={id} displayName={data?.displayName} />}
             {data?.description && <EditDescription placeId={id} description={data?.description} />}
             {data?.type && <EditPlaceType placeId={id} placeTypeId={data.type.id} />}
-            {data?.prices && <EditPrices prices={JSON.parse(data.prices)} />}
+            {data?.prices && <EditPrices placeId={id} prices={JSON.parse(data.prices)} />}
             <DeletePlace id={id} />
         </div>
     );
