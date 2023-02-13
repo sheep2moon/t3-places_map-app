@@ -1,6 +1,6 @@
+import { GetServerSideProps } from "next";
 import { unstable_getServerSession } from "next-auth";
 import dynamic from "next/dynamic";
-import { useRouter } from "next/router";
 import React from "react";
 import ConfirmButton from "../../modules/add-place/ConfirmButton";
 import NewPlaceForm from "../../modules/add-place/NewPlaceForm";
@@ -13,7 +13,7 @@ const LocalizationSettings = () => {
 
     return (
         <div className="flex-start flex w-full flex-col">
-            <div className="mx-auto flex w-full max-w-2xl flex-col">
+            <div className="mx-auto mt-4 flex w-full max-w-2xl flex-col">
                 <NewPlaceMap />
                 <NewPlaceForm />
                 <PricesForm />
@@ -26,7 +26,7 @@ const LocalizationSettings = () => {
 
 export default LocalizationSettings;
 
-export async function getServerSideProps(context: any) {
+export const getServerSideProps: GetServerSideProps = async context => {
     const session = await unstable_getServerSession(context.req, context.res, authOptions);
     console.log(context);
 
@@ -40,4 +40,4 @@ export async function getServerSideProps(context: any) {
     } else {
         return { props: {} };
     }
-}
+};

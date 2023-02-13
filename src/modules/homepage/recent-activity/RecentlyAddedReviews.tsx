@@ -15,7 +15,7 @@ const RecentlyAddedReviews = ({ recentlyAddedReviews }: RecentlyAddedReviewsProp
     return (
         <div className="mt-8 flex flex-col">
             <HorizontalLine>
-                <h2 className="text-lg font-bold md:text-xl lg:text-2xl">Ostatnie recenzje</h2>
+                <h2 className="text-lg font-extralight md:text-xl lg:text-2xl">Ostatnie recenzje</h2>
             </HorizontalLine>
             {/* {isLoading && <LoadingSkeleton />} */}
             <div className="mt-4 grid h-full w-full gap-2 px-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">

@@ -1,22 +1,29 @@
 import { useRouter } from "next/router";
 import React from "react";
 import { trpc } from "../../utils/trpc";
-import { useNewPlaceStore } from "../../zustand/newPlaceStore";
+import { NewPlaceFormErrors, useNewPlaceStore } from "../../zustand/newPlaceStore";
 import Button from "../common/Button";
 
 const ConfirmButton = () => {
     const { mutateAsync: createPlace, isLoading } = trpc.useMutation("protectedPlace.createPlace");
-    const { displayName, description, lat, lng, placeTypeId, isPaid, prices } = useNewPlaceStore(state => state);
+    const { displayName, description, lat, lng, placeTypeId, isPaid, prices, setErrors } = useNewPlaceStore(state => state);
     const router = useRouter();
 
     const handleCreate = async () => {
-        if (displayName && description && lat && lng && placeTypeId && isPaid) {
+        const errorFields: NewPlaceFormErrors = new Map();
+        if (!displayName) errorFields.set("name", true);
+        if (!description) errorFields.set("description", true);
+        if (!lat || !lng) errorFields.set("position", true);
+        if (!placeTypeId) errorFields.set("type", true);
+        if (errorFields.size === 0) {
             const res = await createPlace({ description, displayName, lat, lng, placeTypeId, isPaid, prices: JSON.stringify(prices) });
             if (res.id) {
                 router.push(`/user-places/${res.id}`);
             }
         } else {
-            console.log("TODO - handle form errors");
+            console.log(errorFields);
+
+            setErrors(errorFields);
         }
     };
     return (

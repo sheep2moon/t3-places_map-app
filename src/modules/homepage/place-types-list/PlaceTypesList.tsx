@@ -14,7 +14,7 @@ const PlaceTypesList = ({ placeTypes }: PlaceTypesListProps) => {
     return (
         <div className="mx-auto mt-8 flex flex-col items-center">
             <HorizontalLine>
-                <h2 className="text-lg font-bold md:text-xl lg:text-2xl">Jakiego miejsca szukasz?</h2>
+                <h2 className="text-lg font-extralight md:text-xl lg:text-2xl">Jakiego miejsca szukasz?</h2>
             </HorizontalLine>
             <div className="mt-8 flex gap-1 3xsmall:gap-2  xsmall:gap-4 small:gap-8">
                 {/* {isLoading && (
