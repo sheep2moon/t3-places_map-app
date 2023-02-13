@@ -11,7 +11,8 @@ module.exports = {
                 primary: "#151235",
                 secondary: "#FAECD6",
                 light: "#F9F9F9",
-                dark: "#0f0d26"
+                dark: "#0f0d26",
+                accent: "#646FD4"
             },
             screens: {
                 "3xsmall": "320px",
