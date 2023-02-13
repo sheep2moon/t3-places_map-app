@@ -7,6 +7,7 @@ import { usePlacesMapStore } from "../../../zustand/placesMapStore";
 import PlaceTypeBadge from "../../common/badges/PlaceTypeBadge";
 import Button from "../../common/Button";
 import HorizontalLine from "../../common/HorizontalLine";
+import PlaceCard from "../../place/PlaceCard";
 
 type RecentlyAddedPlacesProps = {
     recentlyAddedPlaces: (Place & { type: PlaceType; images: ImageType[] })[];
@@ -14,15 +15,6 @@ type RecentlyAddedPlacesProps = {
 
 const RecentlyAddedPlaces = ({ recentlyAddedPlaces }: RecentlyAddedPlacesProps) => {
     // const { data, isLoading } = trpc.useQuery(["places.getRecentlyAddedPlaces"]);
-    const { setCurrentPlaceId, setIsPlaceModalOpen, setFlyTo } = usePlacesMapStore(state => state);
-    const router = useRouter();
-
-    const handleViewPlace = (place: Place) => {
-        setCurrentPlaceId(place.id);
-        setIsPlaceModalOpen(true);
-        setFlyTo({ lat: place.lat, lng: place.lng });
-        router.push("/places-map");
-    };
 
     return (
         <div className="mt-8 flex flex-col">
@@ -32,8 +24,18 @@ const RecentlyAddedPlaces = ({ recentlyAddedPlaces }: RecentlyAddedPlacesProps) 
             {/* {isLoading && <LoadingSkeleton />} */}
             <div className="mt-4 grid h-full w-full gap-2 px-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 {recentlyAddedPlaces.map(place => (
-                    <div key={place.id} className="relative h-48 w-full min-w-[220px] max-w-md rounded-md text-light shadow-md shadow-black/30 dark:shadow-black/60">
-                        {place.images[0] && <Image className="rounded-md object-cover" alt="" src={getPlaceImageSrc(place.images[0].id)} layout="fill" />}
+                    <PlaceCard place={place} key={place.id} />
+                ))}
+            </div>
+        </div>
+    );
+};
+
+export default RecentlyAddedPlaces;
+
+{
+    /* <div key={place.id} className="relative h-48 w-full min-w-[220px] max-w-md rounded-md text-light shadow-md shadow-black/30 dark:shadow-black/60">
+                        {place.images[0] && <Image className="rounded-md object-cover" alt="" src={getPlaceImageSrc(place.images[0].id)} fill />}
                         <div className="absolute inset-0 z-10 flex w-full flex-col justify-between rounded-md p-2 dark:bg-black/60 ">
                             <p className="bg-dark/60 text-center text-lg dark:bg-transparent  ">{place.displayName}</p>
                             <div className="flex items-center justify-between bg-dark/60 dark:bg-transparent">
@@ -43,30 +45,5 @@ const RecentlyAddedPlaces = ({ recentlyAddedPlaces }: RecentlyAddedPlacesProps) 
                                 </Button>
                             </div>
                         </div>
-                    </div>
-                ))}
-            </div>
-        </div>
-    );
-};
-
-export default RecentlyAddedPlaces;
-
-// const LoadingSkeleton = () => {
-//     return (
-//         <div className="mt-4 grid h-48 w-full flex-wrap gap-2 overflow-hidden px-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-//             <div className="h-full w-full min-w-[220px] max-w-md">
-//                 <ImageSkeleton />
-//             </div>
-//             <div className="h-full w-full min-w-[220px] max-w-md">
-//                 <ImageSkeleton />
-//             </div>
-//             <div className="h-full w-full min-w-[220px] max-w-md">
-//                 <ImageSkeleton />
-//             </div>
-//             <div className="h-full w-full min-w-[220px] max-w-md">
-//                 <ImageSkeleton />
-//             </div>
-//         </div>
-//     );
-// };
+                    </div> */
+}
