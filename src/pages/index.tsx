@@ -46,7 +46,6 @@ const Home: NextPage<HomeProps> = ({ placeTypes, recentlyAddedPlaces, recentlyAd
 export default Home;
 
 export async function getStaticProps() {
-    const prisma = new PrismaClient();
     const placeTypes = await prisma?.placeType.findMany();
     const recentlyAddedPlaces = await prisma?.place.findMany({
         take: 3,

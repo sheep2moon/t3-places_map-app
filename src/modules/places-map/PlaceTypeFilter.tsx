@@ -1,3 +1,4 @@
+import { PlaceType } from "@prisma/client";
 import clsx from "clsx";
 import { NextRouter, useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -8,13 +9,14 @@ import { usePlacesMapStore } from "../../zustand/placesMapStore";
 import LoadingSpinner from "../common/LoadingSpinner";
 import PlaceTypeIcon from "../place/PlaceTypeIcon";
 
-// type PlaceTypeFilterProps = {
-//     selectTypeId: (typeId: string) => void;
-//     selectedTypeId: string;
-// };
+type PlaceTypeFilterProps = {
+    placeTypes: PlaceType[];
+};
 
-const PlaceTypeFilter = () => {
-    const { data, isLoading } = trpc.useQuery(["places.getPlaceTypes"]);
+const PlaceTypeFilter = ({ placeTypes }: PlaceTypeFilterProps) => {
+    // const { data, isLoading } = trpc.useQuery(["places.getPlaceTypes"]);
+    console.log(placeTypes);
+
     const [isExpanded, setIsExpanded] = useState(false);
     const { selectedTypeId, setSelectedTypeId } = usePlacesMapStore(state => state);
     const [indicatorPosition, setIndicatorPosition] = useState<number | null>(null);
@@ -38,7 +40,7 @@ const PlaceTypeFilter = () => {
         }
     }, []);
 
-    if (isLoading) return <LoadingSpinner />;
+    // if (isLoading) return <LoadingSpinner />;
     return (
         <div
             onMouseLeave={() => setIsExpanded(false)}
@@ -55,16 +57,16 @@ const PlaceTypeFilter = () => {
             >
                 <VscTriangleRight className="-translate-x-[4px] text-xl text-indigo-600" />
             </div>
-            <ul className="mx-2 flex flex-col rounded-t-md text-center text-sm font-medium text-gray-500 dark:text-gray-400">
-                {data?.map((place, index) => (
-                    <li key={place.id} className="py-1">
-                        <button
-                            className={clsx("flex items-center gap-2 hover:border-indigo-400 hover:text-gray-600 dark:hover:text-gray-300", {
-                                "rounded-full outline-2 outline-secondary": selectedTypeId === place.id
-                            })}
-                            onClick={() => handleSelectPlaceType(place.id, index)}
-                        >
-                            <PlaceTypeIcon className={clsx({ "shadow-md shadow-indigo-700": selectedTypeId === place.id })} size="md" placeType={place} />
+            <ul className="flex flex-col rounded-t-md text-center text-sm font-medium text-gray-500 dark:text-gray-400">
+                {placeTypes?.map((place, index) => (
+                    <li
+                        key={place.id}
+                        className={clsx("py-1 px-2", {
+                            "bg-dark": selectedTypeId === place.id
+                        })}
+                    >
+                        <button className={clsx("flex items-center gap-2 hover:border-indigo-400 hover:text-gray-600 dark:hover:text-gray-300")} onClick={() => handleSelectPlaceType(place.id, index)}>
+                            <PlaceTypeIcon size="md" placeType={place} />
                             {isExpanded && <span className="whitespace-nowrap text-base">{place.title}</span>}
                         </button>
                     </li>
