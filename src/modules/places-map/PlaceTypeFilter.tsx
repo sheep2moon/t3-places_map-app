@@ -1,6 +1,8 @@
 import clsx from "clsx";
 import { NextRouter, useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import { FiFilter } from "react-icons/fi";
+import { VscTriangleRight } from "react-icons/vsc";
 import { trpc } from "../../utils/trpc";
 import { usePlacesMapStore } from "../../zustand/placesMapStore";
 import LoadingSpinner from "../common/LoadingSpinner";
@@ -38,9 +40,22 @@ const PlaceTypeFilter = () => {
 
     if (isLoading) return <LoadingSpinner />;
     return (
-        <div className={clsx("relative hidden w-16 bg-dark shadow-md shadow-black transition-all small:block", { "w-64": isExpanded })}>
-            <div className={clsx("absolute -left-1 h-16 w-1 rounded-l-md bg-indigo-600  transition-all", { hidden: indicatorPosition === null })} style={{ top: `${(indicatorPosition ? indicatorPosition : 0) * 4}rem` }}></div>
-            <ul onMouseLeave={() => setIsExpanded(false)} onMouseEnter={() => setIsExpanded(true)} className="mx-1 flex h-full flex-col rounded-t-md text-center text-sm font-medium text-gray-500 dark:text-gray-400">
+        <div
+            onMouseLeave={() => setIsExpanded(false)}
+            onMouseEnter={() => setIsExpanded(true)}
+            className={clsx("relative block bg-primary shadow-md shadow-black transition-all hover:transition-all", { "w-64": isExpanded, "w-[72px]": !isExpanded })}
+        >
+            <div className={clsx("flex h-12 items-center")}>
+                <FiFilter className="ml-5 shrink-0 text-3xl" />
+                {isExpanded && <p className="ml-5 overflow-hidden whitespace-nowrap font-bold">Filtruj typ miejsca</p>}
+            </div>
+            <div
+                className={clsx("absolute -left-1 flex h-16 w-1 translate-y-12 flex-col justify-center rounded-r-md bg-indigo-600  transition-all", { hidden: indicatorPosition === null })}
+                style={{ top: `${(indicatorPosition ? indicatorPosition : 0) * 4}rem` }}
+            >
+                <VscTriangleRight className="-translate-x-[4px] text-xl text-indigo-600" />
+            </div>
+            <ul className="mx-2 flex flex-col rounded-t-md text-center text-sm font-medium text-gray-500 dark:text-gray-400">
                 {data?.map((place, index) => (
                     <li key={place.id} className="py-1">
                         <button
@@ -49,7 +64,7 @@ const PlaceTypeFilter = () => {
                             })}
                             onClick={() => handleSelectPlaceType(place.id, index)}
                         >
-                            <PlaceTypeIcon size="md" placeType={place} />
+                            <PlaceTypeIcon className={clsx({ "shadow-md shadow-indigo-700": selectedTypeId === place.id })} size="md" placeType={place} />
                             {isExpanded && <span className="whitespace-nowrap text-base">{place.title}</span>}
                         </button>
                     </li>
