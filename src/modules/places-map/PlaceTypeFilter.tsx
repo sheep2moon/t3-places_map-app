@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { NextRouter, useRouter } from "next/router";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { trpc } from "../../utils/trpc";
 import { usePlacesMapStore } from "../../zustand/placesMapStore";
 import LoadingSpinner from "../common/LoadingSpinner";
@@ -13,19 +13,20 @@ import PlaceTypeIcon from "../place/PlaceTypeIcon";
 
 const PlaceTypeFilter = () => {
     const { data, isLoading } = trpc.useQuery(["places.getPlaceTypes"]);
+    const [isExpanded, setIsExpanded] = useState(false);
     const { selectedTypeId, setSelectedTypeId } = usePlacesMapStore(state => state);
+    const [indicatorPosition, setIndicatorPosition] = useState<number | null>(null);
     const router: NextRouter = useRouter();
 
-    const handleSelectPlaceType = (typeId: string) => {
-        if (selectedTypeId !== typeId) setSelectedTypeId(typeId);
-        else setSelectedTypeId("");
+    const handleSelectPlaceType = (typeId: string, index: number) => {
+        if (selectedTypeId !== typeId) {
+            setSelectedTypeId(typeId);
+            setIndicatorPosition(index);
+        } else {
+            setSelectedTypeId("");
+            setIndicatorPosition(null);
+        }
     };
-
-    // useEffect(() => {
-    //     if (selectedTypeId) {
-    //         router.replace({ pathname: router.pathname, query: selectedTypeId }, undefined, { shallow: true });
-    //     }
-    // }, [selectedTypeId]);
 
     useEffect(() => {
         const typeId = router.query.typeId as string;
@@ -37,20 +38,19 @@ const PlaceTypeFilter = () => {
 
     if (isLoading) return <LoadingSpinner />;
     return (
-        <div className="fixed bottom-0 left-1/2 right-0 z-[999] flex h-16 w-full max-w-screen-large -translate-x-1/2 flex-col gap-1 bg-light py-1 shadow-md shadow-black/50 dark:bg-dark">
-            <ul className="mx-1 -mb-px flex h-full flex-wrap gap-1 rounded-t-md text-center text-sm font-medium text-gray-500 dark:text-gray-400">
-                {data?.map(place => (
-                    <li key={place.id} className="rounded-sm bg-dark/10 dark:bg-primary">
+        <div className={clsx("relative hidden w-16 bg-dark shadow-md shadow-black transition-all small:block", { "w-64": isExpanded })}>
+            <div className={clsx("absolute -left-1 h-16 w-1 rounded-l-md bg-indigo-600  transition-all", { hidden: indicatorPosition === null })} style={{ top: `${(indicatorPosition ? indicatorPosition : 0) * 4}rem` }}></div>
+            <ul onMouseLeave={() => setIsExpanded(false)} onMouseEnter={() => setIsExpanded(true)} className="mx-1 flex h-full flex-col rounded-t-md text-center text-sm font-medium text-gray-500 dark:text-gray-400">
+                {data?.map((place, index) => (
+                    <li key={place.id} className="py-1">
                         <button
-                            className={clsx("flex h-full w-[160px] items-center rounded-t-lg border-b-2 border-transparent px-2 hover:border-indigo-400 hover:text-gray-600 dark:hover:text-gray-300", {
-                                "border border-indigo-600 bg-indigo-200 text-primary hover:border-indigo-600 dark:border-indigo-900 dark:bg-dark dark:text-gray-200": selectedTypeId === place.id
+                            className={clsx("flex items-center gap-2 hover:border-indigo-400 hover:text-gray-600 dark:hover:text-gray-300", {
+                                "rounded-full outline-2 outline-secondary": selectedTypeId === place.id
                             })}
-                            onClick={() => handleSelectPlaceType(place.id)}
+                            onClick={() => handleSelectPlaceType(place.id, index)}
                         >
-                            <div className="mr-2 w-8">
-                                <PlaceTypeIcon size="sm" placeType={place} />
-                            </div>
-                            <span className="text-base">{place.title}</span>
+                            <PlaceTypeIcon size="md" placeType={place} />
+                            {isExpanded && <span className="whitespace-nowrap text-base">{place.title}</span>}
                         </button>
                     </li>
                 ))}

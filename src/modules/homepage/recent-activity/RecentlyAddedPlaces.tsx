@@ -1,11 +1,5 @@
 import { Image as ImageType, Place, PlaceType } from "@prisma/client";
-import Image from "next/image";
-import { useRouter } from "next/router";
 import React from "react";
-import { getPlaceImageSrc } from "../../../utils/getImageSrc";
-import { usePlacesMapStore } from "../../../zustand/placesMapStore";
-import PlaceTypeBadge from "../../common/badges/PlaceTypeBadge";
-import Button from "../../common/Button";
 import HorizontalLine from "../../common/HorizontalLine";
 import PlaceCard from "../../place/PlaceCard";
 
@@ -17,7 +11,7 @@ const RecentlyAddedPlaces = ({ recentlyAddedPlaces }: RecentlyAddedPlacesProps) 
     // const { data, isLoading } = trpc.useQuery(["places.getRecentlyAddedPlaces"]);
 
     return (
-        <div className="mt-8 flex flex-col">
+        <div className="mt-8 flex flex-col py-4 ">
             <HorizontalLine>
                 <h2 className="text-lg font-extralight md:text-xl lg:text-2xl">Ostatnio dodane miejsca</h2>
             </HorizontalLine>

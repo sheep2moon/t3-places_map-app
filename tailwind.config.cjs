@@ -7,6 +7,9 @@ module.exports = {
             fontSize: {
                 "2xs": "0.6rem"
             },
+            boxShadow: {
+                smDark: "rgba(0, 0, 0, 0.12) 0px 2px 4px 0px, rgba(0, 0, 0, 0.32) 0px 2px 16px 0px;"
+            },
             colors: {
                 primary: "#151235",
                 secondary: "#FAECD6",

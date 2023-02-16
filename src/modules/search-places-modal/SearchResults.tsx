@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
 import { AiOutlineRight } from "react-icons/ai";
+import { BsArrowRightSquareFill } from "react-icons/bs";
 import { getPlaceImageSrc } from "../../utils/getImageSrc";
 import { trpc } from "../../utils/trpc";
 import { usePlacesMapStore } from "../../zustand/placesMapStore";
@@ -51,7 +52,7 @@ const SearchResults = ({ query, close }: SearchResultsProps) => {
                         </div>
                     </div>
                     <div className="my-auto ml-auto pr-2 small:pr-4">
-                        <AiOutlineRight className="text-2xl small:text-4xl" />
+                        <BsArrowRightSquareFill className="text-3xl small:text-5xl" />
                     </div>
                 </button>
             ))}

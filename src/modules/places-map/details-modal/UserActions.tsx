@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import { useSession } from "next-auth/react";
 import React from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
@@ -6,7 +5,6 @@ import { BsCheck } from "react-icons/bs";
 import { IoLibrary } from "react-icons/io5";
 import { TbTarget } from "react-icons/tb";
 import { trpc } from "../../../utils/trpc";
-import Button from "../../common/Button";
 import HorizontalLine from "../../common/HorizontalLine";
 import LoadingSpinner from "../../common/LoadingSpinner";
 

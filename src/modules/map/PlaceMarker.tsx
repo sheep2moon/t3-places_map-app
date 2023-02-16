@@ -32,7 +32,7 @@ const PlaceMarker = ({ place }: PlaceMarkerProps) => {
             <Popup>
                 <div className="relative flex h-[140px] w-[180px] flex-col overflow-hidden rounded-md">
                     <div className="absolute inset-0 z-10 bg-dark/60 " />
-                    {place.images[0] && <Image className="object-cover" src={getPlaceImageSrc(place.images[0]?.id)} alt="widok z miejsca" layout="fill" />}
+                    {place.images[0] && <Image className="object-cover" src={getPlaceImageSrc(place.images[0]?.id)} alt="widok z miejsca" fill />}
 
                     <div className="absolute inset-0 z-20 flex flex-col gap-1 p-1 text-light">
                         <div className="mt-1 flex items-center gap-1">
@@ -41,7 +41,7 @@ const PlaceMarker = ({ place }: PlaceMarkerProps) => {
                             </div>
                             <span className="text-sm ">{place.type.title}</span>
                         </div>
-                        <span className="h-12 text-center text-base line-clamp-2">Belweder brezydencki sdkiokoakw</span>
+                        <span className="h-12 text-center text-base line-clamp-2">{place.displayName}</span>
 
                         <Button className="mx-auto mt-auto mb-2 flex justify-between gap-2 " variant="filled" onClick={handleOpenModal}>
                             Szczegóły

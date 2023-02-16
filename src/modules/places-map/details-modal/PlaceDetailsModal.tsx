@@ -78,6 +78,14 @@ const ModalContent = ({ data }: ModalContentProps) => {
                     </TimeBadge>
                 </div>
             </div>
+            <div className="mt-4 flex flex-col items-start px-4">
+                <span className="text-xl font-bold">{data?.displayName}</span>
+                <div className="flex items-center gap-1 rounded-md ">
+                    <span className="text-xs">Dodane przez:</span>
+                    <UserBadge user={data?.addedBy} />
+                </div>
+            </div>
+
             <div className="mx-1 mt-1 grid grid-cols-2 gap-1">
                 <a
                     className="flex w-full items-center justify-center gap-2 rounded-sm border-2 border-indigo-900 py-1 px-2 dark:bg-dark"
@@ -93,14 +101,6 @@ const ModalContent = ({ data }: ModalContentProps) => {
                     <span className="text-sm">Pokaż na mapie</span>
                 </button>
             </div>
-            <div className="mt-4 flex flex-col items-start px-4">
-                <span className="text-xl font-bold">{data?.displayName}</span>
-                <div className="flex items-center gap-1 rounded-md ">
-                    <span className="text-xs">Dodane przez:</span>
-                    <UserBadge user={data?.addedBy} />
-                </div>
-            </div>
-
             <div className="px-2">
                 <HorizontalLine>
                     <div className="flex items-center gap-1 text-base">
