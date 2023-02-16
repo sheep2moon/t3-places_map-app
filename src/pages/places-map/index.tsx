@@ -1,5 +1,6 @@
 import { PlaceType } from "@prisma/client";
 import type { NextPage } from "next";
+import { prisma } from "../../server/db/client";
 import dynamic from "next/dynamic";
 import PlaceDetailsModal from "../../modules/places-map/details-modal/PlaceDetailsModal";
 import PlaceTypeFilter from "../../modules/places-map/PlaceTypeFilter";
@@ -25,8 +26,7 @@ const PlacesMap: NextPage<PlacesMapProps> = ({ placeTypes }) => {
 export default PlacesMap;
 
 export async function getStaticProps() {
-    const placeTypes = await prisma?.placeType.findMany();
-
+    const placeTypes = await prisma.placeType.findMany();
     return {
         props: {
             placeTypes

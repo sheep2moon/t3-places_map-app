@@ -4,7 +4,6 @@ import { trpc } from "../../utils/trpc";
 import { usePlacesMapStore } from "../../zustand/placesMapStore";
 import LoadingSpinner from "../common/LoadingSpinner";
 import PlaceMarker from "../map/PlaceMarker";
-import PlaceTypeFilter from "./PlaceTypeFilter";
 
 // type PlacesMapProps = {
 //     selectedTypeId: string;

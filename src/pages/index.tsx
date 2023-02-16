@@ -1,4 +1,5 @@
-import { PlaceType, PrismaClient } from "@prisma/client";
+import { PlaceType } from "@prisma/client";
+import { prisma } from "../server/db/client";
 import type { NextPage } from "next";
 import { BiMapAlt } from "react-icons/bi";
 import InternalLink from "../modules/common/links/InternalLink";
@@ -46,7 +47,7 @@ const Home: NextPage<HomeProps> = ({ placeTypes, recentlyAddedPlaces, recentlyAd
 export default Home;
 
 export async function getStaticProps() {
-    const placeTypes = await prisma?.placeType.findMany();
+    const placeTypes = await prisma.placeType.findMany();
     const recentlyAddedPlaces = await prisma?.place.findMany({
         take: 3,
         include: {

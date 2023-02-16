@@ -4,9 +4,7 @@ import { NextRouter, useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { FiFilter } from "react-icons/fi";
 import { VscTriangleRight } from "react-icons/vsc";
-import { trpc } from "../../utils/trpc";
 import { usePlacesMapStore } from "../../zustand/placesMapStore";
-import LoadingSpinner from "../common/LoadingSpinner";
 import PlaceTypeIcon from "../place/PlaceTypeIcon";
 
 type PlaceTypeFilterProps = {
