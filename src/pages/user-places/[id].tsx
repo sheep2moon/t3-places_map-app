@@ -13,13 +13,13 @@ import { trpc } from "../../utils/trpc";
 const UserPlace = () => {
     const { query } = useRouter();
     const id = query.id as string;
-    const { data, isLoading } = trpc.useQuery(["protectedPlace.getUserPlace", { id }]);
+    const { data, isLoading } = trpc.useQuery(["protectedPlace.getUserPlace", { id }], { refetchOnWindowFocus: false });
 
     if (isLoading) return <LoadingSpinner />;
     const EditPosition = dynamic(() => import("../../modules/user-place/EditPosition"), { ssr: false });
 
     return (
-        <div className="w-full max-w-2xl pt-4 pb-16">
+        <div className="w-full max-w-2xl pt-4 pb-28">
             {data?.lat && data?.lng && <EditPosition placeId={id} position={{ lat: data.lat, lng: data.lng }} />}
             <EditImages />
             {data?.displayName && <EditName placeId={id} displayName={data?.displayName} />}

@@ -32,7 +32,7 @@ const EditPrices = ({ prices, isPaid, placeId }: EditPricesProps) => {
     };
 
     const LabelBarProps: LabelBarProps = {
-        label: "Cennik miejsca",
+        label: isPaid ? "Cennik miejsca" : "Miejsce bezpłatne",
         handleCancel,
         handleConfirm,
         handleEdit,
@@ -89,8 +89,8 @@ const EditPrices = ({ prices, isPaid, placeId }: EditPricesProps) => {
                         </label>
                     </div>
                 )}
-                {isEditing && currentIsPaid && (
-                    <div className="flex flex-col bg-dark px-2">
+                {currentIsPaid && (
+                    <>
                         {pricesCount > 0 && (
                             <div className="flex">
                                 <p className="w-full p-1 text-center">nazwa</p>
@@ -112,11 +112,14 @@ const EditPrices = ({ prices, isPaid, placeId }: EditPricesProps) => {
                                     </div>
                                 ))}
                         </div>
-
-                        <Button className="my-2" variant="outline" onClick={handleAddNewPrice}>
-                            Dodaj wiersz +
-                        </Button>
-                    </div>
+                        {isEditing && (
+                            <div className="flex flex-col bg-dark px-2">
+                                <Button className="my-2" variant="outline" onClick={handleAddNewPrice}>
+                                    Dodaj wiersz +
+                                </Button>
+                            </div>
+                        )}
+                    </>
                 )}
             </div>
         </div>

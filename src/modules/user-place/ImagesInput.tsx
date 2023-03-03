@@ -33,12 +33,11 @@ const ImageInput = ({ placeId, refetch }: InputFileProps) => {
     };
 
     return (
-        <div className="w-full">
-            <div className="relative aspect-square w-full rounded-md bg-light/5">
-                <input className="absolute inset-0 z-10 cursor-pointer opacity-0" type="file" onChange={handleFileChange} />
+        <div className="aspect-square w-full rounded-md bg-light/5 ">
+            <label htmlFor="image-upload" className="flex h-full cursor-pointer  ring-light focus:ring-2">
                 {file ? (
                     <div className="relative aspect-square w-full border">
-                        <Image src={URL.createObjectURL(file)} alt="podgląd" layout="fill" />
+                        <Image src={URL.createObjectURL(file)} alt="podgląd" fill />
                         {loading && (
                             <div className="absolute inset-0 flex items-center justify-center bg-slate-900/50 ">
                                 <LoadingSpinner />
@@ -46,9 +45,17 @@ const ImageInput = ({ placeId, refetch }: InputFileProps) => {
                         )}
                     </div>
                 ) : (
-                    <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform text-center text-xs">Kliknij aby wybrać zdjęcie</span>
+                    <>
+                        <input className="peer w-0 opacity-0" id="image-upload" type="file" onChange={handleFileChange} />
+                        <div className="flex h-full w-full flex-col items-center justify-center border-slate-50 ring-light peer-focus:border-2">
+                            <svg aria-hidden="true" className="mb-3 h-8 w-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                            </svg>
+                            <span className="text-md text-center">Kliknij aby wybrać zdjęcie</span>
+                        </div>
+                    </>
                 )}
-            </div>
+            </label>
         </div>
     );
 };
