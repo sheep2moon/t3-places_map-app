@@ -110,13 +110,18 @@ const ModalContent = ({ data }: ModalContentProps) => {
                 <div className="flex flex-col text-xs">
                     <pre className="whitespace-pre-wrap text-left font-mono text-lg">{data?.description}</pre>
                 </div>
-                <HorizontalLine className="mb-2">
-                    <div className="flex items-center gap-1">
-                        <IoMdPricetags />
-                        Ceny
-                    </div>
-                </HorizontalLine>
-                {data.prices && <PlacePricing prices={JSON.parse(data.prices)} />}
+
+                {data.isPaid && data.prices && (
+                    <>
+                        <HorizontalLine className="mb-2">
+                            <div className="flex items-center gap-1">
+                                <IoMdPricetags />
+                                Ceny
+                            </div>
+                        </HorizontalLine>
+                        <PlacePricing prices={JSON.parse(data.prices)} />
+                    </>
+                )}
                 <HorizontalLine className="mb-2">
                     <div className="flex items-center gap-1">
                         <FcStackOfPhotos />

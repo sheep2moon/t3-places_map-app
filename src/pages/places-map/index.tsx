@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { PlaceType } from "@prisma/client";
 import type { NextPage } from "next";
 import { prisma } from "../../server/db/client";
@@ -11,6 +12,10 @@ type PlacesMapProps = {
 
 const PlacesMap: NextPage<PlacesMapProps> = ({ placeTypes }) => {
     const PlacesMap = dynamic(() => import("../../modules/places-map/PlacesMap"), { ssr: false });
+
+    useEffect(() => {
+        window.scrollTo(0, 1);
+    }, []);
 
     return (
         <div className="h-container-screen w-screen max-w-screen-large">

@@ -25,7 +25,7 @@ const UserPlace = () => {
             {data?.displayName && <EditName placeId={id} displayName={data?.displayName} />}
             {data?.description && <EditDescription placeId={id} description={data?.description} />}
             {data?.type && <EditPlaceType placeId={id} placeTypeId={data.type.id} />}
-            {data?.prices && <EditPrices placeId={id} prices={JSON.parse(data.prices)} />}
+            {data?.prices && <EditPrices isPaid={data.isPaid} placeId={id} prices={JSON.parse(data.prices)} />}
             <DeletePlace id={id} />
         </div>
     );

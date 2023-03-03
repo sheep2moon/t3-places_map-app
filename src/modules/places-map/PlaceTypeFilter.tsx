@@ -43,14 +43,14 @@ const PlaceTypeFilter = ({ placeTypes }: PlaceTypeFilterProps) => {
     return (
         <>
             <div className={clsx("absolute bottom-2 left-2 z-[999]")}>
-                <button className={clsx("w-full rounded-full bg-dark p-4 shadow-sm shadow-indigo-600 transition-all small:hidden", { "w-60 rounded-sm ": isExpanded })} onClick={() => setIsExpanded(prev => !prev)}>
+                <button className={clsx("w-full rounded-full bg-dark p-4 shadow-sm shadow-indigo-600 transition-[width] small:hidden", { "w-60 rounded-sm ": isExpanded })} onClick={() => setIsExpanded(prev => !prev)}>
                     {isExpanded ? (
                         <div className="flex items-center justify-center gap-2">
                             <AiOutlineClose className="text-2xl text-secondary" />
                             Zamknij
                         </div>
                     ) : (
-                        <FiFilter className="text-5xl text-secondary" />
+                        <FiFilter className="text-4xl text-secondary" />
                     )}
                 </button>
             </div>
