@@ -70,6 +70,7 @@ export async function getStaticProps() {
             placeTypes,
             recentlyAddedPlaces: JSON.stringify(recentlyAddedPlaces),
             recentlyAddedReviews: JSON.stringify(recentlyAddedReviews)
-        }
+        },
+        revalidate: 60
     };
 }
