@@ -23,7 +23,7 @@
     "clsx": "^1.2.1",
     "leaflet": "^1.9.2",
     "next": "^13.1.2",
-    "next-auth": "~4.10.3",
+    "next-auth": "^4.20.1",
     "next-themes": "^0.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
