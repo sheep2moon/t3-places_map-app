@@ -9,7 +9,6 @@ import MobileMenu from "./components/MobileMenu";
 import PlacesSearch from "../../search-places-modal/PlacesSearch";
 import UserCard from "./components/UserCard";
 import { MdLogin } from "react-icons/md";
-import Link from "next/link";
 import InternalLink from "../../common/links/InternalLink";
 
 export type NavLink = {
