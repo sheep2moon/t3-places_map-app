@@ -5,6 +5,7 @@ import React from "react";
 import { BsArrowRightSquareFill } from "react-icons/bs";
 import { getPlaceImageSrc } from "../../utils/getImageSrc";
 import { usePlacesMapStore } from "../../zustand/placesMapStore";
+import InternalLink from "../common/links/InternalLink";
 import PlaceTypeIcon from "./PlaceTypeIcon";
 
 type PlaceCardProps = {
@@ -12,16 +13,16 @@ type PlaceCardProps = {
 };
 
 const PlaceCard = ({ place }: PlaceCardProps) => {
-  const { setCurrentPlaceId, setIsPlaceModalOpen, setFlyTo } =
-    usePlacesMapStore((state) => state);
-  const router = useRouter();
+  // const { setCurrentPlaceId, setIsPlaceModalOpen, setFlyTo } =
+  //   usePlacesMapStore((state) => state);
+  // const router = useRouter();
 
-  const handleGoToPlace = (place: Place) => {
-    setCurrentPlaceId(place.id);
-    setIsPlaceModalOpen(true);
-    setFlyTo({ lat: place.lat, lng: place.lng });
-    router.push("/places-map");
-  };
+  // const handleGoToPlace = (place: Place) => {
+  //   setCurrentPlaceId(place.id);
+  //   setIsPlaceModalOpen(true);
+  //   setFlyTo({ lat: place.lat, lng: place.lng });
+  //   router.push("/places-map");
+  // };
 
   return (
     <div className="">
@@ -54,12 +55,15 @@ const PlaceCard = ({ place }: PlaceCardProps) => {
                   {place.type.title}
                 </span>
               </div>
-              <button
+              {/* <button
                 onClick={() => handleGoToPlace(place)}
                 className="my-auto ml-auto mr-2 h-fit rounded-lg bg-indigo-900"
               >
                 <BsArrowRightSquareFill className="text-3xl dark:text-indigo-200" />
-              </button>
+              </button> */}
+              <InternalLink href={`/places-map?placeId=${place.id}`}>
+                TESTLINK
+              </InternalLink>
             </div>
           </div>
         </div>

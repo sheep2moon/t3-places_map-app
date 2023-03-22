@@ -2,6 +2,18 @@ import { Menu } from "@headlessui/react";
 import React, { useState } from "react";
 import { BsFillShareFill } from "react-icons/bs";
 import { GoReport } from "react-icons/go";
+import { IoMdCopy } from "react-icons/io";
+import {
+  EmailIcon,
+  EmailShareButton,
+  TelegramIcon,
+  TelegramShareButton,
+  TwitterIcon,
+  TwitterShareButton,
+  WhatsappIcon,
+  WhatsappShareButton,
+} from "react-share";
+import { toast } from "react-toastify";
 import Button from "../../../common/Button";
 import InputText from "../../../common/InputText";
 import Modal from "../../../common/Modal";
@@ -11,11 +23,11 @@ type OptionsMenuProps = {
 };
 
 const OptionsMenu: React.FC<OptionsMenuProps> = ({ placeId }) => {
+  const shareUrl = `localhost:3000/placesMap/${placeId}`;
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
-
   const handleCopyShareLink = () => {
-    const textToCopy = `localhost:3000/placesMap/${placeId}`;
-    navigator.clipboard.writeText(textToCopy);
+    navigator.clipboard.writeText(shareUrl);
+    toast("Skopiowano", { autoClose: 1000, type: "success", theme: "colored" });
   };
 
   return (
@@ -29,14 +41,37 @@ const OptionsMenu: React.FC<OptionsMenuProps> = ({ placeId }) => {
             <BsFillShareFill />
             Udostępnij
           </span>
-          <div className="flex ">
-            <input
-              className="w-full bg-dark py-1 px-2 text-light"
-              type="text"
-              readOnly
-              value={`localhost:3000/placesMap/${placeId}`}
-            />
-            <Button className="whitespace-nowrap">Kopiuj link</Button>
+          <div className="mb-4">
+            <WhatsappShareButton
+              title="Interesujące miejsce"
+              separator=" "
+              url={shareUrl}
+            >
+              <WhatsappIcon />
+            </WhatsappShareButton>
+            <TelegramShareButton url={shareUrl}>
+              <TelegramIcon />
+            </TelegramShareButton>
+            <EmailShareButton
+              separator=" "
+              subject="Miejsce które muszę odwiedzić"
+              body="Zerknij na to miejsce które znalazłem na Plecaku! "
+              url={shareUrl}
+            >
+              <EmailIcon />
+            </EmailShareButton>
+            <TwitterShareButton title="Interesujące miejsce" url={shareUrl}>
+              <TwitterIcon />
+            </TwitterShareButton>
+          </div>
+          <div className="mx-auto">
+            <Button
+              onClick={handleCopyShareLink}
+              className="flex items-center gap-2 whitespace-nowrap"
+            >
+              <IoMdCopy />
+              Kopiuj link
+            </Button>
           </div>
         </div>
       </Modal>

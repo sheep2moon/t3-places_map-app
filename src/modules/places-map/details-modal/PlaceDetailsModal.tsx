@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import googleMapsIcon from "../../../assets/google-maps-icon.png";
 import mapMarkerIcon from "../../../assets/map-marker-icon.svg";
 import { inferQueryOutput, trpc } from "../../../utils/trpc";
@@ -26,7 +26,7 @@ import LineSkeleton from "../../common/skeletons/LineSkeleton";
 import OptionsMenu from "./options-menu/OptionsMenu";
 
 const PlaceDetailsModal = () => {
-  const { currentPlaceId, isPlaceModalOpen, setIsPlaceModalOpen } =
+  const { currentPlaceId, isPlaceModalOpen, setIsPlaceModalOpen, flyTo } =
     usePlacesMapStore((state) => state);
   const { data, isLoading } = trpc.useQuery([
     "places.getPlaceDetails",
@@ -81,8 +81,8 @@ const ModalContent = ({ data }: ModalContentProps) => {
           <Image
             src={getPlaceImageSrc(data?.images[0]?.id)}
             alt="widok z miejsca"
-            layout="fill"
-            objectFit="cover"
+            fill
+            className="cover"
           />
         )}
         <div className="absolute bottom-1 left-1">
