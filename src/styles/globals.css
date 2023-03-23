@@ -4,6 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap');
 
 
+
 body{
     @apply bg-gradient-to-b from-light to-secondary dark:from-dark dark:to-primary
 }
@@ -11,6 +12,7 @@ body{
 
 main{
     min-height: calc(100vh - 2rem);
+    
 }
 
 

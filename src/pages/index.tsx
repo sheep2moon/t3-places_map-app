@@ -9,6 +9,8 @@ import PlaceTypesList from "../modules/homepage/place-types-list/PlaceTypesList"
 import RecentlyAddedPlaces from "../modules/homepage/recent-activity/RecentlyAddedPlaces";
 import RecentlyAddedReviews from "../modules/homepage/recent-activity/RecentlyAddedReviews";
 import Image from "next/image";
+import Link from "next/link";
+import PlaceTypeIcon from "../modules/place/PlaceTypeIcon";
 
 type HomeProps = {
     placeTypes: PlaceType[];
@@ -30,19 +32,27 @@ const Home: NextPage<HomeProps> = ({ placeTypes, recentlyAddedPlaces, recentlyAd
                     Odkryj niesamowite miejsca na całym świecie! Dodaj swoje ulubione miejsca na mapę, podziel się nimi z innymi użytkownikami i poznaj nowe miejsca, które możesz odwiedzić. U nas znajdziesz łowiska, miejsca na biwak,
                     organizację imprez i wiele innych ciekawych miejsc.
                 </p>
-                <Image className=" opacity-30 hover:opacity-40 " alt="decoration" src={heroImgSrc} fill />
 
-                <div className="mt-4 flex justify-center">
+                <div className="relative mt-4 flex h-64 w-full flex-col items-center justify-center">
+                    <div className="mb-4 flex gap-4">
+                        {placeTypes.map(placeType => (
+                            <Link href={`/places-map?typeId=${placeType.id}`} key={placeType.id} className="">
+                                <PlaceTypeIcon placeType={placeType} size="md" />
+                            </Link>
+                        ))}
+                    </div>
                     <InternalLink href="/places-map" variant="filled">
                         <div className="flex items-center gap-1">
                             <BiMapAlt className="text-2xl" /> Zobacz mape
                         </div>
                     </InternalLink>
+                    <Image className="-z-10 opacity-30 hover:opacity-40 " alt="decoration" src={heroImgSrc} fill />
                 </div>
+                <div className=""></div>
             </div>
-            <PlaceTypesList placeTypes={placeTypes} />
             <RecentlyAddedPlaces recentlyAddedPlaces={JSON.parse(recentlyAddedPlaces)} />
             <RecentlyAddedReviews recentlyAddedReviews={JSON.parse(recentlyAddedReviews)} />
+            <PlaceTypesList placeTypes={placeTypes} />
             <AddPlaceEncouragement />
             <p className="my-12 px-4">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid nam illo architecto unde tempore magni expedita, beatae doloribus veniam nihil culpa sapiente, sequi cum? Voluptate temporibus sunt quis accusamus quo. Lorem

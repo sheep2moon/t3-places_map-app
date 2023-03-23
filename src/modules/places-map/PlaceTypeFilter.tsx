@@ -46,13 +46,13 @@ const PlaceTypeFilter = ({ placeTypes }: PlaceTypeFilterProps) => {
             setIndicatorPosition(null);
             setSelectedTypeId("");
         };
-    }, []);
+    }, [placeTypes, router, setSelectedTypeId]);
 
     // if (isLoading) return <LoadingSpinner />;
     return (
         <>
             <div className={clsx("absolute bottom-2 left-2 z-[999]")}>
-                <button className={clsx("w-full rounded-full bg-dark p-4 shadow-sm shadow-indigo-600 transition-[width] small:hidden", { "w-60 rounded-sm ": isExpanded })} onClick={() => setIsExpanded(prev => !prev)}>
+                <button className={clsx("sticky bottom-2 w-full rounded-full bg-dark p-4 shadow-sm shadow-indigo-600 transition-[width] small:hidden", { "w-60 rounded-sm ": isExpanded })} onClick={() => setIsExpanded(prev => !prev)}>
                     {isExpanded ? (
                         <div className="flex items-center justify-center gap-2">
                             <AiOutlineClose className="text-2xl text-secondary" />

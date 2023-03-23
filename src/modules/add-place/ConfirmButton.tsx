@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import React from "react";
+import { toast } from "react-toastify";
 import { trpc } from "../../utils/trpc";
 import { NewPlaceFormErrors, useNewPlaceStore } from "../../zustand/newPlaceStore";
 import Button from "../common/Button";
@@ -21,8 +22,7 @@ const ConfirmButton = () => {
                 router.push(`/user-places/${res.id}`);
             }
         } else {
-            console.log(errorFields);
-
+            toast("Formularz zawiera błędy!", { position: "bottom-right", type: "error", autoClose: 2000 });
             setErrors(errorFields);
         }
     };
