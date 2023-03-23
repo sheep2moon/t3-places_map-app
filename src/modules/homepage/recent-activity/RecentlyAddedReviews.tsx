@@ -1,6 +1,8 @@
 import { Place, PlaceType, Review, User, Image as ImageType } from "@prisma/client";
+import Link from "next/link";
 import React from "react";
 import { IoStar } from "react-icons/io5";
+import { getPlaceRouterHref } from "../../../utils/getPlaceUrls";
 import UserBadge from "../../common/badges/UserBadge";
 import HorizontalLine from "../../common/HorizontalLine";
 import PlaceTypeIcon from "../../place/PlaceTypeIcon";
@@ -31,11 +33,11 @@ const RecentlyAddedReviews = ({ recentlyAddedReviews }: RecentlyAddedReviewsProp
                         <HorizontalLine />
 
                         <span>{review.comment}</span>
-                        <div className="mt-auto flex items-center gap-1">
+                        <Link className="mt-auto flex items-center gap-1" href={getPlaceRouterHref(review.Place.id)}>
                             {review.Place?.type && <PlaceTypeIcon size="sm" placeType={review.Place.type} />}
 
                             <p className="max-h-5 overflow-hidden overflow-ellipsis whitespace-nowrap text-base font-bold leading-5">{review.Place?.displayName}</p>
-                        </div>
+                        </Link>
                     </div>
                 ))}
             </div>

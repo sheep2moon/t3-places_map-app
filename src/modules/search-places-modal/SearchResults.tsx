@@ -2,7 +2,6 @@ import { Place } from "@prisma/client";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
-import { AiOutlineRight } from "react-icons/ai";
 import { BsArrowRightSquareFill } from "react-icons/bs";
 import { getPlaceImageSrc } from "../../utils/getImageSrc";
 import { trpc } from "../../utils/trpc";
@@ -32,10 +31,11 @@ const SearchResults = ({ query, close }: SearchResultsProps) => {
     if (searchResults.isLoading) return <LoadingSpinner />;
     return (
         <div className="mt-4 flex w-full flex-col items-start">
+            {query && query.length > 2 && searchResults.data && searchResults.data.length === 0 && <span>Brak wyników</span>}
             {searchResults.data?.map(result => (
                 <button onClick={() => handleGoToPlace(result)} key={result.id} className="flex w-full  rounded-sm p-2 dark:bg-black/30">
                     <div className="relative my-auto aspect-square h-16 small:h-20">
-                        <Image layout="fill" alt="podgląd miejsca" src={getPlaceImageSrc(result.images[0]?.id || "")} />
+                        <Image fill alt="podgląd miejsca" src={getPlaceImageSrc(result.images[0]?.id || "")} />
                     </div>
                     <div className="ml-2 flex flex-col items-start small:ml-4 ">
                         <div className="flex items-center gap-2">

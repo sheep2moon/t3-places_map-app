@@ -17,7 +17,7 @@ const SearchModalContainer = ({ isModalOpen, close, children }: SearchModalConta
                     </Transition.Child>
 
                     <div className="fixed inset-0 overflow-y-auto">
-                        <div className=" flex h-full w-full items-center justify-center pt-16 text-center">
+                        <div className=" flex w-full items-center justify-center pt-16 text-center">
                             <Transition.Child
                                 as={Fragment}
                                 enter="ease-out duration-300"
@@ -27,7 +27,7 @@ const SearchModalContainer = ({ isModalOpen, close, children }: SearchModalConta
                                 leaveFrom="opacity-100 scale-100"
                                 leaveTo="opacity-0 scale-95"
                             >
-                                <Dialog.Panel className="flex h-full w-full flex-col bg-light p-2 transition-all dark:bg-dark small:p-6">{children}</Dialog.Panel>
+                                <Dialog.Panel className="flex h-full w-full flex-col p-2 transition-all  small:p-6">{children}</Dialog.Panel>
                             </Transition.Child>
                         </div>
                     </div>
