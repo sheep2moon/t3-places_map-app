@@ -1,5 +1,6 @@
 import { Image as ImageType, Place, PlaceType } from "@prisma/client";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import { BsArrowRightSquareFill } from "react-icons/bs";
@@ -59,11 +60,14 @@ const PlaceCard = ({ place }: PlaceCardProps) => {
                 onClick={() => handleGoToPlace(place)}
                 className="my-auto ml-auto mr-2 h-fit rounded-lg bg-indigo-900"
               >
-                <BsArrowRightSquareFill className="text-3xl dark:text-indigo-200" />
+                
               </button> */}
-              <InternalLink href={`/places-map?placeId=${place.id}`}>
-                TESTLINK
-              </InternalLink>
+              <Link
+                className="my-auto ml-auto mr-2 h-fit rounded-lg bg-indigo-900"
+                href={`/places-map?placeId=${place.id}`}
+              >
+                <BsArrowRightSquareFill className="text-3xl dark:text-indigo-200" />
+              </Link>
             </div>
           </div>
         </div>
