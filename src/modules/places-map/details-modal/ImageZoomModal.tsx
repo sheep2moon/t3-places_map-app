@@ -25,8 +25,8 @@ const ImageZoomModal = () => {
                                 leaveFrom="opacity-100 scale-100"
                                 leaveTo="opacity-0 scale-95"
                             >
-                                <Dialog.Panel className="relative aspect-video w-screen max-w-5xl transform overflow-hidden text-left align-middle shadow-xl transition-all">
-                                    <Image objectFit="contain" alt="powiększone zdjęcie miejsca" src={getPlaceImageSrc(currentImageId)} layout="fill" />
+                                <Dialog.Panel className="relative aspect-video w-screen max-w-5xl transform overflow-hidden rounded-sm bg-black/90 text-left align-middle shadow-xl transition-all">
+                                    <Image className="object-contain" alt="powiększone zdjęcie miejsca" src={getPlaceImageSrc(currentImageId)} fill />
                                 </Dialog.Panel>
                             </Transition.Child>
                         </div>

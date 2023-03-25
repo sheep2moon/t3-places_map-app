@@ -23,7 +23,7 @@ const PlacesSearch = () => {
                 <ImSearch className="text-xl" />
             </button>
             <SearchModalContainer close={close} isModalOpen={isModalOpen}>
-                <div className="mx-auto w-full max-w-5xl rounded-lg bg-light p-4 shadow-md shadow-dark/60 dark:bg-dark dark:shadow-black">
+                <div className="mx-auto w-full max-w-3xl rounded-lg bg-light p-4 shadow-md shadow-dark/60 dark:bg-dark dark:shadow-black small:min-w-[800px]">
                     <div className="mx-auto mt-2 flex items-center">
                         <input autoFocus onChange={handleChange} type="text" className="w-full border-b-2 border-secondary bg-transparent p-2 text-4xl text-secondary outline-none " placeholder="Wyszukaj..." />
                     </div>

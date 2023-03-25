@@ -27,7 +27,7 @@ const SearchModalContainer = ({ isModalOpen, close, children }: SearchModalConta
                                 leaveFrom="opacity-100 scale-100"
                                 leaveTo="opacity-0 scale-95"
                             >
-                                <Dialog.Panel className="flex h-full w-full flex-col p-2 transition-all  small:p-6">{children}</Dialog.Panel>
+                                <Dialog.Panel className="flex h-full flex-col p-2 transition-all  small:p-6">{children}</Dialog.Panel>
                             </Transition.Child>
                         </div>
                     </div>
