@@ -13,7 +13,7 @@ const PlacesMap: NextPage<PlacesMapProps> = ({ placeTypes }) => {
     const PlacesMap = dynamic(() => import("../../modules/places-map/PlacesMap"), { ssr: false });
 
     return (
-        <div className="absolute inset-0 top-16 w-screen max-w-screen-large">
+        <div className="absolute inset-0 top-16 mx-auto w-screen max-w-screen-large small:block">
             <div className="max-h-container-screen relative flex h-full w-full max-w-screen-large">
                 <PlaceTypeFilter placeTypes={placeTypes} />
                 <PlacesMap />

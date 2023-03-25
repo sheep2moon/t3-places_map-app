@@ -9,10 +9,10 @@ type ImageGalleryProps = {
 };
 
 const ImageGallery = ({ images }: ImageGalleryProps) => {
-    const { setCurrentImageId, open } = useEnlargedImageStore();
+    const { setImageCollection, open } = useEnlargedImageStore();
 
-    const handleEnlargeImage = (imageId: string) => {
-        setCurrentImageId(imageId);
+    const handleEnlargeImage = (imageIndex: number) => {
+        setImageCollection({ currentImageIndex: imageIndex, imageCollection: images });
         open();
     };
 
@@ -20,9 +20,9 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
     return (
         <div className="flex flex-col">
             <div className="my-1 grid grid-cols-3 grid-rows-1 gap-1 xsmall:grid-cols-4 small:grid-cols-5 ">
-                {images.slice(0, 4).map(image => (
-                    <div className="relative aspect-square " key={image.id} onClick={() => handleEnlargeImage(image.id)}>
-                        <Image src={getPlaceImageSrc(image.id)} alt="widok z miejsca" className="rounded-sm" layout="fill" />
+                {images.slice(0, 4).map((image, index) => (
+                    <div className="relative aspect-square " key={image.id} onClick={() => handleEnlargeImage(index)}>
+                        <Image src={getPlaceImageSrc(image.id)} alt="widok z miejsca" className="rounded-sm" fill />
                     </div>
                 ))}
             </div>
