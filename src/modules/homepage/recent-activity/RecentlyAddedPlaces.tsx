@@ -16,7 +16,7 @@ const RecentlyAddedPlaces = ({ recentlyAddedPlaces }: RecentlyAddedPlacesProps) 
                 <h2 className="text-lg font-extralight md:text-xl lg:text-2xl">Ostatnio dodane miejsca</h2>
             </HorizontalLine>
             {/* {isLoading && <LoadingSkeleton />} */}
-            <div className="mt-4 flex h-full w-full gap-4 overflow-x-auto px-4 pb-4">
+            <div className="mx-auto mt-4 flex h-full w-full max-w-screen-lg gap-4 overflow-x-auto px-4 pb-4">
                 {recentlyAddedPlaces.map(place => (
                     <PlaceCard place={place} key={place.id} />
                 ))}

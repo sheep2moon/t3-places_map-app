@@ -11,6 +11,7 @@ import RecentlyAddedReviews from "../modules/homepage/recent-activity/RecentlyAd
 import Image from "next/image";
 import Link from "next/link";
 import PlaceTypeIcon from "../modules/place/PlaceTypeIcon";
+import HorizontalLine from "../modules/common/HorizontalLine";
 
 type HomeProps = {
     placeTypes: PlaceType[];
@@ -22,7 +23,7 @@ const Home: NextPage<HomeProps> = ({ placeTypes, recentlyAddedPlaces, recentlyAd
     console.log("static props: !", placeTypes);
 
     return (
-        <div className=" mt-0 w-full max-w-screen-large">
+        <div className=" mt-0 w-full">
             <div className="relative mx-auto mb-12 max-w-screen-lg overflow-hidden p-2">
                 <h1 className="mt-6 bg-gradient-to-r  from-indigo-600 via-indigo-400 to-indigo-500 bg-clip-text pb-4 text-center text-4xl font-extrabold text-transparent sm:text-5xl">
                     Eksploruj miejsca
@@ -53,11 +54,9 @@ const Home: NextPage<HomeProps> = ({ placeTypes, recentlyAddedPlaces, recentlyAd
             <RecentlyAddedPlaces recentlyAddedPlaces={JSON.parse(recentlyAddedPlaces)} />
             <RecentlyAddedReviews recentlyAddedReviews={JSON.parse(recentlyAddedReviews)} />
             <PlaceTypesList placeTypes={placeTypes} />
+            <HorizontalLine />
             <AddPlaceEncouragement />
-            <p className="my-12 px-4">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid nam illo architecto unde tempore magni expedita, beatae doloribus veniam nihil culpa sapiente, sequi cum? Voluptate temporibus sunt quis accusamus quo. Lorem
-                ipsum dolor, sit amet consectetur adipisicing elit. Quod sit vero quisquam illum rerum error nostrum saepe, perspiciatis tempore eos quis consectetur iure in ut soluta, ea animi eveniet iste!
-            </p>
+            <p className="my-12 px-4">Stwórz konto już teraz, aby uzyskać pełny dostęp do wszystkich funkcji naszej aplikacji, w tym możliwość dodawania miejsc, komentowania i oceniania, a także tworzenia list ulubionych miejsc.</p>
         </div>
     );
 };
