@@ -25,7 +25,7 @@ const PlaceImage = ({ image, refetch }: PlaceImageProps) => {
     return (
         <div className="">
             <div className="relative aspect-square w-full">
-                <Image src={getPlaceImageSrc(image.id)} alt="wygląd miejsca" layout="fill" className="rounded-md" onClick={() => setShowDelete(prev => !prev)} />
+                <Image src={getPlaceImageSrc(image.id)} alt="wygląd miejsca" fill className="rounded-md" onClick={() => setShowDelete(prev => !prev)} />
 
                 <button onClick={() => handleDelete(image.id)} className="r ounded-full absolute top-1 right-1 flex h-6 w-6 items-center             justify-center border border-secondary bg-white/80 text-zinc-900 ring-dark focus:ring-2 ">
                     <RiDeleteBin5Line />

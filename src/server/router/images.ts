@@ -32,7 +32,7 @@ export const imagesRouter = createProtectedRouter()
                         },
                         Conditions: [
                             ["starts-with", "$Content-Type", "image/"],
-                            ["content-length-range", 0, 1000000]
+                            ["content-length-range", 0, 5000000]
                         ],
                         Expires: 60,
                         Bucket: env.S3_BUCKET_NAME

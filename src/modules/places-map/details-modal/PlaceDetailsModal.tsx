@@ -27,7 +27,7 @@ import OptionsMenu from "./options-menu/OptionsMenu";
 import { NextRouter, useRouter } from "next/router";
 
 const PlaceDetailsModal = () => {
-    const { currentPlaceId, isPlaceModalOpen, setIsPlaceModalOpen, flyTo, setCurrentPlaceId } = usePlacesMapStore(state => state);
+    const { currentPlaceId, isPlaceModalOpen, setIsPlaceModalOpen, setCurrentPlaceId } = usePlacesMapStore(state => state);
     const { data, isLoading } = trpc.useQuery(["places.getPlaceDetails", { placeId: currentPlaceId }]);
 
     const router: NextRouter = useRouter();

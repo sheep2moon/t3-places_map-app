@@ -12,9 +12,7 @@ const AddPlaceEncouragement = () => {
                     </p>
                 </div>
                 <div className="mt-4 flex-none md:mt-0">
-                    <a href="javascript:void(0)" className="inline-block rounded-lg bg-white py-2 px-4 font-medium text-gray-800 shadow-md duration-150 hover:bg-gray-100 hover:shadow-none active:bg-gray-200">
-                        Learn more
-                    </a>
+                    <InternalLink href="/auth/signin">Zaloguj się</InternalLink>
                 </div>
             </div>
         </section>

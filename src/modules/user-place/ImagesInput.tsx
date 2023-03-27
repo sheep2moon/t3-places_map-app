@@ -1,7 +1,10 @@
 import Image from "next/image";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 import { uploadFile } from "../../server/common/uploadFile";
+import { compressImage } from "../../utils/compressImage";
 import { trpc } from "../../utils/trpc";
+import { inferMutationOutput } from "../../utils/trpc";
 import LoadingSpinner from "../common/LoadingSpinner";
 
 type InputFileProps = {
@@ -9,7 +12,7 @@ type InputFileProps = {
     refetch: () => void;
 };
 const ImageInput = ({ placeId, refetch }: InputFileProps) => {
-    const [file, setFile] = useState<any>(null);
+    const [file, setFile] = useState<File | null>(null);
     const [loading, setLoading] = useState(false);
     const { mutateAsync: createPresignedUrl } = trpc.useMutation(["images.createPresignedUrl"]);
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,14 +24,49 @@ const ImageInput = ({ placeId, refetch }: InputFileProps) => {
         }
     };
 
-    const handleUploadImage = async (file: any) => {
+    const handleUploadImage = async (file: File) => {
+        let targetFile: File;
+        let compressedBlob: Blob | null = null;
+        if (file.size > 6 * 1024 * 1024) {
+            setFile(null);
+            toast("Zdjęcie za duże, maksymalny rozmiar to 6MB");
+            return;
+        }
         setLoading(true);
-        const imgData = (await createPresignedUrl({ placeId })) as any;
-        const res = await uploadFile({ file, url: imgData.url, fields: imgData.fields });
+        if (file.size > 4 * 1024 * 1024) {
+            console.log("wiecej niż 4MB");
+
+            compressedBlob = await compressImage(file, 0.2);
+        } else if (file.size > 2 * 1024 * 1024) {
+            console.log("wiecej niż 2MB");
+            compressedBlob = await compressImage(file, 0.4);
+        } else if (file.size > 1 * 1024 * 1024) {
+            console.log("wiecej niż 1MB");
+            compressedBlob = await compressImage(file, 0.6);
+        } else if (file.size > 0.5 * 1024 * 1024) {
+            console.log("wiecej niż 0.5MB");
+            compressedBlob = await compressImage(file, 0.8);
+        }
+
+        if (compressedBlob) {
+            targetFile = new File([compressedBlob], "compressedImage", { type: "image/jpeg" });
+        } else {
+            targetFile = file;
+        }
+        const imgData: inferMutationOutput<"images.createPresignedUrl"> = await createPresignedUrl({ placeId });
+
+        console.log(file);
+        console.log(targetFile);
+
+        const res = await uploadFile({ file: targetFile, url: imgData.url, fields: imgData.fields });
         if (res.ok) {
             setFile(null);
             setLoading(false);
             refetch();
+        } else {
+            setLoading(false);
+            setFile(null);
+            toast("error", { type: "error" });
         }
     };
 
