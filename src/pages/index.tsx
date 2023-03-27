@@ -24,7 +24,8 @@ const Home: NextPage<HomeProps> = ({ placeTypes, recentlyAddedPlaces, recentlyAd
 
     return (
         <div className=" mt-0 w-full">
-            <div className="relative mx-auto mb-12 max-w-screen-lg overflow-hidden p-2">
+            <div className="relative mx-auto max-w-screen-lg overflow-hidden p-2 pb-12">
+                <div className="bg-radial-dark absolute inset-0 my-auto h-[100px]"></div>
                 <h1 className="mt-6 bg-gradient-to-r  from-indigo-600 via-indigo-400 to-indigo-500 bg-clip-text pb-4 text-center text-4xl font-extrabold text-transparent sm:text-5xl">
                     Eksploruj miejsca
                     <span className="block"> które warto zobaczyć. </span>
@@ -51,6 +52,7 @@ const Home: NextPage<HomeProps> = ({ placeTypes, recentlyAddedPlaces, recentlyAd
                 </div>
                 <div className=""></div>
             </div>
+
             <RecentlyAddedPlaces recentlyAddedPlaces={JSON.parse(recentlyAddedPlaces)} />
             <RecentlyAddedReviews recentlyAddedReviews={JSON.parse(recentlyAddedReviews)} />
             <PlaceTypesList placeTypes={placeTypes} />

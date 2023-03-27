@@ -20,7 +20,7 @@ const RecentlyAddedReviews = ({ recentlyAddedReviews }: RecentlyAddedReviewsProp
                 <h2 className="text-lg font-extralight md:text-xl lg:text-2xl">Ostatnie recenzje</h2>
             </HorizontalLine>
             {/* {isLoading && <LoadingSkeleton />} */}
-            <div className="mt-4 flex h-full w-full gap-2 overflow-x-auto px-4">
+            <div className="mx-auto mt-4 flex h-full w-full max-w-screen-lg gap-2 overflow-x-auto px-4">
                 {recentlyAddedReviews.map(review => (
                     <div key={review.id} className="flex h-48 min-w-[20rem] flex-col justify-between rounded-md border border-secondary/10 bg-light p-2 shadow-md dark:bg-dark">
                         <span className="flex w-full items-center justify-between text-xs">
