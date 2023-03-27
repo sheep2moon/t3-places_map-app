@@ -1,8 +1,6 @@
 import Head from "next/head";
 import Script from "next/script";
 import React from "react";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import ImageZoomModal from "../places-map/details-modal/ImageZoomModal";
 import Footer from "./footer";
 import Nav from "./nav";
@@ -25,9 +23,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             </main>
 
             <ImageZoomModal />
-
-            <ToastContainer style={{ zIndex: 999999999 }} position="top-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
-            <ToastContainer />
         </>
     );
 };

@@ -15,36 +15,44 @@ const ImageInput = ({ placeId, refetch }: InputFileProps) => {
     const [file, setFile] = useState<File | null>(null);
     const [loading, setLoading] = useState(false);
     const { mutateAsync: createPresignedUrl } = trpc.useMutation(["images.createPresignedUrl"]);
+
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        console.log(e);
         e.preventDefault();
-        const file = e.currentTarget.files?.[0];
-        if (file) {
-            setFile(file);
-            handleUploadImage(file);
+        const inputFile = e.currentTarget.files?.[0];
+
+        if (inputFile) {
+            if (inputFile.size > 6 * 1024 * 1024) {
+                e.target.value = "";
+                toast("Zdjęcie za duże, maksymalny rozmiar to 6MB", { autoClose: 3000, type: "info" });
+                return;
+            } else {
+                setFile(inputFile);
+                handleUploadImage(inputFile);
+            }
         }
     };
 
     const handleUploadImage = async (file: File) => {
+        console.log(file);
+
         let targetFile: File;
         let compressedBlob: Blob | null = null;
         if (file.size > 6 * 1024 * 1024) {
+            console.log("toast!");
+
             setFile(null);
-            toast("Zdjęcie za duże, maksymalny rozmiar to 6MB");
+            toast("Zdjęcie za duże, maksymalny rozmiar to 6MB", { autoClose: 3000, type: "info" });
             return;
         }
         setLoading(true);
         if (file.size > 4 * 1024 * 1024) {
-            console.log("wiecej niż 4MB");
-
             compressedBlob = await compressImage(file, 0.2);
         } else if (file.size > 2 * 1024 * 1024) {
-            console.log("wiecej niż 2MB");
             compressedBlob = await compressImage(file, 0.4);
         } else if (file.size > 1 * 1024 * 1024) {
-            console.log("wiecej niż 1MB");
             compressedBlob = await compressImage(file, 0.6);
         } else if (file.size > 0.5 * 1024 * 1024) {
-            console.log("wiecej niż 0.5MB");
             compressedBlob = await compressImage(file, 0.8);
         }
 
@@ -66,7 +74,7 @@ const ImageInput = ({ placeId, refetch }: InputFileProps) => {
         } else {
             setLoading(false);
             setFile(null);
-            toast("error", { type: "error" });
+            toast("error", { autoClose: 3000, type: "error" });
         }
     };
 

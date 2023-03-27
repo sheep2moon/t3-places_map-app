@@ -9,17 +9,21 @@ import type { Session } from "next-auth";
 import "../styles/globals.css";
 import Layout from "../modules/layout";
 import { ThemeProvider } from "next-themes";
-import { useEffect } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const MyApp: AppType<{ session: Session | null }> = ({ Component, pageProps: { session, ...pageProps } }) => {
     return (
-        <SessionProvider session={session}>
-            <ThemeProvider attribute="class">
-                <Layout>
-                    <Component {...pageProps} />
-                </Layout>
-            </ThemeProvider>
-        </SessionProvider>
+        <>
+            <SessionProvider session={session}>
+                <ThemeProvider attribute="class">
+                    <Layout>
+                        <Component {...pageProps} />
+                    </Layout>
+                    <ToastContainer style={{ zIndex: 9999999 }} position="top-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
+                </ThemeProvider>
+            </SessionProvider>
+        </>
     );
 };
 
