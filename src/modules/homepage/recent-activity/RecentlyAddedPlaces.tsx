@@ -11,12 +11,12 @@ const RecentlyAddedPlaces = ({ recentlyAddedPlaces }: RecentlyAddedPlacesProps) 
     // const { data, isLoading } = trpc.useQuery(["places.getRecentlyAddedPlaces"]);
 
     return (
-        <div className="mt-8 flex flex-col py-4 ">
+        <div className=" flex flex-col py-4 ">
             <HorizontalLine>
                 <h2 className="text-lg font-extralight md:text-xl lg:text-2xl">Ostatnio dodane miejsca</h2>
             </HorizontalLine>
             {/* {isLoading && <LoadingSkeleton />} */}
-            <div className="mt-4 flex h-full w-full gap-4 overflow-x-auto px-4 pb-8">
+            <div className="mt-4 flex h-full w-full gap-4 overflow-x-auto px-4 pb-4">
                 {recentlyAddedPlaces.map(place => (
                     <PlaceCard place={place} key={place.id} />
                 ))}

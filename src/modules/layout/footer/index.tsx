@@ -1,14 +1,15 @@
 import React from "react";
-import { BsGithub } from "react-icons/bs";
+import { AiFillGithub } from "react-icons/ai";
 
 const Footer = () => {
     return (
-        <footer className="flex h-8 items-center justify-between bg-light px-4 text-2xs text-xs text-primary dark:bg-primary dark:text-light">
-            <span className="">Aplikacja stworzona dla własnej satysfakcji</span>
-            <a target="blank" href="https://github.com/sheep2moon" className=" font-lg flex items-center gap-2">
-                <span>Zobacz kod</span>
-                <BsGithub className="text-base" />
-            </a>
+        <footer className="flex h-12 w-full items-center justify-between bg-light px-4 text-2xs text-xs text-primary dark:bg-dark dark:text-light">
+            <div className="w-full items-center justify-between sm:flex">
+                <div className="text-sm">&copy; 2023 Plecak.</div>
+                <a target="_blank" rel="noreferrer" className="text-3xl" href="https://github.com/sheep2moon">
+                    <AiFillGithub />
+                </a>
+            </div>
         </footer>
     );
 };
