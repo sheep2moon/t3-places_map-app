@@ -25,7 +25,7 @@ const Signin = () => {
             {!session && (
                 <div className="relative text-light">
                     <h1 className="mb-8 bg-gradient-to-r from-indigo-600 via-indigo-400  to-indigo-500 bg-clip-text pb-4 text-center text-3xl font-extrabold text-transparent">Zaloguj się</h1>
-                    <div className="bg-radial-dark absolute inset-0 my-auto h-[200px]" />
+                    <div className="bg-radial-dark absolute inset-0 -z-10 my-auto h-[200px]" />
                     <div className=" flex flex-col gap-2">
                         <button className="rounded-sm bg-[#5865F2] p-2 px-4 hover:bg-indigo-600 " onClick={() => signIn("discord")}>
                             <div className="flex items-center gap-2 text-light">

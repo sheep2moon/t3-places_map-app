@@ -28,7 +28,7 @@ const SearchResults = ({ query, close }: SearchResultsProps) => {
         router.push("/places-map");
     };
 
-    if (searchResults.isLoading) return <LoadingSpinner />;
+    if (query && query.length > 2 && searchResults.isLoading) return <LoadingSpinner />;
     return (
         <div className="mt-4 flex w-full flex-col items-start">
             {query && query.length > 2 && searchResults.data && searchResults.data.length === 0 && <span>Brak wyników</span>}

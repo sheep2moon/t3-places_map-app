@@ -124,7 +124,7 @@ const ModalContent = ({ data }: ModalContentProps) => {
                     </div>
                 </HorizontalLine>
                 <div className="flex flex-col text-xs">
-                    <pre className="whitespace-pre-wrap text-left font-mono text-lg">{data?.description}</pre>
+                    <pre className="whitespace-pre-wrap text-left font-sans text-lg">{data?.description}</pre>
                 </div>
 
                 {data.isPaid && data.prices && (

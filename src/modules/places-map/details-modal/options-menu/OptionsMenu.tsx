@@ -56,7 +56,7 @@ const OptionsMenu: React.FC<OptionsMenuProps> = ({ placeId }) => {
                 </div>
             </Modal>
             <Menu as="div" className="relative flex flex-col items-end">
-                <Menu.Button className="h-8 w-16 rounded-sm bg-primary text-light">...</Menu.Button>
+                <Menu.Button className="h-6  w-12 rounded-sm bg-primary text-light">...</Menu.Button>
                 <Menu.Items className="items-left mr-2 mt-1 flex flex-col bg-dark p-1">
                     <Menu.Item>
                         <MenuItemButton onClick={() => setIsShareModalOpen(true)}>

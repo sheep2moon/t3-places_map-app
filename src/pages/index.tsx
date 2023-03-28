@@ -58,7 +58,6 @@ const Home: NextPage<HomeProps> = ({ placeTypes, recentlyAddedPlaces, recentlyAd
             <PlaceTypesList placeTypes={placeTypes} />
             <HorizontalLine />
             <AddPlaceEncouragement />
-            <p className="my-12 px-4">Stwórz konto już teraz, aby uzyskać pełny dostęp do wszystkich funkcji naszej aplikacji, w tym możliwość dodawania miejsc, komentowania i oceniania, a także tworzenia list ulubionych miejsc.</p>
         </div>
     );
 };

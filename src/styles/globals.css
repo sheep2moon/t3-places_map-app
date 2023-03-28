@@ -21,7 +21,7 @@ main{
 }
 
 .h-container-screen{
-  height: calc(100vh - 4rem);
+  height: calc(100vh - 7rem);
 }
 
 .max-h-container-screen{
