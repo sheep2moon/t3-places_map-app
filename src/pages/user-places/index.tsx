@@ -1,30 +1,37 @@
 import Link from "next/link";
 import React from "react";
 import LoadingSpinner from "../../modules/common/LoadingSpinner";
+import Footer from "../../modules/layout/footer";
 import UserPlace from "../../modules/user-places/UserPlace";
 import { trpc } from "../../utils/trpc";
 
 const UserPlaces = () => {
-    const userPlaces = trpc.useQuery(["protectedPlace.getUserPlaces"]);
-    if (userPlaces.isLoading) return <LoadingSpinner />;
-    return (
-        <div className="mt-8 min-h-[400px] w-full max-w-2xl">
-            <h1 className="mb-4 border-b-2 border-light">Twoje miejsca</h1>
-            <div className="flex flex-col gap-2">
-                {userPlaces.data?.map(place => (
-                    <UserPlace key={place.id} place={place} placeType={place.type} />
-                ))}
-                {userPlaces.data?.length === 0 && (
-                    <div className="flex items-center gap-2">
-                        <span>Nie dodałeś jeszcze żadnych miejsc</span>
-                        <Link href="/add-place" className="rounded-sm bg-amber-200 p-1 text-primary">
-                            Dodaj miejsce
-                        </Link>
-                    </div>
-                )}
+  const userPlaces = trpc.useQuery(["protectedPlace.getUserPlaces"]);
+  if (userPlaces.isLoading) return <LoadingSpinner />;
+  return (
+    <div className="h-container-screen mx-auto flex w-full flex-col">
+      <div className="mx-auto mt-8 min-h-[400px] w-full max-w-2xl">
+        <h1 className="mb-4 border-b-2 border-light">Twoje miejsca</h1>
+        <div className="flex flex-col gap-2">
+          {userPlaces.data?.map((place) => (
+            <UserPlace key={place.id} place={place} placeType={place.type} />
+          ))}
+          {userPlaces.data?.length === 0 && (
+            <div className="flex items-center gap-2">
+              <span>Nie dodałeś jeszcze żadnych miejsc</span>
+              <Link
+                href="/add-place"
+                className="rounded-sm bg-amber-200 p-1 text-primary"
+              >
+                Dodaj miejsce
+              </Link>
             </div>
+          )}
         </div>
-    );
+      </div>
+      <Footer />
+    </div>
+  );
 };
 
 export default UserPlaces;

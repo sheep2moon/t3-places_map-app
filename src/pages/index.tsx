@@ -12,6 +12,7 @@ import Image from "next/image";
 import Link from "next/link";
 import PlaceTypeIcon from "../modules/place/PlaceTypeIcon";
 import HorizontalLine from "../modules/common/HorizontalLine";
+import Footer from "../modules/layout/footer";
 
 type HomeProps = {
   placeTypes: PlaceType[];
@@ -77,6 +78,7 @@ const Home: NextPage<HomeProps> = ({
       <PlaceTypesList placeTypes={placeTypes} />
       <HorizontalLine />
       <AddPlaceEncouragement />
+      <Footer />
     </div>
   );
 };

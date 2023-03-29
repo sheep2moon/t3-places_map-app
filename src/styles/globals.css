@@ -1,35 +1,36 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap");
 
-
-
-body{
-    @apply bg-gradient-to-b from-light to-secondary dark:from-dark dark:to-primary
+body {
+  @apply bg-gradient-to-b from-light to-secondary dark:from-dark dark:to-primary;
 }
 
-
-main{
-    min-height: calc(100vh - 2rem);
-    
+main {
+  min-height: calc(100vh - 2rem);
 }
 
-.bg-radial-dark{
-  background: linear-gradient(152.92deg, rgba(192, 132, 252, 0.2) 4.54%, rgba(232, 121, 249, 0.26) 34.2%, rgba(192, 132, 252, 0.1) 77.55%);
+.bg-radial-dark {
+  background: linear-gradient(
+    152.92deg,
+    rgba(192, 132, 252, 0.2) 4.54%,
+    rgba(232, 121, 249, 0.26) 34.2%,
+    rgba(192, 132, 252, 0.1) 77.55%
+  );
   filter: blur(118px);
 }
 
-.h-container-screen{
-  height: calc(100vh - 7rem);
+.h-container-screen {
+  height: calc(100vh - 4rem);
 }
 
-.max-h-container-screen{
+.max-h-container-screen {
   max-height: calc(100vh - 4rem);
 }
 
 :root {
-  font-family: 'Kanit', sans-serif;
+  font-family: "Kanit", sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -44,30 +45,27 @@ main{
   cursor: crosshair;
 }
 
-
-
-*{
+* {
   margin: 0;
   box-sizing: border-box;
 }
-.leaflet-div-icon{
+.leaflet-div-icon {
   background: none;
   border: none;
 }
 
-.leaflet-popup-content-wrapper{
+.leaflet-popup-content-wrapper {
   padding: 0;
 }
-.leaflet-popup-content{
+.leaflet-popup-content {
   margin: 0;
 }
-.leaflet-popup-close-button{
+.leaflet-popup-close-button {
   z-index: 99;
   font-size: 1.4rem !important;
   color: #fff !important;
 }
 
-.leaflet-control-attribution{
+.leaflet-control-attribution {
   display: none;
 }
-

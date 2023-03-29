@@ -6,30 +6,33 @@ import PlaceDetailsModal from "../../modules/places-map/details-modal/PlaceDetai
 import PlaceTypeFilter from "../../modules/places-map/PlaceTypeFilter";
 
 type PlacesMapProps = {
-    placeTypes: PlaceType[];
+  placeTypes: PlaceType[];
 };
 
 const PlacesMap: NextPage<PlacesMapProps> = ({ placeTypes }) => {
-    const PlacesMap = dynamic(() => import("../../modules/places-map/PlacesMap"), { ssr: false });
+  const PlacesMap = dynamic(
+    () => import("../../modules/places-map/PlacesMap"),
+    { ssr: false }
+  );
 
-    return (
-        <div className="absolute inset-0 top-16 mx-auto w-screen max-w-screen-large small:block">
-            <div className="max-h-container-screen relative flex h-full w-full max-w-screen-large">
-                <PlaceTypeFilter placeTypes={placeTypes} />
-                <PlacesMap />
-            </div>
-            <PlaceDetailsModal />
-        </div>
-    );
+  return (
+    <div className="absolute inset-0 top-16  mx-auto w-screen max-w-screen-large small:block">
+      <div className="max-h-container-screen relative flex h-full w-full max-w-screen-large">
+        <PlaceTypeFilter placeTypes={placeTypes} />
+        <PlacesMap />
+      </div>
+      <PlaceDetailsModal />
+    </div>
+  );
 };
 
 export default PlacesMap;
 
 export async function getStaticProps() {
-    const placeTypes = await prisma.placeType.findMany();
-    return {
-        props: {
-            placeTypes
-        }
-    };
+  const placeTypes = await prisma.placeType.findMany();
+  return {
+    props: {
+      placeTypes,
+    },
+  };
 }
