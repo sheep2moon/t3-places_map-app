@@ -14,7 +14,6 @@ import { Place, PlaceType } from "@prisma/client";
 import PlaceTypeIcon from "../../modules/place/PlaceTypeIcon";
 import { BiShowAlt } from "react-icons/bi";
 import { IoWalk } from "react-icons/io5";
-import UserPlace from "../../modules/user-places/UserPlace";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 
