@@ -7,7 +7,7 @@ const RatingBadge = ({ reviews }: { reviews: Review[] }) => {
     return (
         <div className="flex items-center gap-1">
             <HiStar className="text-lg text-amber-400" />
-            <span>{getAverageRating(reviews)}</span>
+            <span>{getAverageRating(reviews) !== 0 && getAverageRating(reviews)}</span>
         </div>
     );
 };
