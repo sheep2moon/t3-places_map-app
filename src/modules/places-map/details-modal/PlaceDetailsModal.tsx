@@ -58,10 +58,10 @@ const PlaceDetailsModal = () => {
                             <div className="fixed inset-0 bg-light bg-opacity-50 dark:bg-black/50" />
                         </Transition.Child>
 
-                        <div className="fixed right-0 top-16 bottom-0  shadow-md shadow-black/50">
+                        <div className="fixed right-0 top-16 bottom-0  shadow-md shadow-black/50 dark:bg-dark">
                             <div className="flex h-[calc(100vh_-_4rem)] items-center justify-center overflow-y-scroll text-center">
                                 <Transition.Child as={Fragment} enter="ease-out duration-100" enterFrom="opacity-0" enterTo="opacity-100" leave="ease-in duration-200" leaveFrom="opacity-100" leaveTo="opacity-0">
-                                    <Dialog.Panel className="relative h-full w-screen transform bg-light align-middle shadow-xl transition-all dark:bg-dark md:max-w-[480px]">
+                                    <Dialog.Panel className="relative h-full w-screen transform  align-middle shadow-xl transition-all  md:max-w-[480px]">
                                         <button
                                             onClick={closeModal}
                                             className="absolute left-4 top-4 z-10 flex h-12 w-12 items-center justify-start rounded-full bg-indigo-600 text-secondary shadow-sm shadow-white/40 dark:bg-dark dark:text-secondary "
@@ -113,7 +113,7 @@ const ModalContent = ({ data }: ModalContentProps) => {
                     <OptionsMenu placeId={currentPlaceId} />
                 </div>
             </div>
-            <div className="z-10 rounded-t-3xl border-t-2 border-light/20 bg-dark pb-8">
+            <div className="z-10 rounded-t-3xl border-t-2 border-light/20 bg-light pb-8  dark:bg-dark">
                 <div className="mt-2 flex flex-col items-start px-4">
                     <span className="text-xl font-bold">{data?.displayName}</span>
                     <div className="flex items-center gap-1 rounded-md ">
