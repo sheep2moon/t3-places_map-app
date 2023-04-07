@@ -15,7 +15,7 @@ const PlaceTypeAndRating = ({ placeType, placeReviews }: PlaceTypeAndRatingProps
             <PlaceTypeBadge size="sm" placeType={placeType} />
             <div className="flex items-center">
                 {getAverageRating(placeReviews) !== 0 && (
-                    <div>
+                    <div className="flex items-center">
                         <IoStar className="text-amber-400" />
                         <p className="ml-2 text-sm font-bold text-gray-900 dark:text-white">{getAverageRating(placeReviews)}</p>
                         <span className="mx-1.5 h-1 w-1 rounded-full bg-gray-500 dark:bg-gray-400"></span>
