@@ -63,7 +63,7 @@ const PlaceTypeFilter = ({ placeTypes }: PlaceTypeFilterProps) => {
                     )}
                 </button>
             </div>
-            <div className={clsx("relative block shrink-0 bg-primary shadow-md shadow-black transition-all hover:w-64 hover:transition-all", { "w-64": isExpanded, "hidden w-[72px] small:block": !isExpanded })}>
+            <div className={clsx("group relative block shrink-0 bg-primary shadow-md shadow-black transition-all hover:w-64 hover:transition-all", { "w-64": isExpanded, "hidden w-[72px] small:block": !isExpanded })}>
                 <div className={clsx("flex h-12 items-center overflow-hidden")}>
                     <FiFilter className="ml-5 shrink-0 text-3xl" />
                     <p className="ml-6 overflow-hidden whitespace-nowrap font-bold">Filtruj typ miejsca</p>
@@ -86,7 +86,7 @@ const PlaceTypeFilter = ({ placeTypes }: PlaceTypeFilterProps) => {
                         >
                             <button className={clsx("flex items-center gap-2 hover:border-indigo-400 hover:text-gray-600 dark:hover:text-gray-300")} onClick={() => handleSelectPlaceType(place.id, index)}>
                                 <PlaceTypeIcon size="md" placeType={place} />
-                                <span className="whitespace-nowrap text-base">{place.title}</span>
+                                <span className={clsx(" whitespace-nowrap text-base ", { visible: isExpanded, "invisible group-hover:visible": !isExpanded })}>{place.title}</span>
                             </button>
                         </li>
                     ))}
