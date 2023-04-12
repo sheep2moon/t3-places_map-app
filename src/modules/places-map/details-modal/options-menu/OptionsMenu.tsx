@@ -7,15 +7,15 @@ import { EmailIcon, EmailShareButton, TelegramIcon, TelegramShareButton, Twitter
 import { toast } from "react-toastify";
 import Button from "../../../common/Button";
 import Modal from "../../../common/Modal";
+import { getPlaceUrl } from "../../../../utils/getPlaceUrls";
 
 type OptionsMenuProps = {
     placeId: string;
 };
 
 const OptionsMenu: React.FC<OptionsMenuProps> = ({ placeId }) => {
-    const shareUrl = `localhost:3000/placesMap/${placeId}`;
     const [isShareModalOpen, setIsShareModalOpen] = useState(false);
-
+    const shareUrl = getPlaceUrl(placeId);
     const handleCopyShareLink = async () => {
         try {
             navigator.clipboard.writeText(shareUrl);
