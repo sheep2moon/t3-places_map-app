@@ -53,8 +53,15 @@ model Notification {
     createdAt DateTime @default(now())
     userId String 
     user User @relation(fields: [userId],references: [id])
+}
 
-
+model Report {
+    id String @id @default(cuid())
+    createdBy String
+    createdAt DateTime @default(now())
+    title String
+    content String
+    
 }
 
 model User {
