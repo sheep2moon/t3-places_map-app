@@ -4,6 +4,7 @@ import { BsFillShareFill } from "react-icons/bs";
 import { GoReport } from "react-icons/go";
 import { IoMdCopy } from "react-icons/io";
 import { EmailIcon, EmailShareButton, TelegramIcon, TelegramShareButton, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton } from "react-share";
+import { HiDotsHorizontal } from "react-icons/hi";
 import { toast } from "react-toastify";
 import Button from "../../../common/Button";
 import Modal from "../../../common/Modal";
@@ -28,7 +29,7 @@ const OptionsMenu: React.FC<OptionsMenuProps> = ({ placeId }) => {
     return (
         <div>
             <Modal close={() => setIsShareModalOpen(false)} isModalOpen={isShareModalOpen}>
-                <div className="-mt-8 flex flex-col gap-2">
+                <div className="-mt-8 flex flex-col gap-2 p-4">
                     <span className="mb-8 flex items-center gap-2 text-left text-xl">
                         <BsFillShareFill />
                         Udostępnij
@@ -56,8 +57,10 @@ const OptionsMenu: React.FC<OptionsMenuProps> = ({ placeId }) => {
                 </div>
             </Modal>
             <Menu as="div" className="relative flex flex-col items-end">
-                <Menu.Button className="h-6  w-12 rounded-sm bg-primary text-light">...</Menu.Button>
-                <Menu.Items className="items-left mr-2 mt-1 flex flex-col bg-dark p-1">
+                <Menu.Button className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-4xl text-light shadow-sm shadow-white/40">
+                    <HiDotsHorizontal />
+                </Menu.Button>
+                <Menu.Items className="items-left mr-2 mt-1 flex flex-col rounded-md bg-primary p-1">
                     <Menu.Item>
                         <MenuItemButton onClick={() => setIsShareModalOpen(true)}>
                             <BsFillShareFill />
@@ -85,7 +88,7 @@ const MenuItemButton = ({
     children: React.ReactNode | string;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>) => {
     return (
-        <button {...rest} className="flex items-center gap-2 px-2 py-1 text-left text-light">
+        <button {...rest} className="flex items-center gap-2 px-2 py-1 text-left text-light hover:bg-slate-100/5">
             {children}
         </button>
     );

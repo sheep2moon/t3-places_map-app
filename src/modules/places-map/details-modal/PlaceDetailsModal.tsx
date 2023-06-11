@@ -9,8 +9,6 @@ import { IoIosArrowBack } from "react-icons/io";
 import Reviews from "./reviews/Reviews";
 import TimeBadge from "../../common/badges/TimeBadge";
 import UserBadge from "../../common/badges/UserBadge";
-import PlaceTypeBadge from "../../common/badges/PlaceTypeBadge";
-import HorizontalLine from "../../common/HorizontalLine";
 import UserActions from "./UserActions";
 import AddOrEditReview from "./reviews/AddOrEditReview";
 import Image from "next/image";
@@ -109,7 +107,7 @@ const ModalContent = ({ data }: ModalContentProps) => {
         <>
             <div className="relative -mb-4 h-60 w-full">
                 {data?.images[0]?.id && <Image src={getPlaceImageSrc(data?.images[0]?.id)} alt="widok z miejsca" fill className=" object-contain" />}
-                <div className="absolute top-1 right-1">
+                <div className="absolute top-4 right-4">
                     <OptionsMenu placeId={currentPlaceId} />
                 </div>
             </div>

@@ -13,9 +13,6 @@ type PlaceTypeFilterProps = {
 };
 
 const PlaceTypeFilter = ({ placeTypes }: PlaceTypeFilterProps) => {
-    // const { data, isLoading } = trpc.useQuery(["places.getPlaceTypes"]);
-    console.log(placeTypes);
-
     const [isExpanded, setIsExpanded] = useState(false);
     const { selectedTypeId, setSelectedTypeId } = usePlacesMapStore(state => state);
     const [indicatorPosition, setIndicatorPosition] = useState<number | null>(null);
@@ -25,9 +22,15 @@ const PlaceTypeFilter = ({ placeTypes }: PlaceTypeFilterProps) => {
         if (selectedTypeId !== typeId) {
             setSelectedTypeId(typeId);
             setIndicatorPosition(index);
+            router.replace({ pathname: router.pathname, query: { typeId } }, undefined, {
+                shallow: true
+            });
         } else {
             setSelectedTypeId("");
             setIndicatorPosition(null);
+            router.replace({ pathname: router.pathname, query: "" }, undefined, {
+                shallow: true
+            });
         }
     };
 
@@ -37,9 +40,6 @@ const PlaceTypeFilter = ({ placeTypes }: PlaceTypeFilterProps) => {
             const selectedTypeIndex = placeTypes.findIndex(placeType => placeType.id === typeId);
             setIndicatorPosition(selectedTypeIndex);
             setSelectedTypeId(typeId);
-            router.replace({ pathname: router.pathname, query: "" }, undefined, {
-                shallow: true
-            });
         }
 
         return () => {
@@ -48,7 +48,6 @@ const PlaceTypeFilter = ({ placeTypes }: PlaceTypeFilterProps) => {
         };
     }, [placeTypes, router, setSelectedTypeId]);
 
-    // if (isLoading) return <LoadingSpinner />;
     return (
         <>
             <div className={clsx("absolute bottom-2 left-2 z-[999]")}>
