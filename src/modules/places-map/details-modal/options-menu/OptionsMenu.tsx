@@ -4,11 +4,12 @@ import { BsFillShareFill } from "react-icons/bs";
 import { GoReport } from "react-icons/go";
 import { IoMdCopy } from "react-icons/io";
 import { EmailIcon, EmailShareButton, TelegramIcon, TelegramShareButton, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton } from "react-share";
-import { HiDotsHorizontal } from "react-icons/hi";
 import { toast } from "react-toastify";
 import Button from "../../../common/Button";
 import Modal from "../../../common/Modal";
 import { getPlaceUrl } from "../../../../utils/getPlaceUrls";
+import ReportModal from "../../../report-modal";
+import { BiDotsHorizontalRounded } from "react-icons/bi";
 
 type OptionsMenuProps = {
     placeId: string;
@@ -16,11 +17,16 @@ type OptionsMenuProps = {
 
 const OptionsMenu: React.FC<OptionsMenuProps> = ({ placeId }) => {
     const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+    const [isReportModalOpen, setIsReportModalOpen] = useState(false);
     const shareUrl = getPlaceUrl(placeId);
     const handleCopyShareLink = async () => {
         try {
             navigator.clipboard.writeText(shareUrl);
-            toast("Skopiowano", { autoClose: 1000, type: "success", theme: "colored" });
+            toast("Skopiowano", {
+                autoClose: 1000,
+                type: "success",
+                theme: "colored"
+            });
         } catch (error) {
             toast("Wystąpił bład", { autoClose: 3000, type: "error" });
         }
@@ -29,7 +35,7 @@ const OptionsMenu: React.FC<OptionsMenuProps> = ({ placeId }) => {
     return (
         <div>
             <Modal close={() => setIsShareModalOpen(false)} isModalOpen={isShareModalOpen}>
-                <div className="-mt-8 flex flex-col gap-2 p-4">
+                <div className="-mt-8 flex flex-col gap-2">
                     <span className="mb-8 flex items-center gap-2 text-left text-xl">
                         <BsFillShareFill />
                         Udostępnij
@@ -56,11 +62,12 @@ const OptionsMenu: React.FC<OptionsMenuProps> = ({ placeId }) => {
                     </div>
                 </div>
             </Modal>
+            <ReportModal close={() => setIsReportModalOpen(false)} isModalOpen={isReportModalOpen} />
             <Menu as="div" className="relative flex flex-col items-end">
-                <Menu.Button className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-4xl text-light shadow-sm shadow-white/40">
-                    <HiDotsHorizontal />
+                <Menu.Button className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-light shadow-sm shadow-white/60">
+                    <BiDotsHorizontalRounded className="text-4xl" />
                 </Menu.Button>
-                <Menu.Items className="items-left mr-2 mt-1 flex flex-col rounded-md bg-primary p-1">
+                <Menu.Items className="items-left mr-2 mt-1 flex flex-col bg-dark p-1">
                     <Menu.Item>
                         <MenuItemButton onClick={() => setIsShareModalOpen(true)}>
                             <BsFillShareFill />
@@ -68,7 +75,7 @@ const OptionsMenu: React.FC<OptionsMenuProps> = ({ placeId }) => {
                         </MenuItemButton>
                     </Menu.Item>
                     <Menu.Item>
-                        <MenuItemButton>
+                        <MenuItemButton onClick={() => setIsReportModalOpen(true)}>
                             <GoReport />
                             Zgłoś
                         </MenuItemButton>
