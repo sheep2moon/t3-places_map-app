@@ -30,6 +30,7 @@ import {
 } from "react-icons/md";
 import { BsPencilSquare } from "react-icons/bs";
 import HorizontalLine from "../../common/HorizontalLine";
+import { encode } from "querystring";
 
 const PlaceDetailsModal = () => {
   const {
@@ -50,14 +51,23 @@ const PlaceDetailsModal = () => {
     if (placeId) {
       setCurrentPlaceId(placeId);
       setIsPlaceModalOpen(true);
-      // router.replace({ pathname: router.pathname, query: "" }, undefined, {
-      //   shallow: true,
-      // });
     }
-  }, []);
+  }, [router.query, setCurrentPlaceId, setIsPlaceModalOpen]);
 
   const closeModal = () => {
     setIsPlaceModalOpen(false);
+    const query = router.query;
+
+    delete query.placeId;
+    const updatedQuery = encode(query);
+    const newQuery = new URLSearchParams(updatedQuery);
+
+    const newUrl = `${router.pathname}?${newQuery}`;
+    window.history.replaceState(
+      { ...window.history.state, as: newUrl, url: newUrl },
+      "",
+      newUrl
+    );
   };
 
   return (
