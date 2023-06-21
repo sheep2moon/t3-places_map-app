@@ -2,7 +2,6 @@ import Head from "next/head";
 import Script from "next/script";
 import React from "react";
 import ImageZoomModal from "../places-map/details-modal/ImageZoomModal";
-import Footer from "./footer";
 import Nav from "./nav";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
@@ -18,6 +17,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
           crossOrigin=""
         />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Script
         src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
