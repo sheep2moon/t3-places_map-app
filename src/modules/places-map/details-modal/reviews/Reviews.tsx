@@ -27,7 +27,9 @@ const Reviews = ({ placeId }: ReviewsProps) => {
             </div>
           </HorizontalLine>
         ) : (
-          <span>To miejsce nie ma jeszcze żadnych opinii</span>
+          <span className="text-base">
+            To miejsce nie ma jeszcze żadnych opinii
+          </span>
         )}
       </div>
       {isLoading && (

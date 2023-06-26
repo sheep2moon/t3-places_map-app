@@ -25,8 +25,6 @@ const Home: NextPage<HomeProps> = ({
   recentlyAddedPlaces,
   recentlyAddedReviews,
 }) => {
-  console.log("static props: !", placeTypes);
-
   return (
     <div className=" relative mt-0 w-full">
       <div className="bg-radial-dark absolute inset-0 mt-16 h-[100px]"></div>
