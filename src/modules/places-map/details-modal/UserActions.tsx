@@ -75,7 +75,7 @@ const UserActions = ({ placeId }: UserActionsProps) => {
                     ) : (
                         <>
                             <TbTarget className="text-lg text-amber-400" />
-                            Odwiedzone?
+                            Dodaj do odwiedzonych
                         </>
                     )}
                 </button>

@@ -16,7 +16,7 @@ const ImageZoomModal = () => {
                         <div className="fixed inset-0 bg-black bg-opacity-25" />
                     </Transition.Child>
 
-                    <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-y-auto">
+                    <div className="fixed top-1/2 left-1/2 max-h-screen -translate-x-1/2 -translate-y-1/2 overflow-y-auto">
                         <div className=" flex items-center justify-center text-center">
                             <Transition.Child
                                 as={Fragment}
@@ -29,11 +29,17 @@ const ImageZoomModal = () => {
                             >
                                 <Dialog.Panel className="relative aspect-video w-screen max-w-5xl transform overflow-hidden rounded-sm bg-black/90 text-left align-middle shadow-xl transition-all">
                                     <Image className="object-contain" alt="powiększone zdjęcie miejsca" src={getPlaceImageSrc(imageCollection[currentImageIndex]?.id || "")} fill />
-                                    <button onClick={previousImage} className="absolute left-0 top-0 bottom-0 flex w-16 items-center justify-center  hover:bg-light/10">
+
+                                    <button onClick={previousImage} className="absolute left-0 top-1/2 flex aspect-square w-16 -translate-y-1/2 items-center justify-center  hover:bg-light/10">
                                         <GoTriangleLeft className="text-3xl" />
                                     </button>
-                                    <button onClick={nextImage} className="absolute right-0 top-0 bottom-0 flex w-16 items-center justify-center  hover:bg-light/10">
+
+                                    <button onClick={nextImage} className="absolute right-0 top-1/2 flex  aspect-square w-16 -translate-y-1/2 items-center justify-center  hover:bg-light/10">
                                         <GoTriangleLeft className="rotate-180 text-3xl" />
+                                    </button>
+
+                                    <button onClick={close} className="absolute top-1 right-1 p-2 hover:bg-light/10">
+                                        Zamknij X
                                     </button>
                                 </Dialog.Panel>
                             </Transition.Child>

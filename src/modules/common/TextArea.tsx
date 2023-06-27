@@ -9,8 +9,6 @@ type TextAreaProps = {
 } & React.TextareaHTMLAttributes<HTMLTextAreaElement>;
 
 const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(({ placeholder, className = "", name, value, handleChange, ...props }, ref) => {
-    console.log(props);
-
     return (
         <div className="flex w-full flex-col gap-1">
             <textarea

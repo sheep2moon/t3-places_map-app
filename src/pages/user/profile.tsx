@@ -47,13 +47,13 @@ const UserProfile = () => {
     return (
         <div className="flex w-full max-w-screen-xl flex-col">
             <section className="flex w-full flex-col items-center px-4 py-4 dark:bg-dark">
+                <InternalLink className="ml-auto" href="/add-place">
+                    + Dodaj miejsce
+                </InternalLink>
                 <div className="flex w-full items-center justify-between">
-                    <InternalLink className="" href="/add-place">
-                        + Dodaj miejsce
-                    </InternalLink>
-                    <Button className="" variant="outline" onClick={() => signOut()}>
+                    {/* <Button className="" variant="outline" onClick={() => signOut()}>
                         Wyloguj się
-                    </Button>
+                    </Button> */}
                 </div>
                 <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
                     {data.image && <UserAvatar image={data.image} />}
@@ -141,6 +141,7 @@ export default UserProfile;
 const LibraryPlace = ({ place }: { place: Place & { type: PlaceType } }) => {
     const { setCurrentPlaceId, setIsPlaceModalOpen } = usePlacesMapStore(state => state);
     const router = useRouter();
+    console.log(place);
 
     const handleGoToPlace = () => {
         setCurrentPlaceId(place.id);

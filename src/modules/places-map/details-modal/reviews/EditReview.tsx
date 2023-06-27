@@ -35,8 +35,6 @@ const EditReview = ({ review }: EditReviewProps) => {
     }, [review]);
 
     const handleUpdateReview = async () => {
-        console.log(currentComment, review.comment);
-
         if (currentComment !== review.comment || currentRate !== review.rate) {
             await updateReviewMutation.mutateAsync({ comment: currentComment, rate: currentRate, reviewId: review.id });
         }

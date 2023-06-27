@@ -2,10 +2,9 @@ import { Menu, Transition } from "@headlessui/react";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
 import React, { Fragment } from "react";
-import Button from "../../../common/Button";
 import UserAvatar from "../../../common/UserAvatar";
 import { AiFillProfile } from "react-icons/ai";
-import { MdFavorite } from "react-icons/md";
+import { TbLogout } from "react-icons/tb";
 
 type UserCardProps = {
     name: string | null | undefined;
@@ -34,9 +33,9 @@ const UserCard = ({ name, image }: UserCardProps) => {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                 >
-                    <Menu.Items className="absolute right-0 mt-2 w-44 origin-top-right divide-y divide-gray-100 rounded-md border bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:border-black dark:bg-primary">
+                    <Menu.Items className="absolute right-0 mt-2 w-44 origin-top-right divide-y divide-gray-100 rounded-md border-2 bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:border-accent/50 dark:bg-dark">
                         <div className=" ">
-                            <div className="text- flex justify-center bg-black/20">
+                            <div className="text- flex justify-center bg-accent/30">
                                 <span>{name}</span>
                             </div>
                             <div className="px-1 py-1">
@@ -47,14 +46,9 @@ const UserCard = ({ name, image }: UserCardProps) => {
                                     </Link>
                                 </Menu.Item>
                                 <Menu.Item>
-                                    <Link className="flex items-center gap-2 p-1 hover:bg-light/10" href="/user/library">
-                                        <MdFavorite className="text-secondary" />
-                                        <span>Biblioteka</span>
-                                    </Link>
-                                </Menu.Item>
-                                <Menu.Item>
-                                    <button onClick={handleLogout} className="flex items-center gap-2 p-1 hover:bg-light/10">
-                                        Wyloguj
+                                    <button onClick={handleLogout} className="flex w-full items-center gap-2 p-1 hover:bg-light/10">
+                                        <TbLogout className="text-secondary" />
+                                        <span>Wyloguj</span>
                                     </button>
                                 </Menu.Item>
                             </div>
